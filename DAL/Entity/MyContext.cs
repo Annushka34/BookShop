@@ -11,7 +11,7 @@ namespace DAL.Entity
     {
         public MyContext() : base("MyDbConnection")
         {
-
+            Database.SetInitializer<MyContext>(null);
         }
 
         public DbSet<User> Users { get; set; }
