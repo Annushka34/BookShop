@@ -49,10 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Admin.cs" />
     <Compile Include="Entity\Author.cs" />
+    <Compile Include="Entity\Basket.cs" />
+    <Compile Include="Entity\BasketRecord.cs" />
     <Compile Include="Entity\Book.cs" />
     <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\Customer.cs" />
     <Compile Include="Entity\MyContext.cs" />
+    <Compile Include="Entity\Order.cs" />
+    <Compile Include="Entity\OrderRecord.cs" />
+    <Compile Include="Entity\Picture.cs" />
+    <Compile Include="Entity\Publish.cs" />
+    <Compile Include="Entity\Review.cs" />
+    <Compile Include="Entity\Tag.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

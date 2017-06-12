@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entity
 {
-    public  class Category
+    public class Picture
     {
         [Key]
         int Id { get; set; }

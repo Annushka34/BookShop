@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entity
 {
-    public  class Category
+    public class BasketRecord
     {
         [Key]
         int Id { get; set; }
