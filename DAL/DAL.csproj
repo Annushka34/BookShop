@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Entity\Author.cs" />
     <Compile Include="Entity\Book.cs" />
+    <Compile Include="Entity\Category.cs" />
     <Compile Include="Entity\MyContext.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Migrations\Configuration.cs" />
