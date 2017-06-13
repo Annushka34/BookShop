@@ -19,9 +19,6 @@ namespace DAL.Entity
         public string FirstName { get; set; }
         [StringLength(maximumLength: 100)]
         public string LastName { get; set; }
-        [StringLength(maximumLength: 100)]
-        public DateTime autorbirthdate { get; set;}
-        public DateTime autordeathdate { get; set; }
         public virtual ICollection<Book> Books { get; set; }
 
     }

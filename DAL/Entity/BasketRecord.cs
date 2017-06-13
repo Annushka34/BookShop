@@ -10,11 +10,13 @@ namespace DAL.Entity
         
         [Key]
         public int Id { get; set; }
+        public int Count { get; set; }
 
-        public virtual int BasketId { get; set; }
+        public int BasketId { get; set; }
         [ForeignKey("BasketId")]
         public virtual Basket Basket { get; set; }
-
-        public virtual ICollection<Book> Books { get; set; }
+        public int BookId { get; set; }
+        [ForeignKey("BookId")]
+        public virtual Book Book { get; set; }
     }
 }

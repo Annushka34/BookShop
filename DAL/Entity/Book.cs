@@ -28,6 +28,8 @@ namespace DAL.Entity
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<OrderRecord> OrderRecords { get; set; }
+        public virtual ICollection<BasketRecord> BasketRecords { get; set; }
         public virtual Picture Picture { get; set; }
         public int PublishId { get; set; }
         [ForeignKey("PublishId")]

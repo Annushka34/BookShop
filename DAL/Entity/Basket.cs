@@ -12,7 +12,7 @@ namespace DAL.Entity
     {
         [Key, ForeignKey("Customer")]
         public int CustomerId { get; set; }
-        public DateTime timepurchase { get; set; }
+        public DateTime TimePurchase { get; set; }
         public virtual ICollection<BasketRecord> BasketRecords { get; set; }
         public virtual Customer Customer { get; set; }
     }
