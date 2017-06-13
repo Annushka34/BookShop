@@ -1,3 +1,5 @@
+using DAL.Entity;
+
 namespace DAL.Migrations
 {
     using System;
@@ -26,6 +28,13 @@ namespace DAL.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+
+           
+            context.Users.AddOrUpdate(p => p.Id,
+                new User { Id = 1, Login = "Annushka",Password = "111", Email = "annsamoluk@mail.ru"});
+            context.Admins.AddOrUpdate(p => p.Id,
+                new Admin() { Id = 1, });
         }
     }
 }
