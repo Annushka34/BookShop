@@ -11,5 +11,8 @@ namespace DAL.Entity
     {
         [Key]
         int Id { get; set; }
+        public int Count { get; set; }
+      
+        //зв'язок один до багатьох для ордера і книги
     }
 }

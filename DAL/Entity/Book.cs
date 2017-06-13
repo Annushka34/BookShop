@@ -13,6 +13,8 @@ namespace DAL.Entity
         [Key]
         public int Id { get; set; }
         public int Isbn { get; set; }
+        public int Price { get; set; }
+
         [StringLength(maximumLength:100)]
         public string Name { get; set; }
         public int AuthorId { get; set; }

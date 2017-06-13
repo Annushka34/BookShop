@@ -11,5 +11,8 @@ namespace DAL.Entity
     {
         [Key]
         int Id { get; set; }
+        public string PicturePath { get; set; }
+       
+        //зв'язок один до одного для книги
     }
 }

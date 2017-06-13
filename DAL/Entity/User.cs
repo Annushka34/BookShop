@@ -11,10 +11,13 @@ namespace DAL.Entity
     {
         [Key]
         int Id { get; set; }
+
         [StringLength(maximumLength: 100)]
         string Login { get; set; }
+
         [StringLength(maximumLength: 16)]
         string Password { get; set; }
+
         [StringLength(maximumLength:100)]
         [EmailAddress]
         string Email { get; set; }

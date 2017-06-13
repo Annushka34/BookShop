@@ -11,5 +11,11 @@ namespace DAL.Entity
     {
         [Key]
         int Id { get; set; }
+
+        [StringLength(maximumLength: 100)]
+        public string Name { get; set; }
+
+        //зв'язок до книги один до багатьох
+
     }
 }
