@@ -19,6 +19,7 @@ namespace DAL.Entity
         [StringLength(maximumLength:100)]
         [EmailAddress]
         public string Email { get; set; }
+
         public virtual Admin Admin { get; set; }
         public virtual Customer Customer { get; set; }
     }

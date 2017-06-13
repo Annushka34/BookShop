@@ -15,6 +15,9 @@ namespace DAL.Entity
         }
         [Key]
         public int Id { get; set; }
+        [StringLength(maximumLength: 50)]
+        public string Name { get; set; }
+
         public virtual ICollection<Book> Books { get; set; }
     }
 }

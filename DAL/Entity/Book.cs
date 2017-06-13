@@ -22,6 +22,8 @@ namespace DAL.Entity
         public int Isbn { get; set; }
         [StringLength(maximumLength:100)]
         public string Name { get; set; }
+        public double Price { get; set; }
+
         public virtual ICollection<Author> Authors { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Category> Categories { get; set; }

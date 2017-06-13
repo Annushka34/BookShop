@@ -12,6 +12,11 @@ namespace DAL.Entity
     {
         [Key]
         public int Id { get; set; }
+        [Range(1, 5)]
+        public int BookQuality { get; set; }
+        [StringLength(maximumLength: 500)]
+        public string ReviewDescription { get; set; }
+
         public int BookId { get; set; }
         [ForeignKey("BookId")]
         public virtual Book Book { get; set; }

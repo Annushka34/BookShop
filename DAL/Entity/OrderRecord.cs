@@ -9,11 +9,11 @@ namespace DAL.Entity
        
         [Key]
         public int Id { get; set; }
+        public int Count { get; set; }
 
         public virtual int OrderId { get; set; }
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
-
         public virtual ICollection<Book> Books { get; set; }
     }
 }

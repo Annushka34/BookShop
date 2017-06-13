@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,9 +11,10 @@ namespace DAL.Entity
        
         [Key]
         public int Id { get; set; }
+        public DateTime OpenDate { get; set; }
+        public DateTime CloseDate { get; set; }
 
         public virtual ICollection<OrderRecord> OrderRecords  { get; set; }
-
         public int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }

@@ -12,6 +12,8 @@ namespace DAL.Entity
     {
         [Key,ForeignKey("Book")]
         public int BookId { get; set; }
+        public string PicturePath { get; set; }
+
         public virtual Book Book { get; set; }
     }
 }
