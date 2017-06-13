@@ -6,10 +6,7 @@ namespace DAL.Entity
 {
     public class OrderRecord
     {
-        public OrderRecord()
-        {
-                Books=new List<Book>();
-        }
+       
         [Key]
         public int Id { get; set; }
 
@@ -17,6 +14,6 @@ namespace DAL.Entity
         [ForeignKey("OrderId")]
         public virtual Order Order { get; set; }
 
-        public ICollection<Book> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

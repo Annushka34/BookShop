@@ -10,20 +10,13 @@ namespace DAL.Entity
 {
     public class Customer
     {
-        public Customer()
-        {
-            Reviews=new List<Review>();
-            Orders=new List<Order>();
-        }
+     
         [Key, ForeignKey("User")]
-        public int Id { get; set; }
-
-        public Basket Basket { get; set; }
-
-        public User User { get; set; }
-        public ICollection<Order> Orders { get; set; }
-
-        public ICollection<Review> Reviews{ get; set; }
+        public int UserId { get; set; }
+        public virtual Basket Basket { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Review> Reviews{ get; set; }
 
     }
 }

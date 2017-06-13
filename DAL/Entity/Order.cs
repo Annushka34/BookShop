@@ -7,17 +7,14 @@ namespace DAL.Entity
 {
     public class Order
     {
-        public Order()
-        {
-            OrderRecords=new List<OrderRecord>();
-        }
-        [Key, ForeignKey("Customer")]
+       
+        [Key]
         public int Id { get; set; }
 
         public virtual ICollection<OrderRecord> OrderRecords  { get; set; }
 
         public int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
-        public virtual Customer Cuctomer { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

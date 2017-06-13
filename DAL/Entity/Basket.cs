@@ -10,14 +10,10 @@ namespace DAL.Entity
 {
     public class Basket
     {
-        public Basket()
-        {
-            BasketRecords = new List<BasketRecord>();
-        }
         [Key, ForeignKey("Customer")]
-        public int Id { get; set; }
-
-        public ICollection<BasketRecord> BasketRecords { get; set; }
-        public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
+        public DateTime timepurchase { get; set; }
+        public virtual ICollection<BasketRecord> BasketRecords { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

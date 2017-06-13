@@ -14,8 +14,7 @@ namespace DAL.Entity
         {
             Authors = new HashSet<Author>();
             Tags = new HashSet<Tag>();
-            Categories = new HashSet<Category>();
-            Reviews = new List<Review>();
+            Categories = new HashSet<Category>();           
         }
 
         [Key]

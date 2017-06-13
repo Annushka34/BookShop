@@ -13,7 +13,6 @@ namespace DAL.Entity
         {
             Books = new HashSet<Book>();
         }
-
         [Key]
         public int Id { get; set; }
         public virtual ICollection<Book> Books { get; set; }

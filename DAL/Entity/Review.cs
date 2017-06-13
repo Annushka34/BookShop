@@ -13,11 +13,11 @@ namespace DAL.Entity
         [Key]
         public int Id { get; set; }
         public int BookId { get; set; }
-        [ForeignKey("bookId")]
+        [ForeignKey("BookId")]
         public virtual Book Book { get; set; }
         public int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
-        public virtual Customer Cuctomer { get; set; }
+        public virtual Customer Customer { get; set; }
 
     }
 }
