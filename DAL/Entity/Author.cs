@@ -9,6 +9,11 @@ namespace DAL.Entity
 {
     public class Author
     {
+        public Author()
+        {
+            Books = new HashSet<Book>();
+        }
+
         [Key]
         public int Id { get; set; }
         [StringLength(maximumLength: 100)]

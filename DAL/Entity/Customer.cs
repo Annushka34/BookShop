@@ -10,6 +10,6 @@ namespace DAL.Entity
     public class Customer
     {
         [Key]
-        int Id { get; set; }
+        public int Id { get; set; }
     }
 }

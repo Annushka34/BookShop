@@ -9,7 +9,13 @@ namespace DAL.Entity
 {
     public  class Category
     {
+        public Category()
+        {
+            Books = new HashSet<Book>();
+        }
+
         [Key]
-        int Id { get; set; }
+        public int Id { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

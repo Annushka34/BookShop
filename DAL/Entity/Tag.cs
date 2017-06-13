@@ -9,7 +9,13 @@ namespace DAL.Entity
 {
    public class Tag
     {
+        public Tag()
+        {
+            Books = new HashSet<Book>();
+        }
+
         [Key]
-        int Id { get; set; }
+        public int Id { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

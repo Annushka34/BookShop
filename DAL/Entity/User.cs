@@ -10,13 +10,13 @@ namespace DAL.Entity
     public class User
     {
         [Key]
-        int Id { get; set; }
+        public int Id { get; set; }
         [StringLength(maximumLength: 100)]
-        string Login { get; set; }
+        public string Login { get; set; }
         [StringLength(maximumLength: 16)]
-        string Password { get; set; }
+        public string Password { get; set; }
         [StringLength(maximumLength:100)]
         [EmailAddress]
-        string Email { get; set; }
+        public string Email { get; set; }
     }
 }

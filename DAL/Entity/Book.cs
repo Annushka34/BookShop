@@ -10,14 +10,28 @@ namespace DAL.Entity
 {
     public class Book
     {
+        public Book()
+        {
+            Authors = new HashSet<Author>();
+            Tags = new HashSet<Tag>();
+            Categories = new HashSet<Category>();
+            Reviews = new List<Review>();
+        }
+
         [Key]
         public int Id { get; set; }
         public int Isbn { get; set; }
         [StringLength(maximumLength:100)]
         public string Name { get; set; }
-        public int AuthorId { get; set; }
-        [ForeignKey("AuthorId")]
-        public virtual Author Author { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual Picture Picture { get; set; }
+        public int PublishId { get; set; }
+        [ForeignKey("PublishId")]
+        public virtual Publish Publish { get; set; }
+
 
     }
 }
