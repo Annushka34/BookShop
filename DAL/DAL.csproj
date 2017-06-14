@@ -64,12 +64,21 @@
     <Compile Include="Entity\Review.cs" />
     <Compile Include="Entity\Tag.cs" />
     <Compile Include="Entity\User.cs" />
+    <Compile Include="Migrations\201706141301319_Create DB add Tables.cs" />
+    <Compile Include="Migrations\201706141301319_Create DB add Tables.Designer.cs">
+      <DependentUpon>201706141301319_Create DB add Tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201706141301319_Create DB add Tables.resx">
+      <DependentUpon>201706141301319_Create DB add Tables.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
