@@ -1,0 +1,30 @@
+﻿<Window x:Class="WPF_UI.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_UI"
+        mc:Ignorable="d"
+        Title="Admin" Height="900" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Name="AuthorStack">
+           <TextBox Name="AuthorName" Height="50">Name</TextBox>
+            <TextBox Name="AuthorLastName" Height="50">Name</TextBox>
+            <Button Name="BtnAuthorAdd" Click="BtnAuthorAdd_OnClick" Height="50" Margin="10"></Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Name="BookStack">
+            <TextBox Name="BookName" Height="50">Book</TextBox>
+            <TextBox Name="BookIsbn" Height="50">Isbn</TextBox>
+            <Button Name="BtnBookAdd" Click="BtnBookAdd_OnClick" Height="50" Margin="10"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

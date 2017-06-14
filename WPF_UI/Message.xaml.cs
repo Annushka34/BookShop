@@ -10,27 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WPF_UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для Message.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Message : Window
     {
-        private Admin adminWindow;
-        public MainWindow()
+        public Message()
         {
             InitializeComponent();
         }
-
-        private void Admin_OnClick(object sender, RoutedEventArgs e)
+        public Message(string mess)
         {
-            adminWindow=new Admin();
-            adminWindow.Show(this);
-            this.Hide();
+            InitializeComponent();
+            MessageText.Text = mess;
         }
     }
 }
