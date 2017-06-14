@@ -26,5 +26,12 @@
             <TextBox Name="BookIsbn" Height="50">Isbn</TextBox>
             <Button Name="BtnBookAdd" Click="BtnBookAdd_OnClick" Height="50" Margin="10"></Button>
         </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Name="UserStack">
+            <TextBox Name="UserEmail" Height="50">Email</TextBox>
+            <TextBox Name="UserLogin" Height="50">Login</TextBox>
+            <TextBox Name="UserPassword" Height="50">Pasword</TextBox>
+
+            <Button Name="BtnUserAdd" Click="BtnUserAdd_OnClick" Height="50" Margin="10">User Add</Button>
+        </StackPanel>
     </Grid>
 </Window>

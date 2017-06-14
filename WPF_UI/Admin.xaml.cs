@@ -12,6 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BLL.AbstractProviders;
+using BLL.ConcreteProviders;
+using BLL.ViewModels;
 
 namespace WPF_UI
 {
@@ -31,7 +34,7 @@ namespace WPF_UI
         {
             string name = AuthorName.Text;
             string surname = AuthorLastName.Text;
-            messWindow=new Message(name+" "+surname+" was added");
+            messWindow = new Message(name + " " + surname + " was added");
             messWindow.Show();
         }
 
@@ -49,6 +52,16 @@ namespace WPF_UI
         private void BtnBookAdd_OnClick(object sender, RoutedEventArgs e)
         {
             throw new NotImplementedException();
+        }
+
+        private void BtnUserAdd_OnClick(object sender, RoutedEventArgs e)
+        {
+            UserViewModel user = new UserViewModel();
+            user.Login = UserLogin.Text;
+            user.Email = UserEmail.Text;
+            user.Password = UserPassword.Text;
+            IUserProvider userProvider = new UserProvider();
+            userProvider.UserCreate(user);
         }
     }
 }

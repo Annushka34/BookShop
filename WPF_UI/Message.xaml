@@ -7,6 +7,6 @@
         mc:Ignorable="d"
         Title="Message" Height="70" Width="200">
     <Grid>
-        <TextBlock Name="MessageText" FontSize="20" TextAlignment="Center">OK</TextBlock>
+        <TextBlock Name="MessageText" FontSize="10" TextAlignment="Center">OK</TextBlock>
     </Grid>
 </Window>

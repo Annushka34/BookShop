@@ -28,7 +28,7 @@ namespace WPF_UI
 
         private void Admin_OnClick(object sender, RoutedEventArgs e)
         {
-            adminWindow=new Admin();
+            adminWindow = new Admin();
             adminWindow.Show(this);
             this.Hide();
         }

@@ -20,11 +20,10 @@ namespace DAL.Entity
         [Key]
         public int Id { get; set; }
         public int Isbn { get; set; }
-
+        public double Price { get; set; }
         [StringLength(maximumLength:100)]
         public string Name { get; set; }
-        public double Price { get; set; }
-
+        
         public virtual ICollection<Author> Authors { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Category> Categories { get; set; }

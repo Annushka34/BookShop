@@ -10,7 +10,7 @@ namespace DAL.Entity
 {
     public class MyContext: DbContext
     {
-        public MyContext() : base("MyDbConnection")
+        public MyContext() : base("name=MyDbConnection")
         {
             Database.SetInitializer<MyContext>(null);
         }
