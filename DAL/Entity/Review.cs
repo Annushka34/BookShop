@@ -23,6 +23,5 @@ namespace DAL.Entity
         public int CustomerId { get; set; }
         [ForeignKey("CustomerId")]
         public virtual Customer Customer { get; set; }
-
     }
 }
