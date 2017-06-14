@@ -9,14 +9,15 @@ namespace DAL.Entity
 {
    public class Tag
     {
+        public Tag()
+        {
+            Books = new HashSet<Book>();
+        }
         [Key]
-        int Id { get; set; }
-
+        public int Id { get; set; }
         [StringLength(maximumLength: 50)]
         public string Name { get; set; }
 
-        //зв'язок багато до багатьох для книги
-
-
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entity
 {
     public class Picture
     {
-        [Key]
-        int Id { get; set; }
+        [Key,ForeignKey("Book")]
+        public int BookId { get; set; }
         public string PicturePath { get; set; }
-       
-        //зв'язок один до одного для книги
+
+        public virtual Book Book { get; set; }
     }
 }

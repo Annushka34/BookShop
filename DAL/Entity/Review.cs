@@ -4,20 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entity
 {
    public class Review
     {
         [Key]
-        int Id { get; set; }
-
-        [Range(1,5)]
+        public int Id { get; set; }
+        [Range(1, 5)]
         public int BookQuality { get; set; }
-
         [StringLength(maximumLength: 500)]
         public string ReviewDescription { get; set; }
-        
-        //зв'язок 1 до багатьох для кастомера
+
+        public int BookId { get; set; }
+        [ForeignKey("BookId")]
+        public virtual Book Book { get; set; }
+        public int CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
+        public virtual Customer Customer { get; set; }
     }
 }

@@ -1,18 +1,22 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entity
 {
     public class Order
     {
+       
         [Key]
-        int Id { get; set; }
-        public DateTime? OrderDate { get; set; }
+        public int Id { get; set; }
+        public DateTime OpenDate { get; set; }
+        public DateTime CloseDate { get; set; }
 
-        //зв'язок один до багатьох для кастомера
+        public virtual ICollection<OrderRecord> OrderRecords  { get; set; }
+        public int CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
+        public virtual Customer Customer { get; set; }
     }
 }

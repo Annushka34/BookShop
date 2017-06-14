@@ -10,12 +10,10 @@ namespace DAL.Entity
     public class Publish
     {
         [Key]
-        int Id { get; set; }
-
+        public int Id { get; set; }
         [StringLength(maximumLength: 100)]
         public string Name { get; set; }
 
-        //зв'язок до книги один до багатьох
-
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

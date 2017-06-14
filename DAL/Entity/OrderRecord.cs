@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DAL.Entity
 {
     public class OrderRecord
     {
+       
         [Key]
-        int Id { get; set; }
+        public int Id { get; set; }
         public int Count { get; set; }
-      
-        //зв'язок один до багатьох для ордера і книги
+
+        public int OrderId { get; set; }
+        [ForeignKey("OrderId")]
+        public virtual Order Order { get; set; }
+        public int BookId { get; set; }
+        [ForeignKey("BookId")]
+        public virtual Book Book{ get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,16 +11,16 @@ namespace DAL.Entity
     public class User
     {
         [Key]
-        int Id { get; set; }
-
+        public int Id { get; set; }
         [StringLength(maximumLength: 100)]
-        string Login { get; set; }
-
+        public string Login { get; set; }
         [StringLength(maximumLength: 16)]
-        string Password { get; set; }
-
+        public string Password { get; set; }
         [StringLength(maximumLength:100)]
         [EmailAddress]
-        string Email { get; set; }
+        public string Email { get; set; }
+
+        public virtual Admin Admin { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }
