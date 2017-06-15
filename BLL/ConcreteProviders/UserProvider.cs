@@ -19,8 +19,11 @@ namespace BLL.ConcreteProviders
             newUser.Login = user.Login;
             newUser.Password = user.Password;
             newUser.Email = user.Email;
+            Customer newCustomer = new Customer();
+            newCustomer.UserId = newUser.Id;
+            ICustomerRepository customerRepository = new CustomerRepository();
             IUserRepository userRepository=new UserRepository();
-            bool isCreated=userRepository.Create(newUser);
+            bool isCreated=userRepository.Create(newUser)&&customerRepository.CreateCustomer(newUser);
             if(isCreated)return UserStatus.Success;
             return UserStatus.DublicationEmail;
         }

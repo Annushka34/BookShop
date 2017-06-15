@@ -12,7 +12,14 @@ namespace DAL.ConcreteRepositories
    {
        private MyContext db;
         public bool IsAdmin(int userId)
-        { return true; }
+        {
+            db = new MyContext();
+            var admin=db.Admins.Find(userId);
+            if (admin != null)
+                return true;
+            else
+              return false;
+        }
 
         public bool CreateAdmin(User user)
         {
