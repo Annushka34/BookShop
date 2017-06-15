@@ -10,7 +10,7 @@ namespace BLL.AbstractProviders
 {
     public interface IUserProvider
     {
-        UserStatus UserCreate(UserViewModel user);
+        UserStatus UserRegistration(UserViewModel user);
         
     }
 }

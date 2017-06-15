@@ -10,20 +10,39 @@ namespace DAL.ConcreteRepositories
 {
     public class BasketRepository : IBasketRepository
     {
-        private MyContext db;
-        public bool CreateBasket(Customer customer)
+        MyContext _db;
+        public BasketRepository(MyContext db)
         {
-            throw new NotImplementedException();
+            _db = db;
+        }
+        public Basket CreateBasket(Customer customer)
+        {
+            Basket basket = new Basket();
+            basket.Customer = customer;
+            basket.TimePurchase = DateTime.Now;
+            _db.Baskets.Add(basket);
+            _db.SaveChanges();
+            return basket;
         }
 
-        public DateTime GetTimePurchase(int customerId)
+        public Basket GetBasketById(int customerId)
         {
-            throw new NotImplementedException();
+            Basket basket = _db.Baskets.SingleOrDefault(x => x.CustomerId == customerId);
+            return basket;
         }
 
-        public bool IsCreated(int customerId)
+        public bool DeleteBasket(Basket basket)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _db.Baskets.Remove(basket);   
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
