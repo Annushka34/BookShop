@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201706151524511_Add PasswordSalt.Designer.cs">
       <DependentUpon>201706151524511_Add PasswordSalt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706151958413_add descriptionBook.cs" />
+    <Compile Include="Migrations\201706151958413_add descriptionBook.Designer.cs">
+      <DependentUpon>201706151958413_add descriptionBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConcreteRepositories\AdminRepository.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706151524511_Add PasswordSalt.resx">
       <DependentUpon>201706151524511_Add PasswordSalt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706151958413_add descriptionBook.resx">
+      <DependentUpon>201706151958413_add descriptionBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

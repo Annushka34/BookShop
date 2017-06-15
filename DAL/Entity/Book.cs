@@ -23,7 +23,9 @@ namespace DAL.Entity
         public double Price { get; set; }
         [StringLength(maximumLength:100)]
         public string Name { get; set; }
-        
+        [StringLength(maximumLength: 600)]
+        public string Description { get; set; }
+
         public virtual ICollection<Author> Authors { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Category> Categories { get; set; }
