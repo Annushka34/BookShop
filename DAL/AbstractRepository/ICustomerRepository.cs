@@ -11,5 +11,6 @@ namespace DAL.AbstractRepository
     {
         Customer GetCustomerById(int userId);
         Customer CreateCustomer(User user);
+        bool DeleteCustomerById(int userId);
     }
 }
