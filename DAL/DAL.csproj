@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractRepository\IAdminRepository.cs" />
+    <Compile Include="AbstractRepository\IBasketRepository.cs" />
     <Compile Include="AbstractRepository\ICustomerRepository.cs" />
     <Compile Include="AbstractRepository\IUserRepository.cs" />
+    <Compile Include="ConcreteRepositories\BasketRepository.cs" />
     <Compile Include="ConcreteRepositories\CustomerRepository.cs" />
     <Compile Include="Entity\Admin.cs" />
     <Compile Include="Entity\Author.cs" />
