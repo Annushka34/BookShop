@@ -50,8 +50,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractRepository\IAdminRepository.cs" />
+    <Compile Include="AbstractRepository\IAuthorRepository.cs" />
+    <Compile Include="AbstractRepository\IBasketRecordRepository.cs" />
     <Compile Include="AbstractRepository\IBasketRepository.cs" />
+    <Compile Include="AbstractRepository\IBookRepository.cs" />
+    <Compile Include="AbstractRepository\ICategoryRepository.cs" />
     <Compile Include="AbstractRepository\ICustomerRepository.cs" />
+    <Compile Include="AbstractRepository\IOrderRecordsRepository.cs" />
+    <Compile Include="AbstractRepository\IOrderRepository.cs" />
+    <Compile Include="AbstractRepository\IPictureRepository.cs" />
+    <Compile Include="AbstractRepository\IPublishRepository.cs" />
+    <Compile Include="AbstractRepository\IReviewRepository.cs" />
+    <Compile Include="AbstractRepository\ITagRepository.cs" />
     <Compile Include="AbstractRepository\IUserRepository.cs" />
     <Compile Include="ConcreteRepositories\BasketRepository.cs" />
     <Compile Include="ConcreteRepositories\CustomerRepository.cs" />

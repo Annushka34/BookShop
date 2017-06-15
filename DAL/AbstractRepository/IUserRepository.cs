@@ -11,10 +11,12 @@ namespace DAL.AbstractRepository
     {
         User CreateUser(User user);
         bool DeleteUser(User user);
-
         bool Update(User userOld, User userNew);
 
+
+        #region Get
         User GetUserById(int userId);
         User GetUserByLogin(string login);
+        #endregion
     }
 }

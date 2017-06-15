@@ -10,7 +10,7 @@ namespace DAL.AbstractRepository
     public interface IAdminRepository
     {
         Admin GetAdminById(int userId);
-
         Admin CreateAdmin(User user);
+        bool DeleteAdmin(Admin admin);
     }
 }

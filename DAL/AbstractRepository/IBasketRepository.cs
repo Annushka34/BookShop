@@ -9,8 +9,22 @@ namespace DAL.AbstractRepository
 {
     public interface IBasketRepository
     {
-        bool IsCreated(int customerId);
-        DateTime GetTimePurchase(int customerId);
-        bool CreateBasket(Customer customer);
+        Basket CreateBasket(Customer customer,Basket basket);
+        bool UpdateBasket(Basket basketOld, Basket basketNew);
+        bool DeleteBasketForCustomer(Customer customer);
+        bool ClearBasketForCustomer(Customer customer);
+
+
+        #region BascketRecord
+        bool DeleteBasketRecordForBasket(int basketRecordId, Basket basket);
+        Basket AddBasketRecordForBasket(BasketRecord basketRecord, Basket basket);
+        #endregion
+
+
+        #region Get
+        Basket GetBasketById(int busketId);
+        Basket GetBasketByCustomer(Customer customer);
+        DateTime GetTimeBasket(Customer customer);
+        #endregion
     }
 }
