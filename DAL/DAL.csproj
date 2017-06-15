@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201706141301319_Create DB add Tables.Designer.cs">
       <DependentUpon>201706141301319_Create DB add Tables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706151524511_Add PasswordSalt.cs" />
+    <Compile Include="Migrations\201706151524511_Add PasswordSalt.Designer.cs">
+      <DependentUpon>201706151524511_Add PasswordSalt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConcreteRepositories\AdminRepository.cs" />
@@ -86,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706141301319_Create DB add Tables.resx">
       <DependentUpon>201706141301319_Create DB add Tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706151524511_Add PasswordSalt.resx">
+      <DependentUpon>201706151524511_Add PasswordSalt.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

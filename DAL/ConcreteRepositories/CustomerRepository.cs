@@ -10,26 +10,25 @@ namespace DAL.ConcreteRepositories
 {
     public  class CustomerRepository : ICustomerRepository
     {
-        private MyContext db;
-        public bool CreateCustomer(User user)
+        MyContext _db;
+        public CustomerRepository(MyContext db)
         {
-            db = new MyContext();
-            Customer customer = new Customer();
-            customer.UserId = user.Id;
-            db.Customers.Add(customer);
-            db.SaveChanges();
-            return true;
-            
+            _db = db;
         }
 
-        public bool IsCustomer(int userId)
+        public Customer CreateCustomer(User user)
         {
-            db = new MyContext();
-            var customer = db.Customers.Find(userId);
-            if (customer != null)
-                return true;
-            else
-                return false;
+            Customer customer = new Customer();
+            customer.User = user;
+            _db.Customers.Add(customer);
+            _db.SaveChanges();
+            return customer;
+        }
+
+        public Customer GetCustomerById(int userId)
+        {
+            var customer = _db.Customers.SingleOrDefault(u => u.UserId == userId);
+            return customer;
         }
     }
 }

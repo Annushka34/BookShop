@@ -38,9 +38,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SimpleCrypto, Version=26.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,7 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractProviders\ITransaction.cs" />
     <Compile Include="AbstractProviders\IUserProvider.cs" />
+    <Compile Include="ConcreteProviders\BookProvider.cs" />
+    <Compile Include="ConcreteProviders\CustomerProvider.cs" />
+    <Compile Include="ConcreteProviders\SearchProvider.cs" />
+    <Compile Include="ConcreteProviders\Transaction.cs" />
     <Compile Include="ConcreteProviders\UserProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />

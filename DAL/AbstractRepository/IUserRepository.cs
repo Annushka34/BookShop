@@ -9,14 +9,12 @@ namespace DAL.AbstractRepository
 {
     public interface IUserRepository
     {
-        bool Create(User user);
-        bool Delete(User user);
+        User CreateUser(User user);
+        bool DeleteUser(User user);
 
         bool Update(User userOld, User userNew);
 
-        User Read(int userId);
-        User ReadByLogin(string login);
-
-        bool CheckUserLogin(string login);
+        User GetUserById(int userId);
+        User GetUserByLogin(string login);
     }
 }

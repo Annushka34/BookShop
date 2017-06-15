@@ -9,7 +9,7 @@ namespace DAL.AbstractRepository
 {
     public interface ICustomerRepository
     {
-        bool IsCustomer(int userId);
-        bool CreateCustomer(User user);
+        Customer GetCustomerById(int userId);
+        Customer CreateCustomer(User user);
     }
 }

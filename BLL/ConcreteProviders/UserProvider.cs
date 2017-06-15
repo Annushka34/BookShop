@@ -11,21 +11,51 @@ using DAL.Entity;
 
 namespace BLL.ConcreteProviders
 {
-    public class UserProvider:IUserProvider
+    public class UserProvider : IUserProvider
     {
+        MyContext _db;
+        public UserProvider()
+        {
+            _db = new MyContext();
+        }
         public UserStatus UserCreate(UserViewModel user)
         {
-            User newUser=new User();
+            User newUser = new User();
             newUser.Login = user.Login;
+
+            string salt = 
             newUser.Password = user.Password;
             newUser.Email = user.Email;
-            Customer newCustomer = new Customer();
-            newCustomer.UserId = newUser.Id;
-            ICustomerRepository customerRepository = new CustomerRepository();
-            IUserRepository userRepository=new UserRepository();
-            bool isCreated=userRepository.Create(newUser)&&customerRepository.CreateCustomer(newUser);
-            if(isCreated)return UserStatus.Success;
-            return UserStatus.DublicationEmail;
+            
+            IUserRepository userRepository = new UserRepository(_db);
+            using (Transaction transaction = new Transaction())
+            {
+                try
+                {
+                    transaction.TransactionStart();
+                    userRepository.CreateUser(newUser);
+                    if (user.Role == UserRole.Admin)
+                    {
+                        IAdminRepository adminRepository = new AdminRepository(_db);
+                        adminRepository.CreateAdmin(newUser);
+                    }
+                    else
+                    {
+                        ICustomerRepository customerRepository = new CustomerRepository(_db);
+                        customerRepository.CreateCustomer(newUser);
+                    }
+                    transaction.TransactionCommit();
+                    return UserStatus.Success;
+                }
+                catch
+                {
+                    transaction.Dispose();
+                    return UserStatus.DublicationEmail;
+                }
+            }
+            
+            
         }
     }
-}
+}    
+     

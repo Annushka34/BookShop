@@ -11,6 +11,12 @@ namespace BLL.ViewModels
         public string Login { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public UserRole Role { get; set; }
+    }
+    public enum UserRole
+    {
+        Admin = 1,
+        Customer = 2
     }
     public enum UserStatus
     {

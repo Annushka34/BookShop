@@ -10,64 +10,49 @@ namespace DAL.ConcreteRepositories
 {
     public class UserRepository : IUserRepository
     {
-        private MyContext db;
-
-        public bool CheckUserLogin(string login)
+        private MyContext _db;
+        public UserRepository(MyContext db)
         {
-            db = new MyContext();
-            var user = db.Users.Where(x => x.Login == login).FirstOrDefault();
-            if (user != null)
+            _db = db;
+        }
+
+        public User GetUserByLogin(string login)
+        {
+            var user = _db.Users.SingleOrDefault(x => x.Login == login);
+            return user;
+        }
+
+        public User GetUserById(int userId)
+        {
+            User user = _db.Users.SingleOrDefault(u => u.Id == userId);
+            return user;
+
+        }
+
+        public User CreateUser(User user)
+        {
+            _db.Users.Add(user);
+            _db.SaveChanges();
+            return user;
+        }
+
+        public bool DeleteUser(User user)
+        {
+            try
             {
+                _db.Users.Remove(user);   //??
+                _db.SaveChanges();
                 return true;
             }
-            else
-                throw new NotImplementedException("User by this login not exists");
-        }
-
-        public bool Create(User user)
-        {
-            db = new MyContext();
-            db.Users.Add(user);
-            db.SaveChanges();
-            return true;
-        }
-
-        public bool Delete(User user)
-        {
-            db = new MyContext();
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return true;
-        }
-
-        public User Read(int userId)
-        {
-            db = new MyContext();
-            User user = db.Users.Find(userId);
-            if (user != null)
+            catch
             {
-                return user;
+                return false;
             }
-            else
-                throw new NotImplementedException("Cannot read user");
-        }
-
-        public User ReadByLogin(string login)
-        {
-            db = new MyContext();
-            var user = db.Users.Where(x => x.Login == login).FirstOrDefault();
-            if (user != null)
-            {
-                return user;
-            }
-            else
-                throw new NotImplementedException("User by login not found");
         }
 
         public bool Update(User userOld, User userNew)
         {
-            db = new MyContext();
-            var user = db.Users.Find(userOld.Id);
+            var user = _db.Users.Find(userOld.Id);
             if (user != null)
             {
                 user.Login = userNew.Login;
@@ -75,7 +60,7 @@ namespace DAL.ConcreteRepositories
                 user.Email = userNew.Email;
                 user.Admin = userNew.Admin;
                 user.Customer = userNew.Customer;
-                db.SaveChanges();
+                _db.SaveChanges();
                 return true;
             }
             throw new NotImplementedException("User cannot update");

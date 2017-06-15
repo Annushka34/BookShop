@@ -33,5 +33,6 @@
 
             <Button Name="BtnUserAdd" Click="BtnUserAdd_OnClick" Height="50" Margin="10">User Add</Button>
         </StackPanel>
+        <Label x:Name="label" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

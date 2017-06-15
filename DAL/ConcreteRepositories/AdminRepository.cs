@@ -10,25 +10,24 @@ namespace DAL.ConcreteRepositories
 {
    public class AdminRepository: IAdminRepository
    {
-       private MyContext db;
-        public bool IsAdmin(int userId)
+        private MyContext _db;
+        public AdminRepository(MyContext db)
         {
-            db = new MyContext();
-            var admin=db.Admins.Find(userId);
-            if (admin != null)
-                return true;
-            else
-              return false;
+            _db = db;
+        }
+        public Admin GetAdminById(int userId)
+        {
+            var admin = _db.Admins.SingleOrDefault(u => u.UserId == userId);
+            return admin;
         }
 
-        public bool CreateAdmin(User user)
+        public Admin CreateAdmin(User user)
         {
-            db=new MyContext();
             Admin admin=new Admin();
-            admin.UserId = user.Id;
-            db.Admins.Add(admin);
-            db.SaveChanges();
-            return true;
+            admin.User = user;
+            _db.Admins.Add(admin);
+            _db.SaveChanges();
+            return admin;
         }
     }
 }

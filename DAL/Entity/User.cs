@@ -16,6 +16,7 @@ namespace DAL.Entity
         public string Login { get; set; }
         [StringLength(maximumLength: 16)]
         public string Password { get; set; }
+        public string PasswordSalt { get; set; }
         [StringLength(maximumLength:100)]
         [EmailAddress]
         public string Email { get; set; }

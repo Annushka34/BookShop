@@ -9,8 +9,8 @@ namespace DAL.AbstractRepository
 {
     public interface IAdminRepository
     {
-        bool IsAdmin(int userId);
+        Admin GetAdminById(int userId);
 
-        bool CreateAdmin(User user);
+        Admin CreateAdmin(User user);
     }
 }
