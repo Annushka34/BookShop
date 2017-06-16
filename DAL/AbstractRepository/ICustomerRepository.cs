@@ -9,13 +9,12 @@ namespace DAL.AbstractRepository
 {
     public interface ICustomerRepository
     {
-        Customer GetCustomerById(int userId);
         Customer CreateCustomer(User user);
-        bool DeleteCustomer(User user);
-
+        bool DeleteCustomer(int userId);
 
         #region  Get
-        List<Customer> GetCustomers();
+        Customer GetCustomerById(int userId);
+
         #endregion
 
     }

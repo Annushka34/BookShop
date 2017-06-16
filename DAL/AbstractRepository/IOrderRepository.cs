@@ -10,15 +10,7 @@ namespace DAL.AbstractRepository
     public interface IOrderRepository
     {
         Order CreateOrder(Order order);
-        bool DeleteOrder(Order order);
-        bool UpdateOrder(Order orderOld, Order ordertNew);
-        bool AddOrderForCustomer(Order order, Customer customer);
-
-
-        #region OrderRecord
-        Order AddOrderRecordForOrder(Order order, OrderRecord orderRecord);
-        bool DeleteOrderRecordForOrder(Order order, OrderRecord orderRecord);
-        #endregion
+        bool DeleteOrder(int orderId);
 
 
         #region Get

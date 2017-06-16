@@ -9,15 +9,15 @@ namespace DAL.AbstractRepository
 {
     public interface IBasketRecordRepository
     {
-        BasketRecord CreateBasketRecord(BasketRecord basketRecord);
+        BasketRecord CreateBasketRecord(Basket basket);
         bool DeleteBasketRecord(BasketRecord basketRecord);
-        bool Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew);
+        bool Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew);//реалызувати чере сщзн
 
 
         #region Get
         BasketRecord GetBasketRecordById(int basketRecordId);
         List<BasketRecord> GetBasketRecordsByBasket(Basket basket);
-        List<BasketRecord> GetBasketRecordsByUser(User user);
+        List<BasketRecord> GetBasketRecordsByUser(Customer сustomer);
         #endregion
       
     }

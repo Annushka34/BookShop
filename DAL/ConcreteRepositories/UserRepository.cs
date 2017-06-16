@@ -50,10 +50,10 @@ namespace DAL.ConcreteRepositories
             }
         }
 
-        public bool Update(User userOld, User userNew)
+        public bool Update(int userOldId, User userNew)
         {
-            var user = _db.Users.Find(userOld.Id);
-            if (user != null)
+            var user = _db.Users.SingleOrDefault(x=>x.Id==userOldId);
+            try
             {
                 user.Login = userNew.Login;
                 user.Password = userNew.Password;
@@ -63,7 +63,10 @@ namespace DAL.ConcreteRepositories
                 _db.SaveChanges();
                 return true;
             }
-            throw new NotImplementedException("User cannot update");
+            catch
+            {
+                return false;
+            }
         }
     }
 }

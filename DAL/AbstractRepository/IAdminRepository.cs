@@ -9,9 +9,11 @@ namespace DAL.AbstractRepository
 {
     public interface IAdminRepository
     {
-        Admin GetAdminById(int userId);
         Admin CreateAdmin(User user);
+        bool DeleteAdmin(int userId);
 
-        bool DeleteAdminById(int userId);
+        #region Get
+        Admin GetAdminById(int userId);
+        #endregion
     }
 }

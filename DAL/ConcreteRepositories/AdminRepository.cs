@@ -30,16 +30,19 @@ namespace DAL.ConcreteRepositories
             return admin;
         }
 
-        public bool DeleteAdminById(int userId)
+        public bool DeleteAdmin(int userId)
         {
-            Admin admin = _db.Admins.FirstOrDefault(x => x.UserId == userId);
-            if (admin != null)
+            try
             {
+                Admin admin = _db.Admins.SingleOrDefault(x => x.UserId == userId);
                 _db.Admins.Remove(admin);//??
                 _db.SaveChanges();
                 return true;
             }
-            return false;
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -9,8 +9,8 @@ namespace DAL.AbstractRepository
 {
     public interface IOrderRecordsRepository
     {
-        OrderRecord CreateOrderRecord(OrderRecord orderRecord);
-        bool UpdateOrderRecord(OrderRecord orderRecordOld, OrderRecord orderRecordNew);
+        OrderRecord CreateOrderRecord(Order order, OrderRecord orderRecord);
+        bool DeleteOrderRecord(int orderRecordId);
 
 
         #region Get

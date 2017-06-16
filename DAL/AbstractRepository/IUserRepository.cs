@@ -11,7 +11,7 @@ namespace DAL.AbstractRepository
     {
         User CreateUser(User user);
         bool DeleteUser(User user);
-        bool Update(User userOld, User userNew);
+        bool Update(int userOldId, User userNew);
 
 
         #region Get

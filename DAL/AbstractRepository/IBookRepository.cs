@@ -10,19 +10,16 @@ namespace DAL.AbstractRepository
     public interface IBookRepository
     {
         Book CreateBook(Book book);
-        bool DeleteBook(Book book);
+        bool DeleteBook(int bookId);
         bool Update(Book bookOld, Book bookrNew);
 
 
         #region Get
         Book GetBookById(int bookId);
-        List<Book> GetBooks();
-        List<Book> GetBooksByCategory(Category category);
-        List<Book> GetBooksByAuthor(Author author);
-        List<Book> GetBooksByCustomer(Customer customer);
-        List<Book> GetBooksByTags(Tag tag);
+        IQueryable GetBooksByCategory(Category category);
+        IQueryable <Book> GetBooksByAuthor(Author author);
+        IQueryable <Book> GetBooksByCustomer(Customer customer);
+        IQueryable <Book> GetBooksByTags(Tag tag);
         #endregion
-
-        //*******add book********//
     }
 }

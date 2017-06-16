@@ -31,10 +31,11 @@ namespace DAL.ConcreteRepositories
             return basket;
         }
 
-        public bool DeleteBasket(Basket basket)
+        public bool DeleteBasket(int basketId)
         {
             try
             {
+                Basket basket = _db.Baskets.SingleOrDefault(x => x.CustomerId == basketId);
                 _db.Baskets.Remove(basket);   
                 _db.SaveChanges();
                 return true;
@@ -43,6 +44,31 @@ namespace DAL.ConcreteRepositories
             {
                 return false;
             }
+        }
+
+        public bool ClearBasketForCustomer(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool DeleteBasketRecordForBasket(int basketRecordId, Basket basket)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Basket AddBasketRecordForBasket(BasketRecord basketRecord, Basket basket)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Basket GetBasketByCustomer(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DateTime GetTimeBasket(Customer customer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

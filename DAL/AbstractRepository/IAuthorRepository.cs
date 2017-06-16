@@ -16,7 +16,6 @@ namespace DAL.AbstractRepository
 
         #region Get
         Author GetAuthorById(int authorId);
-        List<Author> GetAuthors();
         #endregion
        
     }

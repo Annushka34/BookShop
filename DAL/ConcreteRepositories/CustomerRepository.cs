@@ -31,16 +31,20 @@ namespace DAL.ConcreteRepositories
             return customer;
         }
 
-        public bool DeleteCustomerById(int userId)
+        public bool DeleteCustomer(int userId)
         {
-            Customer customer = _db.Customers.FirstOrDefault(x => x.UserId == userId);
-            if (customer != null)
+            Customer customer = _db.Customers.SingleOrDefault(x => x.UserId == userId);
+            try
             {
-                _db.Customers.Remove(customer);//??
+                _db.Customers.Remove(customer); //??
                 _db.SaveChanges();
                 return true;
             }
-            return false;
+            catch
+            {
+                return false;
+            }
+            
         }
     }
 }

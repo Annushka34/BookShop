@@ -16,7 +16,6 @@ namespace DAL.AbstractRepository
 
         #region Get
         Category GetCategoryById(int categoryId);
-        List<Category> GetCategories();
         #endregion
     }
 }
