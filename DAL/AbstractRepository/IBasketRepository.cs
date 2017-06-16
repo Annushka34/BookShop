@@ -26,5 +26,8 @@ namespace DAL.AbstractRepository
         Basket GetBasketByCustomer(Customer customer);
         DateTime GetTimeBasket(Customer customer);
         #endregion
+        Basket GetBasketById(int customerId);
+        Basket CreateBasket(Customer customer);
+        bool DeleteBasket(Basket basket);
     }
 }

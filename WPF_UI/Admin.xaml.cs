@@ -61,7 +61,7 @@ namespace WPF_UI
             user.Email = UserEmail.Text;
             user.Password = UserPassword.Text;
             IUserProvider userProvider = new UserProvider();
-            userProvider.UserCreate(user);
+            userProvider.UserRegistration(user);
         }
     }
 }

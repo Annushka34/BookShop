@@ -8,6 +8,7 @@ using BLL.ViewModels;
 using DAL.AbstractRepository;
 using DAL.ConcreteRepositories;
 using DAL.Entity;
+using SimpleCrypto;
 
 namespace BLL.ConcreteProviders
 {
@@ -18,16 +19,29 @@ namespace BLL.ConcreteProviders
         {
             _db = new MyContext();
         }
-        public UserStatus UserCreate(UserViewModel user)
+        public UserStatus UserRegistration(UserViewModel user)
         {
-            User newUser = new User();
+            IUserRepository userRepository = new UserRepository(_db);
+
+            //перевірка на вже існуючого користувача
+
+            User newUser = userRepository.GetUserByLogin(user.Login);
+            if(newUser!=null)
+            {
+                return UserStatus.DublicationLogin;
+            }
+
+            newUser = new User();
             newUser.Login = user.Login;
 
-            string salt = 
-            newUser.Password = user.Password;
-            newUser.Email = user.Email;
+            //шифрування пароля
+
+            ICryptoService cryptoService = new PBKDF2();
+            newUser.PasswordSalt = cryptoService.GenerateSalt();
+            newUser.Password = cryptoService.Compute(user.Password);
             
-            IUserRepository userRepository = new UserRepository(_db);
+            newUser.Email = user.Email;
+
             using (Transaction transaction = new Transaction())
             {
                 try
@@ -42,7 +56,10 @@ namespace BLL.ConcreteProviders
                     else
                     {
                         ICustomerRepository customerRepository = new CustomerRepository(_db);
-                        customerRepository.CreateCustomer(newUser);
+                        Customer cutomer = customerRepository.CreateCustomer(newUser);
+
+                        IBasketRepository basketRepository = new BasketRepository(_db);
+                        basketRepository.CreateBasket(cutomer);
                     }
                     transaction.TransactionCommit();
                     return UserStatus.Success;
@@ -50,12 +67,9 @@ namespace BLL.ConcreteProviders
                 catch
                 {
                     transaction.Dispose();
-                    return UserStatus.DublicationEmail;
+                    return UserStatus.TransactionDispose;
                 }
             }
-            
-            
         }
     }
-}    
-     
+}

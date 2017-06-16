@@ -11,6 +11,7 @@ namespace DAL.AbstractRepository
     {
         Admin GetAdminById(int userId);
         Admin CreateAdmin(User user);
-        bool DeleteAdmin(Admin admin);
+
+        bool DeleteAdminById(int userId);
     }
 }
