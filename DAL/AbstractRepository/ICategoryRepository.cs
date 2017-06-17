@@ -9,10 +9,11 @@ namespace DAL.AbstractRepository
 {
     public interface ICategoryRepository
     {
+        #region CRUD
         Category CreateCategory(Category category);
         bool DeleteCategory(Category category);
-        bool Update(Category categoryOld, Category categoryNew);
-
+        bool Update(int oldCategoryId, Category categoryNew);
+        #endregion
 
         #region Get
         Category GetCategoryById(int categoryId);

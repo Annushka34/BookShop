@@ -9,14 +9,14 @@ namespace DAL.AbstractRepository
 {
     public interface IAuthorRepository
     {
+        #region CRUD
         Author CreateAuthor(Author author);
         bool DeleteAuthor(Author author);
         bool Update(Author authorOld, Author authorNew);
-
+        #endregion
 
         #region Get
         Author GetAuthorById(int authorId);
         #endregion
-       
     }
 }

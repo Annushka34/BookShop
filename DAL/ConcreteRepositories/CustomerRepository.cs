@@ -16,6 +16,7 @@ namespace DAL.ConcreteRepositories
             _db = db;
         }
 
+        #region CRUD
         public Customer CreateCustomer(User user)
         {
             Customer customer = new Customer();
@@ -24,13 +25,6 @@ namespace DAL.ConcreteRepositories
             _db.SaveChanges();
             return customer;
         }
-
-        public Customer GetCustomerById(int userId)
-        {
-            var customer = _db.Customers.SingleOrDefault(u => u.UserId == userId);
-            return customer;
-        }
-
         public bool DeleteCustomer(int userId)
         {
             Customer customer = _db.Customers.SingleOrDefault(x => x.UserId == userId);
@@ -46,5 +40,14 @@ namespace DAL.ConcreteRepositories
             }
             
         }
+        #endregion
+
+        #region GET
+        public Customer GetCustomerById(int userId)
+        {
+            var customer = _db.Customers.SingleOrDefault(u => u.UserId == userId);
+            return customer;
+        }
+        #endregion
     }
 }

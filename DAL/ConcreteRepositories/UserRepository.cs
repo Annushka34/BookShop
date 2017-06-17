@@ -15,20 +15,7 @@ namespace DAL.ConcreteRepositories
         {
             _db = db;
         }
-
-        public User GetUserByLogin(string login)
-        {
-            var user = _db.Users.SingleOrDefault(x => x.Login == login);
-            return user;
-        }
-
-        public User GetUserById(int userId)
-        {
-            User user = _db.Users.SingleOrDefault(u => u.Id == userId);
-            return user;
-
-        }
-
+        #region CRUD
         public User CreateUser(User user)
         {
             _db.Users.Add(user);
@@ -68,5 +55,21 @@ namespace DAL.ConcreteRepositories
                 return false;
             }
         }
+        #endregion
+
+        #region GET
+        public User GetUserByLogin(string login)
+        {
+            var user = _db.Users.SingleOrDefault(x => x.Login == login);
+            return user;
+        }
+
+        public User GetUserById(int userId)
+        {
+            User user = _db.Users.SingleOrDefault(u => u.Id == userId);
+            return user;
+
+        }
+        #endregion
     }
 }

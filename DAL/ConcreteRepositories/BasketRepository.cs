@@ -15,6 +15,7 @@ namespace DAL.ConcreteRepositories
         {
             _db = db;
         }
+        #region CRUD
         public Basket CreateBasket(Customer customer)
         {
             Basket basket = new Basket();
@@ -24,13 +25,6 @@ namespace DAL.ConcreteRepositories
             _db.SaveChanges();
             return basket;
         }
-
-        public Basket GetBasketById(int customerId)
-        {
-            Basket basket = _db.Baskets.SingleOrDefault(x => x.CustomerId == customerId);
-            return basket;
-        }
-
         public bool DeleteBasket(int basketId)
         {
             try
@@ -45,30 +39,14 @@ namespace DAL.ConcreteRepositories
                 return false;
             }
         }
+        #endregion
 
-        public bool ClearBasketForCustomer(Customer customer)
+        #region GET
+        public Basket GetBasketById(int customerId)
         {
-            throw new NotImplementedException();
+            Basket basket = _db.Baskets.SingleOrDefault(x => x.CustomerId == customerId);
+            return basket;
         }
-
-        public bool DeleteBasketRecordForBasket(int basketRecordId, Basket basket)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Basket AddBasketRecordForBasket(BasketRecord basketRecord, Basket basket)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Basket GetBasketByCustomer(Customer customer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public DateTime GetTimeBasket(Customer customer)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
     }
 }
