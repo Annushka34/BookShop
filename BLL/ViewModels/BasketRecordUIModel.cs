@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BLL.ViewModels
 {
-    class BasketRecordUIModel
+   public class BasketRecordUIModel
     {
+        public string BookName { get; set; }
+        public int Count { get; set; }
     }
 }

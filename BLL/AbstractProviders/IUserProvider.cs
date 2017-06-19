@@ -11,7 +11,7 @@ namespace BLL.AbstractProviders
     public interface IUserProvider
     {
         UserStatus UserRegistration(UserViewModel user);
-        UserStatus UserLogin(UserViewModelLogin user);
+        UserUIDataModel UserLogin(UserViewModelLogin user);
         
     }
 }

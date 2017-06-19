@@ -16,14 +16,12 @@ namespace BLL.ViewModels
     public enum UserRole
     {
         Admin = 1,
-        Customer = 2
+        Customer
     }
     public enum UserStatus
     {
         Success = 1,
         DublicationLogin,
         TransactionDispose,
-        IncorrectLogin,
-        IncorrectPassword
     }
 }
