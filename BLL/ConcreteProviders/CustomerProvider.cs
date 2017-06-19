@@ -21,35 +21,31 @@ namespace BLL.ConcreteProviders
 
         public bool AddBasketRecord(BasksetRecordViewModel basketRecordViewModel)
         {
-            ICustomerRepository customerRepository=new CustomerRepository(_db);
-            IBasketRecordRepository basketRecordRepository=new BasketRecordRepository(_db);
+            IBasketRepository basketRepository = new BasketRepository(_db);
+            ICustomerRepository customerRepository = new CustomerRepository(_db);
+            IBasketRecordRepository basketRecordRepository = new BasketRecordRepository(_db);
             //перевірка на вже існуючого користувача
 
             Customer customer = customerRepository.GetCustomerById(basketRecordViewModel.customerId);
-            if (customer != null)
+            if (customer == null)
             {
                 return false;
             }
-            BasketRecord basketRecord=new BasketRecord();
-            basketRecord.BasketId = basketRecordViewModel.customerId;
-            basketRecord.BookId = basketRecordViewModel.BookId;
-            basketRecord.Count = basketRecordViewModel.BookCount;
-            
-            using (Transaction transaction = new Transaction())
-            {
-                try
-                {
-                    transaction.TransactionStart();
-                    basketRecordRepository.CreateBasketRecord(basketRecord);
-                    transaction.TransactionCommit();
-                    return true;
-                }
-                catch
-                {
-                    transaction.Dispose();
-                    return false;
-                }
+            BasketRecord basketRecord = basketRepository.GetBasketRecordByBook(basketRecordViewModel.BookId, basketRecordViewModel.customerId);
+            BasketRecord basketRecordNew = new BasketRecord();
+            basketRecordNew.BasketId = basketRecordViewModel.customerId;
+            basketRecordNew.BookId = basketRecordViewModel.BookId;
+            if (basketRecord != null)
+            {               
+                basketRecordNew.Count += basketRecord.Count;
+                basketRecordRepository.Update(basketRecord, basketRecordNew);
             }
+            else
+            {               
+                basketRecordNew.Count = basketRecordViewModel.BookCount;
+                basketRecordRepository.CreateBasketRecord(basketRecord);
+            }
+            return true;
         }
 
         public bool CreateOrderList(int customerId)
@@ -62,7 +58,7 @@ namespace BLL.ConcreteProviders
             //перевірка на вже існуючого користувача
 
             Customer customer = customerRepository.GetCustomerById(customerId);
-            if (customer != null)
+            if (customer == null)
             {
                 return false;
             }
@@ -73,7 +69,7 @@ namespace BLL.ConcreteProviders
                 {
                     transaction.TransactionStart();
 
-                    var bascketRecords = basketRecordRepository.GetBasketRecordsByCustomer(customer);//всі поля з кошика
+                    var bascketRecords = basketRepository.GetBasketRecordsByBasket(customer.Basket);//всі поля з кошика
                     Order order = orderRepository.CreateOrder(customer);//створли нове замовлення
 
                     foreach (var records in bascketRecords)

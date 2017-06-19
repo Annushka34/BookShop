@@ -26,33 +26,18 @@ namespace DAL.ConcreteRepositories
             return admin;
         }
 
-        public bool DeleteAdmin(Admin admin)
-        {
-            try
-            {
-                _db.Admins.Remove(admin);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+
+
 
         public bool DeleteAdminByUserId(int userId)
         {
-            try
-            {
-                Admin admin = _db.Admins.SingleOrDefault(x => x.UserId == userId);
-                _db.Admins.Remove(admin);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
+            Admin admin = GetAdminById(userId);
+            if (admin == null)
                 return false;
-            }
+
+            _db.Admins.Remove(admin);
+            _db.SaveChanges();
+            return true;
         }
         #endregion
 

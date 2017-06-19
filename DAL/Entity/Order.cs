@@ -11,7 +11,6 @@ namespace DAL.Entity
        
         [Key]
         public int Id { get; set; }
-        public DateTime OpenDate { get; set; }
         public DateTime CloseDate { get; set; }
 
         public virtual ICollection<OrderRecord> OrderRecords  { get; set; }

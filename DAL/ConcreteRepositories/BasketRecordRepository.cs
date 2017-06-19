@@ -53,17 +53,7 @@ namespace DAL.ConcreteRepositories
         #endregion
 
         #region GET
-        public List<BasketRecord> GetBasketRecordsByBasket(Basket basket)
-        {
-            List<BasketRecord> basketRecords = _db.BasketRecords.Where(x => x.Basket == basket).ToList();
-            return basketRecords;
-        }
-
-        public List<BasketRecord> GetBasketRecordsByCustomer(Customer сustomer)
-        {
-            List<BasketRecord> basketRecords = _db.BasketRecords.Where(x => x.Basket.Customer == сustomer).ToList();
-            return basketRecords;
-        }
+       
 
         public BasketRecord GetBasketRecordById(int basketRecordId)
         {

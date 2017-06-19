@@ -17,6 +17,8 @@ namespace DAL.AbstractRepository
 
         #region GET
         Basket GetBasketById(int customerId);
+        List<BasketRecord> GetBasketRecordsByBasket(Basket basket);
+        BasketRecord GetBasketRecordByBook(int bookId, int basketId);
         #endregion
     }
 }

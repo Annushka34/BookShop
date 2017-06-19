@@ -65,6 +65,27 @@ namespace DAL.ConcreteRepositories
             Basket basket = _db.Baskets.SingleOrDefault(x => x.CustomerId == customerId);
             return basket;
         }
+        public List<BasketRecord> GetBasketRecordsByBasket(Basket basket)
+        {
+            List<BasketRecord> basketRecords = _db.BasketRecords.Where(x => x.Basket == basket).ToList();
+            return basketRecords;
+        }
+
+        public BasketRecord GetBasketRecordByBook(int bookId, int basketId)
+        {
+            Basket basket = GetBasketById(basketId);
+            if (basket == null)
+                return null;
+
+            var basketRecords = GetBasketRecordsByBasket(basket);
+            if (basketRecords.Count == 0)
+                return null;
+
+            BasketRecord basketRecord = basketRecords.SingleOrDefault(x => x.BookId == bookId);
+            return basketRecord;
+
+        }
+
         #endregion
     }
 }

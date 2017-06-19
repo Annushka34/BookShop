@@ -20,8 +20,7 @@ namespace DAL.ConcreteRepositories
         {
             Order order = new Order();
             order.Customer = customer;
-            Basket basket = _db.Baskets.SingleOrDefault(x => x.Customer == customer);
-            order.OpenDate = basket.TimePurchase;
+            Basket basket = _db.Baskets.SingleOrDefault(x => x.Customer == customer);     
             order.CloseDate = DateTime.Now;
             _db.Orders.Add(order);
             _db.SaveChanges();

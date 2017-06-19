@@ -12,7 +12,6 @@ namespace DAL.AbstractRepository
         #region CRUD
         Admin CreateAdmin(User user);
         bool DeleteAdminByUserId(int userId);
-        bool DeleteAdmin(Admin admin);
         #endregion
 
         #region Get
