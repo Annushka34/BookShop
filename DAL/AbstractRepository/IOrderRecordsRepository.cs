@@ -9,13 +9,14 @@ namespace DAL.AbstractRepository
 {
     public interface IOrderRecordsRepository
     {
-        OrderRecord CreateOrderRecord(Order order, OrderRecord orderRecord);
+        OrderRecord CreateOrderRecord(OrderRecord orderRecord);
         bool DeleteOrderRecord(int orderRecordId);
 
 
         #region Get
         List<OrderRecord> GetOrderRecordsByOrder(Order order);
-        List<OrderRecord> GetOrderRecordsByUser(User user);
+        List<OrderRecord> GetOrderRecordsByCustomer(Customer customer);
+
         #endregion
 
     }

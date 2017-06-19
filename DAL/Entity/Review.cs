@@ -12,6 +12,7 @@ namespace DAL.Entity
     {
         [Key]
         public int Id { get; set; }
+        public DateTime ReviewDate { get; set; }
         [Range(1, 5)]
         public int BookQuality { get; set; }
         [StringLength(maximumLength: 500)]

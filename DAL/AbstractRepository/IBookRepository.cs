@@ -16,10 +16,10 @@ namespace DAL.AbstractRepository
 
         #region Get
         Book GetBookById(int bookId);
-        IQueryable GetBooksByCategory(Category category);
-        IQueryable <Book> GetBooksByAuthor(Author author);
-        IQueryable <Book> GetBooksByCustomer(Customer customer);
-        IQueryable <Book> GetBooksByTags(Tag tag);
+        List<Book> GetBooksByCategory(Category category);
+        List<Book> GetBooksByAuthor(Author author);
+        List<Book> GetBooksByCustomer(Customer customer);
+        List<Book> GetBooksByTags(Tag tag);
         #endregion
     }
 }

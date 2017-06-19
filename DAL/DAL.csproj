@@ -64,10 +64,17 @@
     <Compile Include="AbstractRepository\ITagRepository.cs" />
     <Compile Include="AbstractRepository\IUserRepository.cs" />
     <Compile Include="ConcreteRepositories\AuthorRepository.cs" />
+    <Compile Include="ConcreteRepositories\BasketRecordRepository.cs" />
     <Compile Include="ConcreteRepositories\BasketRepository.cs" />
+    <Compile Include="ConcreteRepositories\BookRepository.cs" />
     <Compile Include="ConcreteRepositories\CategoryRepository.cs" />
     <Compile Include="ConcreteRepositories\CustomerRepository.cs" />
+    <Compile Include="ConcreteRepositories\OrderRecordRepository.cs" />
     <Compile Include="ConcreteRepositories\OrderRepository.cs" />
+    <Compile Include="ConcreteRepositories\PictureRepository.cs" />
+    <Compile Include="ConcreteRepositories\PublishRepository.cs" />
+    <Compile Include="ConcreteRepositories\ReviewRepository.cs" />
+    <Compile Include="ConcreteRepositories\TagRepository.cs" />
     <Compile Include="Entity\Admin.cs" />
     <Compile Include="Entity\Author.cs" />
     <Compile Include="Entity\Basket.cs" />
