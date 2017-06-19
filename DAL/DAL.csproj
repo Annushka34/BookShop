@@ -63,9 +63,11 @@
     <Compile Include="AbstractRepository\IReviewRepository.cs" />
     <Compile Include="AbstractRepository\ITagRepository.cs" />
     <Compile Include="AbstractRepository\IUserRepository.cs" />
+    <Compile Include="ConcreteRepositories\AuthorRepository.cs" />
     <Compile Include="ConcreteRepositories\BasketRepository.cs" />
     <Compile Include="ConcreteRepositories\CategoryRepository.cs" />
     <Compile Include="ConcreteRepositories\CustomerRepository.cs" />
+    <Compile Include="ConcreteRepositories\OrderRepository.cs" />
     <Compile Include="Entity\Admin.cs" />
     <Compile Include="Entity\Author.cs" />
     <Compile Include="Entity\Basket.cs" />

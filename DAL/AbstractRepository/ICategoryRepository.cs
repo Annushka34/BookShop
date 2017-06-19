@@ -12,7 +12,7 @@ namespace DAL.AbstractRepository
         #region CRUD
         Category CreateCategory(Category category);
         bool DeleteCategory(Category category);
-        bool Update(int oldCategoryId, Category categoryNew);
+        bool Update(Category categoryOld, Category categoryNew);
         #endregion
 
         #region Get

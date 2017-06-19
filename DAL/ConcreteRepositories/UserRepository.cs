@@ -39,9 +39,9 @@ namespace DAL.ConcreteRepositories
 
         public bool Update(int userOldId, User userNew)
         {
-            var user = _db.Users.SingleOrDefault(x=>x.Id==userOldId);
             try
             {
+                User user = _db.Users.SingleOrDefault(x => x.Id == userOldId);
                 user.Login = userNew.Login;
                 user.Password = userNew.Password;
                 user.Email = userNew.Email;

@@ -9,9 +9,11 @@ namespace DAL.AbstractRepository
 {
     public interface IUserRepository
     {
+        #region CRUD
         User CreateUser(User user);
         bool DeleteUser(User user);
         bool Update(int userOldId, User userNew);
+        #endregion
 
 
         #region Get

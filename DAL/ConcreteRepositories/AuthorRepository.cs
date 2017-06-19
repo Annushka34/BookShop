@@ -8,27 +8,26 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    public class CategoryRepository : ICategoryRepository
+    public class AuthorRepository : IAuthorRepository
     {
         MyContext _db;
-        public CategoryRepository(MyContext db)
+        public AuthorRepository(MyContext db)
         {
             _db = db;
         }
-
         #region CRUD
-        public Category CreateCategory(Category category)
+        public Author CreateAuthor(Author author)
         {
-            _db.Categories.Add(category);
+            _db.Authors.Add(author);
             _db.SaveChanges();
-            return category;
+            return author;
         }
 
-        public bool DeleteCategory(Category category)
+        public bool DeleteAuthor(Author author)
         {
             try
             {
-                _db.Categories.Remove(category);
+                _db.Authors.Remove(author);
                 _db.SaveChanges();
                 return true;
             }
@@ -37,12 +36,12 @@ namespace DAL.ConcreteRepositories
                 return false;
             }
         }
-
-        public bool Update(Category categoryOld, Category categoryNew)
+        public bool Update(Author authorOld, Author authorNew)
         {
             try
             {
-                categoryOld.Name = categoryNew.Name;
+                authorOld.FirstName = authorNew.FirstName;
+                authorOld.LastName = authorNew.LastName;
                 _db.SaveChanges();
                 return true;
             }
@@ -54,10 +53,10 @@ namespace DAL.ConcreteRepositories
         #endregion
 
         #region GET
-        public Category GetCategoryById(int categoryId)
+        public Author GetAuthorById(int authorId)
         {
-            Category category = _db.Categories.SingleOrDefault(x => x.Id == categoryId);
-            return category;
+            Author author = _db.Authors.SingleOrDefault(x => x.Id == authorId);
+            return author;
         }
         #endregion
     }
