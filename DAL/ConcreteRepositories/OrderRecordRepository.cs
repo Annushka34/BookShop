@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class OrderRecordRepository:IOrderRecordsRepository
+   public class OrderRecordRepository:IOrderRecordsRepository
     {
         MyContext _db;
         public OrderRecordRepository(MyContext db)

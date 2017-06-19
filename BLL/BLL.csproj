@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractProviders\ICustomerProvider.cs" />
     <Compile Include="AbstractProviders\ITransaction.cs" />
     <Compile Include="AbstractProviders\IUserProvider.cs" />
     <Compile Include="ConcreteProviders\BookProvider.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="ConcreteProviders\Transaction.cs" />
     <Compile Include="ConcreteProviders\UserProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BasksetRecordViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

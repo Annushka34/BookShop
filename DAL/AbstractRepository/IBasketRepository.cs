@@ -12,6 +12,7 @@ namespace DAL.AbstractRepository
         #region CRUD
         Basket CreateBasket(Customer customer);
         bool DeleteBasket(int basketId);
+        bool ClearBasket(int basketId);
         #endregion
 
         #region GET

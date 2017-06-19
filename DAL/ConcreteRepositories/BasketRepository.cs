@@ -20,7 +20,7 @@ namespace DAL.ConcreteRepositories
         {
             Basket basket = new Basket();
             basket.Customer = customer;
-            basket.TimePurchase = DateTime.Now;
+            //basket.TimePurchase = DateTime.Now;
             _db.Baskets.Add(basket);
             _db.SaveChanges();
             return basket;
@@ -31,6 +31,24 @@ namespace DAL.ConcreteRepositories
             {
                 Basket basket = _db.Baskets.SingleOrDefault(x => x.CustomerId == basketId);
                 _db.Baskets.Remove(basket);   
+                _db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool ClearBasket(int basketId)
+        {
+            try
+            {
+                Basket basket = _db.Baskets.SingleOrDefault(x => x.CustomerId == basketId);
+                foreach (var rec in basket.BasketRecords)
+                {
+                    basket.BasketRecords.Remove(rec);
+                }
                 _db.SaveChanges();
                 return true;
             }
