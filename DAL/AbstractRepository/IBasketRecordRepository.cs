@@ -10,7 +10,7 @@ namespace DAL.AbstractRepository
     public interface IBasketRecordRepository
     {
         BasketRecord CreateBasketRecord(BasketRecord basketRecord);
-        bool DeleteBasketRecord(BasketRecord basketRecord);
+        bool DeleteBasketRecord(int basketRecordId);
         bool Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew);//реалызувати чере сщзн
 
 

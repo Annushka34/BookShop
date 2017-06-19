@@ -11,5 +11,7 @@ namespace BLL.AbstractProviders
     public interface ICustomerProvider
     {
         bool AddBasketRecord(BasksetRecordViewModel basketRecordViewModel);
+        bool CreateOrderList(int customerId);
+        bool DeleteBasketRecord(int basketRecordId);
     }
 }

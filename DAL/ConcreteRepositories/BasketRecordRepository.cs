@@ -23,18 +23,14 @@ namespace DAL.ConcreteRepositories
             return basketRecord;
         }
 
-        public bool DeleteBasketRecord(BasketRecord basketRecord)
+        public bool DeleteBasketRecord(int basketRecordId)
         {
-            try
-            {
-                _db.BasketRecords.Remove(basketRecord);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
+            var basketRecord = GetBasketRecordById(basketRecordId);
+            if (basketRecord == null)
                 return false;
-            }
+            _db.BasketRecords.Remove(basketRecord);
+            _db.SaveChanges();
+            return true;
         }
 
         public bool Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew)

@@ -19,6 +19,26 @@ namespace BLL.ConcreteProviders
         {
             _db = new MyContext();
         }
+
+        public UserStatus UserLogin(UserViewModelLogin user)
+        {
+            IUserRepository userRepository = new UserRepository(_db);
+
+            User newUser = userRepository.GetUserByLogin(user.Login);
+            if (newUser == null)
+            {
+                return UserStatus.IncorrectLogin;
+            }
+
+            ICryptoService cryptoService = new PBKDF2();
+            string hashPassword2 = cryptoService.Compute(user.Password, newUser.PasswordSalt);
+            //if (cryptoService.Compare(newUser.Password, hashPassword2))
+            //{
+                
+            //}
+            return UserStatus.Success;
+        }
+
         public UserStatus UserRegistration(UserViewModel user)
         {
             IUserRepository userRepository = new UserRepository(_db);

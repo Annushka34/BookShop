@@ -21,7 +21,9 @@ namespace BLL.ViewModels
     public enum UserStatus
     {
         Success = 1,
-        DublicationLogin = 2,
-        TransactionDispose = 3
+        DublicationLogin,
+        TransactionDispose,
+        IncorrectLogin,
+        IncorrectPassword
     }
 }

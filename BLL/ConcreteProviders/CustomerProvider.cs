@@ -36,8 +36,12 @@ namespace BLL.ConcreteProviders
             basketRecordNew.BasketId = basketRecordViewModel.customerId;
             basketRecordNew.BookId = basketRecordViewModel.BookId;
             if (basketRecord != null)
-            {               
-                basketRecordNew.Count += basketRecord.Count;
+            {
+                if (basketRecordViewModel.BasketRecordStatus == AddOrEditStatus.Add)
+                    basketRecordNew.Count += basketRecord.Count;
+                else
+                    basketRecordNew.Count = basketRecord.Count;
+
                 basketRecordRepository.Update(basketRecord, basketRecordNew);
             }
             else
@@ -47,7 +51,7 @@ namespace BLL.ConcreteProviders
             }
             return true;
         }
-
+        
         public bool CreateOrderList(int customerId)
         {
             ICustomerRepository customerRepository = new CustomerRepository(_db);
@@ -91,6 +95,12 @@ namespace BLL.ConcreteProviders
                     return false;
                 }
             }
+        }
+
+        public bool DeleteBasketRecord(int basketRecordId)
+        {
+            IBasketRecordRepository basketRecordRepository = new BasketRecordRepository(_db);
+            return basketRecordRepository.DeleteBasketRecord(basketRecordId);            
         }
     }
 }
