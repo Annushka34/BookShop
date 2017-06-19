@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    public  class CustomerRepository : ICustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         MyContext _db;
         public CustomerRepository(MyContext db)
@@ -27,18 +27,14 @@ namespace DAL.ConcreteRepositories
         }
         public bool DeleteCustomer(int userId)
         {
-            Customer customer = _db.Customers.SingleOrDefault(x => x.UserId == userId);
-            try
-            {
-                _db.Customers.Remove(customer); //??
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Customer customer = GetCustomerById(userId);
+            if (customer == null)
             {
                 return false;
             }
-            
+            _db.Customers.Remove(customer); //??
+            _db.SaveChanges();
+            return true;
         }
         #endregion
 

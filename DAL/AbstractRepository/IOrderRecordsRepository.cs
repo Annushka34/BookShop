@@ -14,8 +14,9 @@ namespace DAL.AbstractRepository
 
 
         #region Get
-        List<OrderRecord> GetOrderRecordsByOrder(Order order);
-        List<OrderRecord> GetOrderRecordsByCustomer(Customer customer);
+        OrderRecord GetOrderRecordById(int orderRecordId);
+        List<OrderRecord> GetOrderRecordsByOrder(int orderId);
+        List<OrderRecord> GetOrderRecordsByCustomer(int customerId);
 
         #endregion
 

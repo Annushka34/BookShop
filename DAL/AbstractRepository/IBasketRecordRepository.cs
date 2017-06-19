@@ -11,7 +11,7 @@ namespace DAL.AbstractRepository
     {
         BasketRecord CreateBasketRecord(BasketRecord basketRecord);
         bool DeleteBasketRecord(int basketRecordId);
-        bool Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew);//реалызувати чере сщзн
+        BasketRecord Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew);//реалызувати чере сщзн
 
 
         #region Get

@@ -24,32 +24,23 @@ namespace DAL.ConcreteRepositories
             return category;
         }
 
-        public bool DeleteCategory(Category category)
+        public bool DeleteCategory(int categoryId)
         {
-            try
-            {
-                _db.Categories.Remove(category);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Category category = GetCategoryById(categoryId);
+            if (category == null)
             {
                 return false;
             }
+            _db.Categories.Remove(category);
+            _db.SaveChanges();
+            return true;
         }
 
-        public bool Update(Category categoryOld, Category categoryNew)
+        public Category Update(Category categoryOld, Category categoryNew)
         {
-            try
-            {
-                categoryOld.Name = categoryNew.Name;
-                _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            categoryOld.Name = categoryNew.Name;
+            _db.SaveChanges();
+            return categoryOld;
         }
         #endregion
 

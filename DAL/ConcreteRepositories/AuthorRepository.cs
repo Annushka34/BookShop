@@ -23,32 +23,23 @@ namespace DAL.ConcreteRepositories
             return author;
         }
 
-        public bool DeleteAuthor(Author author)
+        public bool DeleteAuthor(int authorId)
         {
-            try
-            {
-                _db.Authors.Remove(author);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Author author = GetAuthorById(authorId);
+            if (author == null)
             {
                 return false;
             }
+            _db.Authors.Remove(author);
+            _db.SaveChanges();
+            return true;
         }
-        public bool Update(Author authorOld, Author authorNew)
+        public Author Update(Author authorOld, Author authorNew)
         {
-            try
-            {
-                authorOld.FirstName = authorNew.FirstName;
-                authorOld.LastName = authorNew.LastName;
-                _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            authorOld.FirstName = authorNew.FirstName;
+            authorOld.LastName = authorNew.LastName;
+            _db.SaveChanges();
+            return authorOld;
         }
         #endregion
 

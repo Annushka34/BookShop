@@ -11,13 +11,13 @@ namespace DAL.AbstractRepository
     {
         Book CreateBook(Book book);
         bool DeleteBook(int bookId);
-        bool Update(Book bookOld, Book bookrNew);
+        Book Update(Book bookOld, Book bookrNew);
 
 
         #region Get
         Book GetBookById(int bookId);
-        List<Book> GetBooksByCategory(Category category);
-        List<Book> GetBooksByAuthor(Author author);
+        List<Book> GetBooksByCategory(int categoryId);
+        List<Book> GetBooksByAuthor(int authorId);
         List<Book> GetBooksByCustomer(Customer customer);
         List<Book> GetBooksByTags(Tag tag);
         #endregion

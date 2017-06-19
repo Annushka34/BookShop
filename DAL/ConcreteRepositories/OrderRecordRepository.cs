@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-   public class OrderRecordRepository:IOrderRecordsRepository
+    public class OrderRecordRepository : IOrderRecordsRepository
     {
         MyContext _db;
         public OrderRecordRepository(MyContext db)
@@ -24,29 +24,31 @@ namespace DAL.ConcreteRepositories
         }
         public bool DeleteOrderRecord(int orderRecordId)
         {
-            try
-            {
-                OrderRecord orderRecord = _db.OrderRecords.SingleOrDefault(x => x.Id == orderRecordId);
-                _db.OrderRecords.Remove(orderRecord);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            OrderRecord orderRecord = GetOrderRecordById(orderRecordId);
+            if (orderRecord == null)
             {
                 return false;
             }
+            _db.OrderRecords.Remove(orderRecord);
+            _db.SaveChanges();
+            return true;
         }
         #endregion
 
         #region GET
-        public List<OrderRecord> GetOrderRecordsByOrder(Order order)
+        public OrderRecord GetOrderRecordById(int orderRecordId)
         {
-            List<OrderRecord> orderRecords = _db.OrderRecords.Where(x => x.Order == order).ToList();
+            OrderRecord orderRecord = _db.OrderRecords.SingleOrDefault(x => x.Id == orderRecordId);
+            return orderRecord;
+        }
+        public List<OrderRecord> GetOrderRecordsByOrder(int orderId)
+        {
+            List<OrderRecord> orderRecords = _db.OrderRecords.Where(x => x.Id == orderId).ToList();
             return orderRecords;
         }
-        public List<OrderRecord> GetOrderRecordsByCustomer(Customer customer)
+        public List<OrderRecord> GetOrderRecordsByCustomer(int customerId)
         {
-            List<OrderRecord> orderRecords = _db.OrderRecords.Where(x => x.Order.Customer == customer).ToList();
+            List<OrderRecord> orderRecords = _db.OrderRecords.Where(x => x.Order.CustomerId == customerId).ToList();
             return orderRecords;
         }
         #endregion

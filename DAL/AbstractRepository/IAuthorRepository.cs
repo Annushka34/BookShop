@@ -11,8 +11,8 @@ namespace DAL.AbstractRepository
     {
         #region CRUD
         Author CreateAuthor(Author author);
-        bool DeleteAuthor(Author author);
-        bool Update(Author authorOld, Author authorNew);
+        bool DeleteAuthor(int authorId);
+        Author Update(Author authorOld, Author authorNew);
         #endregion
 
         #region Get

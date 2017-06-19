@@ -33,24 +33,15 @@ namespace DAL.ConcreteRepositories
             return true;
         }
 
-        public bool Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew)
+        public BasketRecord Update(BasketRecord basketRecordOld, BasketRecord basketRecordNew)
         {
-            try
-            {
-                basketRecordOld.Count = basketRecordNew.Count;
-                _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            basketRecordOld.Count = basketRecordNew.Count;
+            _db.SaveChanges();
+            return basketRecordOld;
         }
         #endregion
 
         #region GET
-       
-
         public BasketRecord GetBasketRecordById(int basketRecordId)
         {
             BasketRecord basketRecord = _db.BasketRecords.SingleOrDefault(x => x.Id == basketRecordId);

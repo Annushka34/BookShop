@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.ConcreteRepositories
 {
-    public class OrderRepository: IOrderRepository
+    public class OrderRepository : IOrderRepository
     {
         MyContext _db;
         public OrderRepository(MyContext db)
@@ -16,12 +16,8 @@ namespace DAL.ConcreteRepositories
             _db = db;
         }
         #region CRUD
-        public Order CreateOrder(Customer customer)
+        public Order CreateOrder(Order order)
         {
-            Order order = new Order();
-            order.Customer = customer;
-            Basket basket = _db.Baskets.SingleOrDefault(x => x.Customer == customer);     
-            order.CloseDate = DateTime.Now;
             _db.Orders.Add(order);
             _db.SaveChanges();
             return order;
@@ -29,24 +25,21 @@ namespace DAL.ConcreteRepositories
 
         public bool DeleteOrder(int orderId)
         {
-            try
-            {
-                Order order = _db.Orders.SingleOrDefault(x => x.Id == orderId);
-                _db.Orders.Remove(order);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Order order = GetOrderById(orderId);
+            if (order == null)
             {
                 return false;
             }
+            _db.Orders.Remove(order);
+            _db.SaveChanges();
+            return true;
         }
         #endregion
 
         #region GET
-        public List<Order> GetAllOrdersByCustomer(Customer customer)
+        public List<Order> GetAllOrdersByCustomer(int customerId)
         {
-            List<Order> orders = _db.Orders.Where(x => x.Customer == customer).ToList();
+            List<Order> orders = _db.Orders.Where(x => x.CustomerId == customerId).ToList();
             return orders;
         }
 

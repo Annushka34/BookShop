@@ -12,12 +12,12 @@ namespace DAL.AbstractRepository
         #region CRUD
         Basket CreateBasket(Customer customer);
         bool DeleteBasket(int basketId);
-        bool ClearBasket(int basketId);
+        Basket ClearBasket(int basketId);
         #endregion
 
         #region GET
         Basket GetBasketById(int customerId);
-        List<BasketRecord> GetBasketRecordsByBasket(Basket basket);
+        List<BasketRecord> GetBasketRecordsByBasket(int basketId);
         BasketRecord GetBasketRecordByBook(int bookId, int basketId);
         #endregion
     }

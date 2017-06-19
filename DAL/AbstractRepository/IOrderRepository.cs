@@ -10,12 +10,12 @@ namespace DAL.AbstractRepository
     public interface IOrderRepository
     {
         #region CRUD
-        Order CreateOrder(Customer customer);
+        Order CreateOrder(Order order);
         bool DeleteOrder(int orderId);
         #endregion
 
         #region Get
-        List<Order> GetAllOrdersByCustomer(Customer customer);
+        List<Order> GetAllOrdersByCustomer(int customerId);
         List<Order> GetAllOrdersByDate(DateTime date);
         Order GetOrderById(int orderId);
         #endregion
