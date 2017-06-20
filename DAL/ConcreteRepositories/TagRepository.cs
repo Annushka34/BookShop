@@ -43,10 +43,6 @@ namespace DAL.ConcreteRepositories
             Tag tag = _db.Tags.SingleOrDefault(x => x.Id == tagId);
             return tag;
         }
-        public List<Tag> GetAllTags()
-        {
-            return _db.Tags.ToList();
-        }
         #endregion
     }
 }

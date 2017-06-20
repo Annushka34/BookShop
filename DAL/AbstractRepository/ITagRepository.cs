@@ -15,7 +15,6 @@ namespace DAL.AbstractRepository
 
         #region Get
         Tag GetTagById(int tagId);
-        List<Tag> GetAllTags();
         #endregion
     }
 }

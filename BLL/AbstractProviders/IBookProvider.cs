@@ -9,7 +9,6 @@ namespace BLL.AbstractProviders
 {
     public interface IBookProvider
     {
-        BookUIModel CreateBook(BookCreateViewModel book);
-        BookCreateUIModel GetCreateUIModel();      
+        BookUIModel CreateBook(BookCreateViewModel book);    
     }
 }

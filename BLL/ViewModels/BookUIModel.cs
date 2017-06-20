@@ -15,22 +15,25 @@ namespace BLL.ViewModels
             Price = book.Price;
             Name = book.Name;
             Description = book.Description;
-            Authors = book.Authors.ToList();
-            Tags = book.Tags.ToList();
-            Categories = book.Categories.ToList();
-            Reviews = book.Reviews.ToList();
-            Picture = book.Picture;
-            Publish = book.Publish;
+            PicturePath = book.Picture.PicturePath;
+            PublishId = book.PublishId;
+
+            Authors = new List<AuthorUIModel>();
+            Tags = new List<TagUIModel>();
+            Categories = new List<CategoryUIModel>();
+            Reviews = new List<ReviewUIModel>();
         }
         public int Isbn { get; set; }
+        public int PublishId { get; set; }
         public double Price { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public List<Author> Authors { get; set; }
-        public List<Tag> Tags { get; set; }
-        public List<Category> Categories { get; set; }
-        public List<Review> Reviews { get; set; }
-        public Picture Picture { get; set; }
-        public Publish Publish { get; set; }
+        public string PicturePath { get; set; }
+
+        public List<AuthorUIModel> Authors { get; set; }
+        public List<TagUIModel> Tags { get; set; }
+        public List<CategoryUIModel> Categories { get; set; }
+        public List<ReviewUIModel> Reviews { get; set; }
+        
     }
 }

@@ -43,21 +43,6 @@ namespace BLL.ConcreteProviders
             newBook = bookRepository.CreateBook(newBook);  ///???????????????????????
             BookUIModel bookUIModel = new BookUIModel(newBook);
             return bookUIModel;
-        }
-
-        public BookCreateUIModel GetCreateUIModel()
-        {
-            IPublishRepository publishRepository = new PublishRepository(_db);
-            ICategoryRepository categoryRepository = new CategoryRepository(_db);
-            ITagRepository tagRepository = new TagRepository(_db);
-            IAuthorRepository authorRepository = new AuthorRepository(_db);
-
-            BookCreateUIModel createUIModel = new BookCreateUIModel();
-            createUIModel.Publishes = publishRepository.GetAllPublishes();
-            createUIModel.Categories = categoryRepository.GetAllCategories();
-            createUIModel.Tags = tagRepository.GetAllTags();
-            createUIModel.Authors = authorRepository.GetAllAuthors();
-            return createUIModel;
-        }
+        } 
     }
 }

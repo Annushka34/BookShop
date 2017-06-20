@@ -43,10 +43,6 @@ namespace DAL.ConcreteRepositories
             Publish publish = _db.Publishes.SingleOrDefault(x => x.Id == publishId);
             return publish;
         }
-        public List<Publish> GetAllPublishes()
-        {
-            return _db.Publishes.ToList();
-        }
         #endregion
     }
 }

@@ -50,11 +50,6 @@ namespace DAL.ConcreteRepositories
             Category category = _db.Categories.SingleOrDefault(x => x.Id == categoryId);
             return category;
         }
-
-        public List<Category> GetAllCategories()
-        {
-            return _db.Categories.ToList();
-        }
         #endregion
     }
 }
