@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class PublishRepository:IPublishRepository
+    class PublishRepository : IPublishRepository
     {
         MyContext _db;
         public PublishRepository(MyContext db)
@@ -24,17 +24,14 @@ namespace DAL.ConcreteRepositories
         }
         public bool DeletePublish(int publishId)
         {
-            try
-            {
-                Publish publish = _db.Publishes.SingleOrDefault(x => x.Id == publishId);
-                _db.Publishes.Remove(publish);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Publish publish = GetPublishById(publishId);
+            if (publish == null)
             {
                 return false;
             }
+            _db.Publishes.Remove(publish);
+            _db.SaveChanges();
+            return true;
         }
         #endregion
 

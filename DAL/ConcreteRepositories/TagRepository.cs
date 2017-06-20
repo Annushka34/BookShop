@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class TagRepository:ITagRepository
+    class TagRepository : ITagRepository
     {
         MyContext _db;
         public TagRepository(MyContext db)
@@ -24,24 +24,20 @@ namespace DAL.ConcreteRepositories
         }
         public bool DeleteTag(int tagId)
         {
-            try
-            {
-                Tag tag = _db.Tags.SingleOrDefault(x => x.Id == tagId);
-                _db.Tags.Remove(tag);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Tag tag = GetTagById(tagId);
+            if (tag == null)
             {
                 return false;
             }
+            _db.Tags.Remove(tag);
+            _db.SaveChanges();
+            return true;
         }
         #endregion
-        
+
         #region Get
         public Tag GetTagById(int tagId)
         {
-
             Tag tag = _db.Tags.SingleOrDefault(x => x.Id == tagId);
             return tag;
         }

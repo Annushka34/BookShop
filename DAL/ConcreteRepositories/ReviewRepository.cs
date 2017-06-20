@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class ReviewRepository:IReviewRepository
+    class ReviewRepository : IReviewRepository
     {
         MyContext _db;
         public ReviewRepository(MyContext db)
@@ -24,30 +24,27 @@ namespace DAL.ConcreteRepositories
         }
         public bool DeleteReview(int reviewId)
         {
-            try
-            {
-                Review review = _db.Reviews.SingleOrDefault(x => x.Id == reviewId);
-                _db.Reviews.Remove(review);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Review review = GetReviewById(reviewId);
+            if (review == null)
             {
                 return false;
             }
+            _db.Reviews.Remove(review);
+            _db.SaveChanges();
+            return true;
         }
         #endregion
 
         #region Get
-        public List<Review> GetAllReviewsByBook(Book book)
+        public List<Review> GetAllReviewsByBook(int bookId)
         {
-            List<Review> reviews = _db.Reviews.Where(x => x.Book == book).ToList();
+            List<Review> reviews = _db.Reviews.Where(x => x.BookId == bookId).ToList();
             return reviews;
         }
 
-        public List<Review> GetAllReviewsByCustomer(Customer customer)
+        public List<Review> GetAllReviewsByCustomer(int customerId)
         {
-            List<Review> reviews = _db.Reviews.Where(x => x.Customer == customer).ToList();
+            List<Review> reviews = _db.Reviews.Where(x => x.CustomerId == customerId).ToList();
             return reviews;
         }
 

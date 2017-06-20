@@ -23,37 +23,27 @@ namespace DAL.ConcreteRepositories
             return user;
         }
 
-        public bool DeleteUser(User user)
+        public bool DeleteUser(int userId)
         {
-            try
-            {
-                _db.Users.Remove(user);   //??
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            User user = GetUserById(userId);
+            if (user == null)
             {
                 return false;
             }
+            _db.Users.Remove(user);
+            _db.SaveChanges();
+            return true;
         }
 
-        public bool Update(int userOldId, User userNew)
+        public User Update(User userOld, User userNew)
         {
-            try
-            {
-                User user = _db.Users.SingleOrDefault(x => x.Id == userOldId);
-                user.Login = userNew.Login;
-                user.Password = userNew.Password;
-                user.Email = userNew.Email;
-                user.Admin = userNew.Admin;
-                user.Customer = userNew.Customer;
+                userOld.Login = userNew.Login;
+                userOld.Password = userNew.Password;
+                userOld.Email = userNew.Email;
+                userOld.Admin = userNew.Admin;
+                userOld.Customer = userNew.Customer;
                 _db.SaveChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+                return userOld;
         }
         #endregion
 

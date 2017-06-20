@@ -15,9 +15,9 @@ namespace DAL.AbstractRepository
         #endregion
 
         #region Get
-        List<Review> GetAllReviewsByCustomer(Customer customer);
+        List<Review> GetAllReviewsByCustomer(int customerId);
         List<Review> GetAllReviewsByDate(DateTime date);
-        List<Review> GetAllReviewsByBook(Book book);
+        List<Review> GetAllReviewsByBook(int bookId);
         Review GetReviewById(int reviewId);
         #endregion
     }

@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class PictureRepository: IPictureRepository
+    class PictureRepository : IPictureRepository
     {
         MyContext _db;
         public PictureRepository(MyContext db)
@@ -25,17 +25,14 @@ namespace DAL.ConcreteRepositories
 
         public bool DeletePicture(int bookId)
         {
-            try
-            {
-                Picture picture = _db.Pictures.SingleOrDefault(x => x.BookId == bookId);
-                _db.Pictures.Remove(picture);
-                _db.SaveChanges();
-                return true;
-            }
-            catch
+            Picture picture = GetPictureByBookId(bookId);
+            if (picture == null)
             {
                 return false;
             }
+            _db.Pictures.Remove(picture);
+            _db.SaveChanges();
+            return true;
         }
         #endregion
 
