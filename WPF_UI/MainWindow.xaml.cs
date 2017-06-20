@@ -32,5 +32,17 @@ namespace WPF_UI
             adminWindow.Show(this);
             this.Hide();
         }
+
+        private void BLogIn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BRegistration_Click(object sender, RoutedEventArgs e)
+        {
+            Registration register = new Registration(this);
+            register.Show();
+            Hide();
+        }
     }
 }

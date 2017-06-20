@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="450" Width="825">
     <Grid>
-        <Button Name="Admin" Click="Admin_OnClick">Admin</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Button Name="BAdmin" Click="Admin_OnClick" Margin="10,10,260,12">Admin</Button>
+        <Button Name="BLogIn" Grid.Row="0" Grid.Column="1" Margin="5,10" Click="BLogIn_Click">Log In</Button>
+        <Button Name="BRegistration" Grid.Row="0" Grid.Column="2" Margin="5,10" Click="BRegistration_Click">Registration</Button>
+        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+
+        </Grid>
     </Grid>
 </Window>

@@ -14,7 +14,7 @@ namespace DAL.Entity
         public int Id { get; set; }
         [StringLength(maximumLength: 100)]
         public string Login { get; set; }
-        [StringLength(maximumLength: 16)]
+        [StringLength(maximumLength: 200)]
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
         [StringLength(maximumLength:100)]
