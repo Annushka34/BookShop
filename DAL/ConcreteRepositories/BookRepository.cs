@@ -11,7 +11,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class BookRepository : IBookRepository
+    public class BookRepository : IBookRepository
     {
         private MyContext _db;
 

@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class PublishRepository : IPublishRepository
+    public class PublishRepository : IPublishRepository
     {
         MyContext _db;
         public PublishRepository(MyContext db)

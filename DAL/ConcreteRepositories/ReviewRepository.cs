@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class ReviewRepository : IReviewRepository
+    public class ReviewRepository : IReviewRepository
     {
         MyContext _db;
         public ReviewRepository(MyContext db)

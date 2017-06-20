@@ -20,7 +20,7 @@ namespace BLL.ConcreteProviders
             _db = new MyContext();
         }
 
-        public UserUIDataModel UserLogin(UserViewModelLogin user)
+        public UserUILoginModel UserLogin(UserViewModelLogin user)
         {
             IUserRepository userRepository = new UserRepository(_db);
 
@@ -34,10 +34,27 @@ namespace BLL.ConcreteProviders
             string hashPassword2 = cryptoService.Compute(user.Password, newUser.PasswordSalt);
             if (cryptoService.Compare(newUser.Password, hashPassword2))
             {
-                UserUIDataModel userModel = new UserUIDataModel(newUser);
-                return userModel;
+                IBasketRepository basketRepository = new BasketRepository(_db);
+                UserUILoginModel userUILoginModel = new UserUILoginModel(newUser);
+                userUILoginModel.BasketRecords = BasketRecordsCopy(basketRepository.GetBasketRecordsByBasket(newUser.Id));
+                return userUILoginModel;
             }
             return null;
+        }
+
+        public List<BasketRecordUIModel> BasketRecordsCopy(List<BasketRecord> basketRecords)
+        {
+            List<BasketRecordUIModel> basketRecordUIModel = new List<BasketRecordUIModel>();
+            IBookRepository bookRepository = new BookRepository(_db);
+            foreach (var basketRecord in basketRecords)
+            {
+                BasketRecordUIModel tempBasketRecordUIModel = new BasketRecordUIModel();
+                tempBasketRecordUIModel.Id = basketRecord.Id;
+                tempBasketRecordUIModel.BookName = bookRepository.GetBookById(basketRecord.BookId).Name;
+                tempBasketRecordUIModel.Count = basketRecord.Count;
+                basketRecordUIModel.Add(tempBasketRecordUIModel);
+            }
+            return basketRecordUIModel;
         }
 
         public UserStatus UserRegistration(UserViewModel user)

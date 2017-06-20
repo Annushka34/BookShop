@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class PictureRepository : IPictureRepository
+    public class PictureRepository : IPictureRepository
     {
         MyContext _db;
         public PictureRepository(MyContext db)

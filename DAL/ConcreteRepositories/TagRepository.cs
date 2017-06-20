@@ -8,7 +8,7 @@ using DAL.Entity;
 
 namespace DAL.ConcreteRepositories
 {
-    class TagRepository : ITagRepository
+    public class TagRepository : ITagRepository
     {
         MyContext _db;
         public TagRepository(MyContext db)
