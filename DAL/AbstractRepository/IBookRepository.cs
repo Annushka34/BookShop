@@ -16,6 +16,7 @@ namespace DAL.AbstractRepository
 
         #region Get
         Book GetBookById(int bookId);
+        Book GetBookByName(string bookName);
         List<Book> GetBooksByCategory(int categoryId);
         List<Book> GetBooksByAuthor(int authorId);
         List<Book> GetBooksByCustomer(Customer customer);

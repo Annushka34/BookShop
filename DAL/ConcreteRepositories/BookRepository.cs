@@ -64,6 +64,12 @@ namespace DAL.ConcreteRepositories
             return book;
         }
 
+        public Book GetBookByName(string bookName)
+        {
+            Book book = _db.Books.SingleOrDefault(x => x.Name == bookName);
+            return book;
+        }
+
         public List<Book> GetBooksByAuthor(int authorId)
         {
             List<Book> books = _db.Authors.Where(x => x.Id == authorId).SelectMany(x => x.Books).ToList();

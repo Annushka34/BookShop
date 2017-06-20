@@ -55,10 +55,10 @@ namespace BLL.ConcreteProviders
         public bool CreateOrderList(int customerId)
         {
             ICustomerRepository customerRepository = new CustomerRepository(_db);
-            IBasketRepository basketRepository=new BasketRepository(_db);
+            IBasketRepository basketRepository = new BasketRepository(_db);
             IBasketRecordRepository basketRecordRepository = new BasketRecordRepository(_db);
-            IOrderRepository orderRepository=new OrderRepository(_db);
-            IOrderRecordsRepository orderRecordsRepository=new OrderRecordRepository(_db);
+            IOrderRepository orderRepository = new OrderRepository(_db);
+            IOrderRecordsRepository orderRecordsRepository = new OrderRecordRepository(_db);
             //перевірка на вже існуючого користувача
 
             Customer customer = customerRepository.GetCustomerById(customerId);
@@ -73,16 +73,21 @@ namespace BLL.ConcreteProviders
                 {
                     transaction.TransactionStart();
 
-                    var bascketRecords = basketRepository.GetBasketRecordsByBasket(customer.Basket);//всі поля з кошика
-                    Order order = orderRepository.CreateOrder(customer);//створли нове замовлення
+                    Basket basket = basketRepository.GetBasketById(customer.UserId);
+                    var bascketRecords = basketRepository.GetBasketRecordsByBasket(basket.CustomerId); //всі поля з кошика
+
+                    Order order = new Order();
+                    order.CustomerId = basket.CustomerId;
+                    order.CloseDate = DateTime.Now;
+                    order = orderRepository.CreateOrder(order); ///??????
 
                     foreach (var records in bascketRecords)
                     {
                         OrderRecord orderRec = new OrderRecord();//нове поле замовлення
                         orderRec.BookId = records.BookId;
-                        orderRec.Order = order;
+                        orderRec.OrderId = order.Id;
                         orderRec.Count = records.Count;
-                        orderRecordsRepository.CreateOrderRecord(orderRec);//додали до Order
+                        orderRecordsRepository.CreateOrderRecord(orderRec);
                     }
                     basketRepository.ClearBasket(customerId);
 

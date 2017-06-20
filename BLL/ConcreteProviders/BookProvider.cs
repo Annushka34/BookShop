@@ -22,23 +22,27 @@ namespace BLL.ConcreteProviders
         {
             IBookRepository bookRepository = new BookRepository(_db);
 
-            Book newBook = new Book();
+            Book newBook = bookRepository.GetBookByName(book.Name);
+            if(newBook != null)
+            {
+                return null;
+            }
+
+            newBook = new Book();
             newBook.Isbn = book.Isbn;
             newBook.Name = book.Name;
             newBook.Description = book.Description;
             newBook.Price = book.Price;
+
+            //дописати-переробити
             newBook.Publish = book.Publish;
             newBook.Categories = book.Categories;
             newBook.Authors = book.Authors;
             newBook.Picture = book.Picture;
-
-            if (bookRepository.CreateBook(newBook) != null)
-            {
-                BookUIModel bookUIModel = new BookUIModel(newBook);
-                return bookUIModel;
-            }
-            return null;
-
+            ///////////////////////////////
+            newBook = bookRepository.CreateBook(newBook);  ///???????????????????????
+            BookUIModel bookUIModel = new BookUIModel(newBook);
+            return bookUIModel;
         }
 
         public BookCreateUIModel GetCreateUIModel()
