@@ -21,6 +21,8 @@ namespace WPF_UI
     /// <summary>
     /// Логика взаимодействия для Admin.xaml
     /// </summary>
+    /// 
+  
     public partial class Admin : Window
     {
         private Message messWindow;
@@ -30,13 +32,7 @@ namespace WPF_UI
             InitializeComponent();
         }
 
-        private void BtnAuthorAdd_OnClick(object sender, RoutedEventArgs e)
-        {
-            string name = AuthorName.Text;
-            string surname = AuthorLastName.Text;
-            messWindow = new Message(name + " " + surname + " was added");
-            messWindow.Show();
-        }
+
 
         internal void Show(MainWindow mainWindow)
         {
@@ -56,12 +52,108 @@ namespace WPF_UI
 
         private void BtnUserAdd_OnClick(object sender, RoutedEventArgs e)
         {
-            UserViewModel user = new UserViewModel();
-            user.Login = UserLogin.Text;
-            user.Email = UserEmail.Text;
-            user.Password = UserPassword.Text;
-            IUserProvider userProvider = new UserProvider();
-            userProvider.UserRegistration(user);
+            //UserViewModel user = new UserViewModel();
+            //user.Login = UserLogin.Text;
+            //user.Email = UserEmail.Text;
+            //user.Password = UserPassword.Text;
+            //IUserProvider userProvider = new UserProvider();
+            //userProvider.UserRegistration(user);
+        }
+
+
+        private void CTable_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            TextBlock selectedItem = (TextBlock)comboBox.SelectedItem;
+            MessageBox.Show(selectedItem.Text);
+            switch (selectedItem.Text)
+            {
+                case "Admin":
+                    {
+                        SetHiddenAll();
+                        Label1.Content = "Email";
+                        Label2.Content = "Login";
+                        Label3.Content = "Password";
+                        
+                        SetVisible(TextBox1);
+                        SetVisible(TextBox2);
+                        SetVisible(PasswordBox3);
+                        SetVisible(Label1);
+                        SetVisible(Label2);
+                        SetVisible(Label3);
+                        break;
+                    }
+                case "Author":
+                    {
+                        SetHiddenAll();
+                        Label1.Content = "First name";
+                        Label2.Content = "LastName";
+                        Label3.Content = "SelectBooks";
+
+                        TextBlock textBlock=new TextBlock();
+                        textBlock.Text = "book 1";
+                        ComboBox3.Items.Add(textBlock);
+
+                        SetVisible(TextBox1);
+                        SetVisible(TextBox2);
+                        SetVisible(ComboBox3);
+                        SetVisible(Label1);
+                        SetVisible(Label2);
+                        SetVisible(Label3);
+                        break;
+                    }
+                case "Category":
+                {
+                    SetHiddenAll();
+                    break;
+                }
+                case "Book":
+                {
+                    SetHiddenAll();
+                    break;
+                }
+                case "Publish":
+                {
+                    SetHiddenAll();
+                    break;
+                }
+                case "Tag":
+                {
+                    SetHiddenAll();
+                    break;
+                }
+            }
+        }
+
+        private void SetVisible(Control element)
+        {
+           element.Visibility=Visibility.Visible;
+        }
+
+        private void SetHidden(Control element)
+        {
+            element.Visibility = Visibility.Hidden;
+        }
+
+        
+        private void SetHiddenAll()
+        {
+            Label1.Visibility = Visibility.Collapsed;
+            Label2.Visibility = Visibility.Collapsed;
+            Label3.Visibility = Visibility.Collapsed;
+            Label4.Visibility = Visibility.Collapsed;
+            TextBox1.Visibility = Visibility.Collapsed;
+            TextBox2.Visibility = Visibility.Collapsed;
+            TextBox3.Visibility = Visibility.Collapsed;
+            TextBox4.Visibility = Visibility.Collapsed;
+            ComboBox3.Visibility = Visibility.Collapsed;
+            PasswordBox3.Visibility = Visibility.Collapsed;
+            TextBox1.Text = "";
+            TextBox2.Text = "";
+            TextBox3.Text = "";
+            TextBox4.Text = "";
+            ComboBox3.Text = "";
+            PasswordBox3.Password = "";
         }
     }
 }

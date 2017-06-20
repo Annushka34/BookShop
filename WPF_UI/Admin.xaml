@@ -5,33 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_UI"
         mc:Ignorable="d"
-        Title="Admin" Height="900" Width="1200">
+        Title="Admin" Height="500" Width="1200">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Background" Value="Black" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Visibility" Value="Hidden"></Setter>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="Visibility" Value="Collapsed"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="10,0" />
+            <Setter Property="Visibility" Value="Collapsed"></Setter>
+            
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
+       
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Name="AuthorStack">
-           <TextBox Name="AuthorName" Height="50">Name</TextBox>
-            <TextBox Name="AuthorLastName" Height="50">Name</TextBox>
-            <Button Name="BtnAuthorAdd" Click="BtnAuthorAdd_OnClick" Height="50" Margin="10"></Button>
+        <StackPanel Grid.Column="0" Name="SPTable">
+            <Label Visibility="Visible">Select table</Label>
+            <ComboBox Name="CTable" Height="50" VerticalAlignment="Top" FontSize="20" Margin="10" SelectionChanged="CTable_OnSelectionChanged">
+            <TextBlock>Admin</TextBlock>
+            <TextBlock>Author</TextBlock>
+            <TextBlock>Category</TextBlock>
+            <TextBlock>Publish</TextBlock>
+            <TextBlock>Book</TextBlock>
+            <TextBlock>Tag</TextBlock>
+            </ComboBox>
+            <Label Name="Label1"></Label>
+            <TextBox Name="TextBox1" Height="50"></TextBox>
+            <Label Name="Label2"></Label>
+            <TextBox Name="TextBox2" Height="50"></TextBox>
+            <Label Name="Label3"></Label>
+            <PasswordBox Name="PasswordBox3" Height="50"  Visibility="Hidden" Margin="10"></PasswordBox>
+            <TextBox Name="TextBox3" Height="50"></TextBox>
+            <ComboBox Name="ComboBox3" Height="50" Visibility="Hidden" Margin="10"></ComboBox>
+            <Label Name="Label4"></Label>
+            <TextBox Name="TextBox4" Height="50"></TextBox>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" Name="BookStack">
-            <TextBox Name="BookName" Height="50">Book</TextBox>
-            <TextBox Name="BookIsbn" Height="50">Isbn</TextBox>
-            <Button Name="BtnBookAdd" Click="BtnBookAdd_OnClick" Height="50" Margin="10"></Button>
-        </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1" Name="UserStack">
-            <TextBox Name="UserEmail" Height="50">Email</TextBox>
-            <TextBox Name="UserLogin" Height="50">Login</TextBox>
-            <TextBox Name="UserPassword" Height="50">Pasword</TextBox>
+        
+        <StackPanel Grid.Column="1" Name="UserStack">
 
-            <Button Name="BtnUserAdd" Click="BtnUserAdd_OnClick" Height="50" Margin="10">User Add</Button>
+            <Button Name="BtnUserAdd" Click="BtnUserAdd_OnClick" Height="50" Visibility="Visible">Add</Button>
         </StackPanel>
         <Label x:Name="label" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
     </Grid>
