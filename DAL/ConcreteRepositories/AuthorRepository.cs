@@ -49,6 +49,10 @@ namespace DAL.ConcreteRepositories
             Author author = _db.Authors.SingleOrDefault(x => x.Id == authorId);
             return author;
         }
+        public List<Author> GetAllAuthors()
+        {
+            return _db.Authors.ToList();
+        }
         #endregion
     }
 }

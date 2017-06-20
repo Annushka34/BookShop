@@ -16,6 +16,7 @@ namespace DAL.AbstractRepository
 
         #region Get
         Publish GetPublishById(int publishId);
+        List<Publish> GetAllPublishes();
         #endregion
     }
 }

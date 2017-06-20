@@ -54,10 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractProviders\IBookProvider.cs" />
     <Compile Include="AbstractProviders\ICustomerProvider.cs" />
     <Compile Include="AbstractProviders\ITransaction.cs" />
     <Compile Include="AbstractProviders\IUserProvider.cs" />
     <Compile Include="ViewModels\BasketRecordUIModel.cs" />
+    <Compile Include="ViewModels\BookCreateUIModel.cs" />
+    <Compile Include="ViewModels\BookUIModel.cs" />
+    <Compile Include="ViewModels\BookCreateViewModel.cs" />
     <Compile Include="ViewModels\UserUILoginModel.cs" />
     <Compile Include="ViewModels\UserViewModelLogin.cs" />
     <Compile Include="ConcreteProviders\BookProvider.cs" />
