@@ -37,7 +37,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Name="SPTable">
-            <Label Visibility="Visible">Select table</Label>
+            <Label Visibility="Visible">Select table to add new</Label>
             <ComboBox Name="CTable" Height="50" VerticalAlignment="Top" FontSize="20" Margin="10" SelectionChanged="CTable_OnSelectionChanged">
             <TextBlock>Admin</TextBlock>
             <TextBlock>Author</TextBlock>
@@ -56,11 +56,23 @@
             <ComboBox Name="ComboBox3" Height="50" Visibility="Hidden" Margin="10"></ComboBox>
             <Label Name="Label4"></Label>
             <TextBox Name="TextBox4" Height="50"></TextBox>
+            <Button Name="BtnUserAdd" Click="BtnAdd_OnClick" Height="50" Visibility="Visible" VerticalAlignment="Bottom">Add</Button>
+
         </StackPanel>
         
-        <StackPanel Grid.Column="1" Name="UserStack">
-
-            <Button Name="BtnUserAdd" Click="BtnUserAdd_OnClick" Height="50" Visibility="Visible">Add</Button>
+        <StackPanel Grid.Column="1" Name="SPSelect">
+            <Label Visibility="Visible">Select table to show existing</Label>
+            <ComboBox Name="CTableExisting" Height="50" VerticalAlignment="Top" FontSize="20" Margin="10" SelectionChanged="CTableExisting_OnSelectionChanged">
+                <TextBlock>Admin</TextBlock>
+                <TextBlock>Author</TextBlock>
+                <TextBlock>Category</TextBlock>
+                <TextBlock>Publish</TextBlock>
+                <TextBlock>Book</TextBlock>
+                <TextBlock>Tag</TextBlock>
+            </ComboBox>
+            <StackPanel Name="StackPanelExistingItems" Margin="10">
+                <CheckBox x:Name="checkBox1" IsThreeState="True" IsChecked="False" Height="20" Content="Неотмечено" />
+            </StackPanel>
         </StackPanel>
         <Label x:Name="label" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
     </Grid>

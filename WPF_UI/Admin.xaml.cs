@@ -27,9 +27,13 @@ namespace WPF_UI
     {
         private Message messWindow;
         private MainWindow main;
+        private string tableSelected;
+        private string tableSelectedFromExisting;
         public Admin()
         {
             InitializeComponent();
+            tableSelected = "";
+            tableSelectedFromExisting = "";
         }
 
 
@@ -50,14 +54,48 @@ namespace WPF_UI
             throw new NotImplementedException();
         }
 
-        private void BtnUserAdd_OnClick(object sender, RoutedEventArgs e)
+        private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
         {
-            //UserViewModel user = new UserViewModel();
-            //user.Login = UserLogin.Text;
-            //user.Email = UserEmail.Text;
-            //user.Password = UserPassword.Text;
-            //IUserProvider userProvider = new UserProvider();
-            //userProvider.UserRegistration(user);
+            switch (tableSelected)
+            {
+                case "Admin":
+                {
+                        UserViewModel user = new UserViewModel();
+                        user.Email = TextBox1.Text;
+                        user.Login = TextBox2.Text;
+                        user.Password = TextBox3.Text;
+                        user.Role=UserRole.Admin;
+                        IUserProvider userProvider = new UserProvider();
+                        userProvider.UserRegistration(user);
+                        break;
+                }
+                case "Author":
+                {
+                   
+                    break;
+                }
+                case "Category":
+                {
+                   
+                    break;
+                }
+                case "Book":
+                {
+                    
+                    break;
+                }
+                case "Publish":
+                {
+                   
+                    break;
+                }
+                case "Tag":
+                {
+                  
+                    break;
+                }
+                    
+            }
         }
 
 
@@ -65,8 +103,8 @@ namespace WPF_UI
         {
             ComboBox comboBox = (ComboBox)sender;
             TextBlock selectedItem = (TextBlock)comboBox.SelectedItem;
-            MessageBox.Show(selectedItem.Text);
-            switch (selectedItem.Text)
+            tableSelected = selectedItem.Text;
+            switch (tableSelected)
             {
                 case "Admin":
                     {
@@ -105,6 +143,9 @@ namespace WPF_UI
                 case "Category":
                 {
                     SetHiddenAll();
+                    Label1.Content = "Category name";
+                    SetVisible(Label1);
+                    SetVisible(TextBox1);
                     break;
                 }
                 case "Book":
@@ -120,6 +161,52 @@ namespace WPF_UI
                 case "Tag":
                 {
                     SetHiddenAll();
+                    break;
+                }
+            }
+        }
+        private void CTableExisting_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            TextBlock selectedItem = (TextBlock)comboBox.SelectedItem;
+            tableSelectedFromExisting = selectedItem.Text;
+            switch (tableSelectedFromExisting)
+            {
+                case "Admin":
+                {
+                   UserProvider userProvider=new UserProvider();
+                   var users=userProvider.GetAllUsers();
+                    foreach (var user in users)
+                    {
+                        CheckBox checkBox = new CheckBox();
+                        checkBox.Content = user.UserLogin;
+                        StackPanelExistingItems.Children.Add(checkBox);
+                    }
+                    break;
+                }
+                case "Author":
+                {
+                   
+                    break;
+                }
+                case "Category":
+                {
+                   
+                    break;
+                }
+                case "Book":
+                {
+                   
+                    break;
+                }
+                case "Publish":
+                {
+                   
+                    break;
+                }
+                case "Tag":
+                {
+                    
                     break;
                 }
             }
@@ -155,5 +242,7 @@ namespace WPF_UI
             ComboBox3.Text = "";
             PasswordBox3.Password = "";
         }
+
+       
     }
 }

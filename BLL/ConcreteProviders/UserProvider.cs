@@ -42,6 +42,29 @@ namespace BLL.ConcreteProviders
             return null;
         }
 
+        public List<UserUILoginModel> GetAllUsers()
+        {
+            List<UserUILoginModel> users=new List<UserUILoginModel>();
+            if (users == null) return null;
+            foreach (var user in _db.Users)
+            {
+                UserUILoginModel newUser=new UserUILoginModel();
+                newUser.UserId = user.Id;
+                newUser.UserLogin = user.Login;
+                if (user.Customer == null)
+                {
+                    newUser.IsAdmin = true;
+                    newUser.IsCustomer = false;
+                }
+                else
+                {
+                    newUser.IsCustomer = true;
+                    newUser.IsAdmin = false;
+                }
+            }
+            return users;
+        }
+
         public List<BasketRecordUIModel> BasketRecordsCopy(List<BasketRecord> basketRecords)
         {
             List<BasketRecordUIModel> basketRecordUIModel = new List<BasketRecordUIModel>();

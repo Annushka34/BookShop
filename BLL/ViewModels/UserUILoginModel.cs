@@ -12,7 +12,7 @@ namespace BLL.ViewModels
         public UserUILoginModel(User user)
         {
             UserId = user.Id;
-            UserName = user.Login;
+            UserLogin = user.Login;
             IsAdmin = false;
             IsCustomer = false;
             if (user.Admin != null)
@@ -21,8 +21,12 @@ namespace BLL.ViewModels
                 IsCustomer = true;
             BasketRecords = new List<BasketRecordUIModel>();
         }
+        public UserUILoginModel()
+        {
+            BasketRecords = new List<BasketRecordUIModel>();
+        }
         public int UserId { get; set; }
-        public string UserName { get; set; }
+        public string UserLogin { get; set; }
         public bool IsCustomer { get; set; }
         public bool IsAdmin { get; set; }
         public List<BasketRecordUIModel> BasketRecords { get; set; }
