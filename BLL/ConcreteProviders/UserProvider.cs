@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using BLL.AbstractProviders;
@@ -44,23 +45,27 @@ namespace BLL.ConcreteProviders
 
         public List<UserUILoginModel> GetAllUsers()
         {
+            IUserRepository userRepository = new UserRepository(_db);
+            ICustomerRepository customerRepository = new CustomerRepository(_db);
+            IAdminRepository adminRepository = new AdminRepository(_db);
+            IBasketRepository basketRepository=new BasketRepository(_db);
+
             List<UserUILoginModel> users=new List<UserUILoginModel>();
-            if (users == null) return null;
+           
             foreach (var user in _db.Users)
             {
                 UserUILoginModel newUser=new UserUILoginModel();
                 newUser.UserId = user.Id;
                 newUser.UserLogin = user.Login;
-                if (user.Customer == null)
-                {
-                    newUser.IsAdmin = true;
-                    newUser.IsCustomer = false;
-                }
-                else
-                {
-                    newUser.IsCustomer = true;
-                    newUser.IsAdmin = false;
-                }
+                newUser.IsCustomer = false;
+                newUser.IsAdmin = false;
+                //if (customerRepository.GetCustomerById(user.Id)!=null)
+                //    newUser.IsCustomer = true;
+                //if(adminRepository.GetAdminById(user.Id)!=null)
+                //    newUser.IsAdmin = true;
+                //var basketRecords=basketRepository.GetBasketRecordsByBasket(user.Id);///подумати чи можна залишити порожнім
+                //newUser.BasketRecords = BasketRecordsCopy(basketRecords);///подумати чи можна залишити порожнім
+                users.Add(newUser);
             }
             return users;
         }

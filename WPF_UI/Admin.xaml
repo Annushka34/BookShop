@@ -5,25 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_UI"
         mc:Ignorable="d"
-        Title="Admin" Height="500" Width="1200">
+        Title="Admin" Height="400" Width="900"
+        WindowStartupLocation="CenterOwner"
+        >
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
             <Setter Property="Background" Value="Black" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="10" />
+            <Setter Property="Margin" Value="10,5,25,0" />
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Width" Value="80"></Setter>
             <Setter Property="Visibility" Value="Hidden"></Setter>
         </Style>
 
         <Style TargetType="TextBox">
-            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
             <Setter Property="Margin" Value="10,0" />
+            <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Visibility" Value="Collapsed"></Setter>
         </Style>
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="Margin" Value="10,0" />
+            <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Visibility" Value="Collapsed"></Setter>
             
         </Style>
@@ -36,33 +42,10 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Name="SPTable">
-            <Label Visibility="Visible">Select table to add new</Label>
-            <ComboBox Name="CTable" Height="50" VerticalAlignment="Top" FontSize="20" Margin="10" SelectionChanged="CTable_OnSelectionChanged">
-            <TextBlock>Admin</TextBlock>
-            <TextBlock>Author</TextBlock>
-            <TextBlock>Category</TextBlock>
-            <TextBlock>Publish</TextBlock>
-            <TextBlock>Book</TextBlock>
-            <TextBlock>Tag</TextBlock>
-            </ComboBox>
-            <Label Name="Label1"></Label>
-            <TextBox Name="TextBox1" Height="50"></TextBox>
-            <Label Name="Label2"></Label>
-            <TextBox Name="TextBox2" Height="50"></TextBox>
-            <Label Name="Label3"></Label>
-            <PasswordBox Name="PasswordBox3" Height="50"  Visibility="Hidden" Margin="10"></PasswordBox>
-            <TextBox Name="TextBox3" Height="50"></TextBox>
-            <ComboBox Name="ComboBox3" Height="50" Visibility="Hidden" Margin="10"></ComboBox>
-            <Label Name="Label4"></Label>
-            <TextBox Name="TextBox4" Height="50"></TextBox>
-            <Button Name="BtnUserAdd" Click="BtnAdd_OnClick" Height="50" Visibility="Visible" VerticalAlignment="Bottom">Add</Button>
 
-        </StackPanel>
-        
-        <StackPanel Grid.Column="1" Name="SPSelect">
+        <StackPanel Grid.Column="0" Name="SPSelect">
             <Label Visibility="Visible">Select table to show existing</Label>
-            <ComboBox Name="CTableExisting" Height="50" VerticalAlignment="Top" FontSize="20" Margin="10" SelectionChanged="CTableExisting_OnSelectionChanged">
+            <ComboBox Name="CTableExisting" Height="30" VerticalAlignment="Top" FontSize="16" Margin="10" SelectionChanged="CTableExisting_OnSelectionChanged">
                 <TextBlock>Admin</TextBlock>
                 <TextBlock>Author</TextBlock>
                 <TextBlock>Category</TextBlock>
@@ -71,9 +54,35 @@
                 <TextBlock>Tag</TextBlock>
             </ComboBox>
             <StackPanel Name="StackPanelExistingItems" Margin="10">
-                <CheckBox x:Name="checkBox1" IsThreeState="True" IsChecked="False" Height="20" Content="Неотмечено" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                <Button Name="BtnSelect" Click="BtnSelect_OnClick" Visibility="Visible" >Select</Button>
+                <Button Name="BtnAdd" Click="BtnAdd_OnClick" Visibility="Visible" VerticalAlignment="Bottom">AddNew</Button>
+                <Button Name="BtnDelete" Click="BtnDelete_OnClick" Visibility="Visible" >Delete</Button>
+                <Button Name="BtnUpdate" Click="BtnUpdate_OnClick" Visibility="Visible" >Update</Button>
             </StackPanel>
         </StackPanel>
-        <Label x:Name="label" Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+
+        <StackPanel Grid.Column="1" Name="SPTable" Visibility="Collapsed">
+            <Label Name="Label1"></Label>
+            <TextBox Name="TextBox1" ></TextBox>
+            <ComboBox Name="ComboBox1" Height="30" Visibility="Collapsed" Margin="10"/>
+            <Label Name="Label2"></Label>
+            <ComboBox Name="ComboBox2" Height="30" Visibility="Collapsed" Margin="10"/>
+            <TextBox Name="TextBox2" ></TextBox>
+            <Label Name="Label3"></Label>
+            <PasswordBox Name="PasswordBox3" Height="30" Visibility="Collapsed" Margin="10"></PasswordBox>
+            <TextBox Name="TextBox3" ></TextBox>
+            <ComboBox Name="ComboBox3" Height="30" Visibility="Collapsed" Margin="10"/>
+            <Label Name="Label4"></Label>
+            <ComboBox Name="ComboBox4" Height="30" Visibility="Collapsed" Margin="10"/>
+            <TextBox Name="TextBox4" ></TextBox>
+            <Label Name="Label5"></Label>
+            <Image Name="IPicture" Visibility="Hidden"></Image>
+            <Button Name="BtnAddToDataBase" Click="BtnAddToDataBase_OnClick" Visibility="Collapsed" Width="200">AddToDataBase</Button>
+        </StackPanel>
+        
+     
     </Grid>
 </Window>
