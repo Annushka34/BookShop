@@ -12,6 +12,6 @@ namespace BLL.AbstractProviders
     {
         UserStatus UserRegistration(UserViewModel user);
         UserUILoginModel UserLogin(UserViewModelLogin user);
-        
+        List<UserUILoginModel> GetAllUsers();
     }
 }

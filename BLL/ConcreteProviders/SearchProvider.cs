@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.ConcreteProviders
 {
-    class SearchProvider
+    public class SearchProvider
     {
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -76,8 +77,16 @@ namespace DAL.ConcreteRepositories
             return books;
         }
 
+        //public List<Book> GetBooksByCategory(int categoryId)
+        //{
+        //    List<Book> books = _db.Categories.Where(x => x.Id == categoryId).SelectMany(x => x.Books).ToList();
+        //    return books;
+        //}
         public List<Book> GetBooksByCategory(int categoryId)
         {
+            IQueryable<Book> books = _db.Books;
+            books = books.Include(x => x.Categories);
+            books = books.Where
             List<Book> books = _db.Categories.Where(x => x.Id == categoryId).SelectMany(x => x.Books).ToList();
             return books;
         }

@@ -53,14 +53,14 @@ namespace WPF_UI
             {
                 case "Admin":
                     {
-                        StackPanelExistingItems.Children.Clear();
+                        ComboBoxExistingItems.Items.Clear();
                         UserProvider userProvider = new UserProvider();
                         var users = userProvider.GetAllUsers();
                         foreach (var user in users)
                         {
                             CheckBox checkBox = new CheckBox();
                             checkBox.Content = user.UserLogin;
-                            StackPanelExistingItems.Children.Add(checkBox);
+                            ComboBoxExistingItems.Items.Add(checkBox);
                         }
                         break;
                     }
@@ -71,7 +71,7 @@ namespace WPF_UI
                     }
                 case "Category":
                     {
-                        StackPanelExistingItems.Children.Clear();
+                        ComboBoxExistingItems.Items.Clear();
 
                         ICategoryProvider categoryProvider = new CategoryProvider();
                         var categories = categoryProvider.GetAllCategoriesNames();
@@ -79,7 +79,7 @@ namespace WPF_UI
                         {
                             CheckBox checkBox = new CheckBox();
                             checkBox.Content = category.Name;
-                            StackPanelExistingItems.Children.Add(checkBox);
+                            ComboBoxExistingItems.Items.Add(checkBox);
                         }
                         break;
                     }
@@ -109,6 +109,7 @@ namespace WPF_UI
         }
         private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
         {
+            SetVisible(BtnAddToDataBase);
             switch (tableSelected)
             {
                 case "Admin":

@@ -11,7 +11,7 @@ using DAL.Entity;
 
 namespace BLL.ConcreteProviders
 {
-    class CustomerProvider:ICustomerProvider
+    public class CustomerProvider:ICustomerProvider
     {
             MyContext _db;
         public CustomerProvider()

@@ -1,0 +1,26 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_UI"
+        xmlns:ConcreteProviders="clr-namespace:BLL.ConcreteProviders;assembly=BLL" xmlns:ViewModels="clr-namespace:BLL.ViewModels;assembly=BLL" x:Class="WPF_UI.Basket"
+        mc:Ignorable="d"
+        Title="Basket" Height="326.891" Width="536.134" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="userProviderViewSource" d:DesignSource="{d:DesignInstance {x:Type ConcreteProviders:UserProvider}, CreateList=True}"/>
+        <CollectionViewSource x:Key="userViewModelViewSource" d:DesignSource="{d:DesignInstance {x:Type ViewModels:UserViewModel}, CreateList=True}"/>
+        <CollectionViewSource x:Key="userUILoginModelViewSource" d:DesignSource="{d:DesignInstance {x:Type ViewModels:UserUILoginModel}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource userProviderViewSource}">
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <DataGrid x:Name="userUILoginModelDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource userUILoginModelViewSource}}" Margin="10,10,267,87" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="userLoginColumn" Binding="{Binding UserLogin}" Header="User Login" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="isAdminColumn" Binding="{Binding IsAdmin}" Header="Is Admin" Width="SizeToHeader"/>
+                <DataGridCheckBoxColumn x:Name="isCustomerColumn" Binding="{Binding IsCustomer}" Header="Is Customer" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

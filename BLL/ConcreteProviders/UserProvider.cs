@@ -37,7 +37,7 @@ namespace BLL.ConcreteProviders
             {
                 IBasketRepository basketRepository = new BasketRepository(_db);
                 UserUILoginModel userUILoginModel = new UserUILoginModel(newUser);
-                userUILoginModel.BasketRecords = BasketRecordsCopy(basketRepository.GetBasketRecordsByBasket(newUser.Id));
+                userUILoginModel.BasketRecordsCount = basketRepository.GetBasketRecordsByBasket(newUser.Id).Count;
                 return userUILoginModel;
             }
             return null;
@@ -51,20 +51,19 @@ namespace BLL.ConcreteProviders
             IBasketRepository basketRepository=new BasketRepository(_db);
 
             List<UserUILoginModel> users=new List<UserUILoginModel>();
-           
-            foreach (var user in _db.Users)
+            List<User> usersfromdb = _db.Users.ToList();
+            foreach (var user in usersfromdb)
             {
                 UserUILoginModel newUser=new UserUILoginModel();
                 newUser.UserId = user.Id;
                 newUser.UserLogin = user.Login;
                 newUser.IsCustomer = false;
                 newUser.IsAdmin = false;
-                //if (customerRepository.GetCustomerById(user.Id)!=null)
-                //    newUser.IsCustomer = true;
-                //if(adminRepository.GetAdminById(user.Id)!=null)
-                //    newUser.IsAdmin = true;
-                //var basketRecords=basketRepository.GetBasketRecordsByBasket(user.Id);///подумати чи можна залишити порожнім
-                //newUser.BasketRecords = BasketRecordsCopy(basketRecords);///подумати чи можна залишити порожнім
+                if (customerRepository.GetCustomerById(user.Id)!=null)
+                    newUser.IsCustomer = true;
+                if(adminRepository.GetAdminById(user.Id)!=null)
+                    newUser.IsAdmin = true;
+                newUser.BasketRecordsCount = basketRepository.GetBasketRecordsByBasket(user.Id).Count;
                 users.Add(newUser);
             }
             return users;

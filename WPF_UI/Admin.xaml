@@ -53,8 +53,8 @@
                 <TextBlock>Book</TextBlock>
                 <TextBlock>Tag</TextBlock>
             </ComboBox>
-            <StackPanel Name="StackPanelExistingItems" Margin="10">
-            </StackPanel>
+            <ComboBox Name="ComboBoxExistingItems" Margin="10" />
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <Button Name="BtnSelect" Click="BtnSelect_OnClick" Visibility="Visible" >Select</Button>
                 <Button Name="BtnAdd" Click="BtnAdd_OnClick" Visibility="Visible" VerticalAlignment="Bottom">AddNew</Button>
