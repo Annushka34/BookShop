@@ -116,7 +116,7 @@ namespace BLL.ConcreteProviders
                     if (user.Role == UserRole.Admin)
                     {
                         IAdminRepository adminRepository = new AdminRepository(_db);
-                        adminRepository.CreateAdmin(newUser);
+                        adminRepository.CreateAdmin(newUser);   
                     }
                     else
                     {

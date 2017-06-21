@@ -1,25 +1,28 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DAL.Entity;
 
 namespace BLL.ViewModels
 {
     public class CategoryUIModel
     {
-        public CategoryUIModel(CategoryUIModel category)
+        public CategoryUIModel(Category category)//список категорій на юай
         {
             Id = category.Id;
             Name = category.Name;
-            Books = new List<BookUIModel>();
         }
-        public CategoryUIModel()
-        {
-            Books = new List<BookUIModel>();
-        }
+     
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<BookUIModel> Books { get; set; }
+    }
+
+    public class CategoryViewModel//приходить з юай при створенні нової категорї
+    {
+        public CategoryViewModel()
+        {
+            BooksId = new List<int>();
+        }
+        public string CategoryName { get; set; }
+        public List<int> BooksId { get; set; }
     }
 }

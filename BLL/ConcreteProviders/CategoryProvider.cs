@@ -27,7 +27,7 @@ namespace BLL.ConcreteProviders
             category.Name = categoryModel.CategoryName;
             categoryRepository.CreateCategory(category);
             _db.SaveChanges();
-            if (categoryModel.BooksId.Count != null)
+            if (categoryModel.BooksId.Count != 0)
             {
                 foreach (var id in categoryModel.BooksId)
                 {
@@ -47,10 +47,7 @@ namespace BLL.ConcreteProviders
 
             foreach (var category in _db.Categories)
             {
-                CategoryUIModel newCategory = new CategoryUIModel();
-                newCategory.Id = category.Id;
-                newCategory.Name = category.Name;
-
+                CategoryUIModel newCategory = new CategoryUIModel(category);
                 categories.Add(newCategory);
             }
             return categories;

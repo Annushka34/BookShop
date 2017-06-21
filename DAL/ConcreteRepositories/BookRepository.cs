@@ -84,9 +84,9 @@ namespace DAL.ConcreteRepositories
         //}
         public List<Book> GetBooksByCategory(int categoryId)
         {
-            IQueryable<Book> books = _db.Books;
-            books = books.Include(x => x.Categories);
-            books = books.Where
+            //IQueryable<Book> books = _db.Books;
+            //books = books.Include(x => x.Categories);
+            //books = books.Where
             List<Book> books = _db.Categories.Where(x => x.Id == categoryId).SelectMany(x => x.Books).ToList();
             return books;
         }

@@ -1,15 +1,22 @@
 ﻿using DAL.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.ViewModels
 {
-    public class BookUIModel
+   
+        public class BookUIModel//список книжок на юай
+        {
+            public BookUIModel(Book book)
+            {
+                Id = book.Id;
+                BookName = book.Name;    
+            }
+            public int Id { get; set; }
+            public string BookName { get; set; }
+        }
+    public class BookUIModelWithCollections//список книжок на юай зі всіма коллекціями
     {
-        public BookUIModel(Book book)
+        public BookUIModelWithCollections(Book book)
         {
             Isbn = book.Isbn;
             Price = book.Price;
@@ -18,7 +25,7 @@ namespace BLL.ViewModels
             PicturePath = book.Picture.PicturePath;
             PublishId = book.PublishId;
 
-            Authors = new List<AuthorUIModel>();
+            Authors = new List<AuthorUIModelWithBooks>();
             Tags = new List<TagUIModel>();
             Categories = new List<CategoryUIModel>();
             Reviews = new List<ReviewUIModel>();
@@ -30,10 +37,25 @@ namespace BLL.ViewModels
         public string Description { get; set; }
         public string PicturePath { get; set; }
 
-        public List<AuthorUIModel> Authors { get; set; }
+        public List<AuthorUIModelWithBooks> Authors { get; set; }
         public List<TagUIModel> Tags { get; set; }
         public List<CategoryUIModel> Categories { get; set; }
         public List<ReviewUIModel> Reviews { get; set; }
         
+    }
+
+
+    public class BookCreateViewModel
+    {
+        public int Isbn { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double Price { get; set; }
+        public int PublishId { get; set; }
+
+        public List<int> CategoriesIdList { get; set; }
+        public List<int> TagsIdList { get; set; }
+        public List<int> AuthorsIdList { get; set; }
+        public string PicturePath { get; set; }
     }
 }

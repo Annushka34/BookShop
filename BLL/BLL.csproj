@@ -60,24 +60,19 @@
     <Compile Include="AbstractProviders\ITransaction.cs" />
     <Compile Include="AbstractProviders\IUserProvider.cs" />
     <Compile Include="ConcreteProviders\CategoryProvider.cs" />
-    <Compile Include="ViewModels\AuthorUIModel.cs" />
+    <Compile Include="ViewModels\AuthorUIModelWithBooks.cs" />
     <Compile Include="ViewModels\BasketRecordUIModel.cs" />
     <Compile Include="ViewModels\BookUIModel.cs" />
-    <Compile Include="ViewModels\BookCreateViewModel.cs" />
     <Compile Include="ViewModels\CategoryUIModel.cs" />
-    <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ReviewUIModel.cs" />
     <Compile Include="ViewModels\TagUIModel.cs" />
     <Compile Include="ViewModels\UserUILoginModel.cs" />
-    <Compile Include="ViewModels\UserViewModelLogin.cs" />
     <Compile Include="ConcreteProviders\BookProvider.cs" />
     <Compile Include="ConcreteProviders\CustomerProvider.cs" />
     <Compile Include="ConcreteProviders\SearchProvider.cs" />
     <Compile Include="ConcreteProviders\Transaction.cs" />
     <Compile Include="ConcreteProviders\UserProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\BasksetRecordViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

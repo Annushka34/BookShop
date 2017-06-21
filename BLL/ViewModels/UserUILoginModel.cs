@@ -20,14 +20,37 @@ namespace BLL.ViewModels
             if (user.Customer != null)
                 IsCustomer = true;
         }
-        public UserUILoginModel()
-        {
-            
-        }
+        public UserUILoginModel() { }
         public int UserId { get; set; }
         public string UserLogin { get; set; }
         public bool IsCustomer { get; set; }
         public bool IsAdmin { get; set; }
         public int BasketRecordsCount { get; set; }
+    }
+
+    public class UserViewModel
+    {
+        public string Login { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public UserRole Role { get; set; }
+    }
+
+    public class UserViewModelLogin
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+    }
+
+    public enum UserRole
+    {
+        Admin = 1,
+        Customer
+    }
+    public enum UserStatus
+    {
+        Success = 1,
+        DublicationLogin,
+        TransactionDispose,
     }
 }
