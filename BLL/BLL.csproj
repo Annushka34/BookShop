@@ -55,17 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractProviders\IBookProvider.cs" />
-    <Compile Include="AbstractProviders\ICategoryProvider.cs" />
+    <Compile Include="AbstractProviders\IGeneralProvider.cs" />
     <Compile Include="AbstractProviders\ICustomerProvider.cs" />
     <Compile Include="AbstractProviders\ITransaction.cs" />
     <Compile Include="AbstractProviders\IUserProvider.cs" />
-    <Compile Include="ConcreteProviders\CategoryProvider.cs" />
-    <Compile Include="ViewModels\AuthorUIModelWithBooks.cs" />
+    <Compile Include="ConcreteProviders\GeneralProvider.cs" />
+    <Compile Include="ViewModels\AuthorUIModel.cs" />
     <Compile Include="ViewModels\BasketRecordUIModel.cs" />
     <Compile Include="ViewModels\BookUIModel.cs" />
-    <Compile Include="ViewModels\CategoryUIModel.cs" />
-    <Compile Include="ViewModels\ReviewUIModel.cs" />
-    <Compile Include="ViewModels\TagUIModel.cs" />
+    <Compile Include="ViewModels\GeneralUIModel.cs" />
     <Compile Include="ViewModels\UserUILoginModel.cs" />
     <Compile Include="ConcreteProviders\BookProvider.cs" />
     <Compile Include="ConcreteProviders\CustomerProvider.cs" />

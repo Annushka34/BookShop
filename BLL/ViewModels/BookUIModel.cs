@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace BLL.ViewModels
 {
-   
-        public class BookUIModel//список книжок на юай
+
+    public class BookUIModel//список книжок на юай
+    {
+        public BookUIModel(Book book)
         {
-            public BookUIModel(Book book)
-            {
-                Id = book.Id;
-                BookName = book.Name;    
-            }
-            public int Id { get; set; }
-            public string BookName { get; set; }
+            Id = book.Id;
+            BookName = book.Name;
         }
+        public int Id { get; set; }
+        public string BookName { get; set; }
+    }
     public class BookUIModelWithCollections//список книжок на юай зі всіма коллекціями
     {
         public BookUIModelWithCollections(Book book)
@@ -41,7 +41,7 @@ namespace BLL.ViewModels
         public List<TagUIModel> Tags { get; set; }
         public List<CategoryUIModel> Categories { get; set; }
         public List<ReviewUIModel> Reviews { get; set; }
-        
+
     }
 
 

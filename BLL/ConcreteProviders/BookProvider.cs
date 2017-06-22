@@ -18,7 +18,7 @@ namespace BLL.ConcreteProviders
         {
             _db = db;
         }
-        public BookUIModelWithCollections CreateBook(BookCreateViewModel book)
+        public BookUIModel CreateBook(BookCreateViewModel book)//створити книжку - від юай приходить книжка з колекціями айдішок. На юайку іде назва книжки з новою айдішкою
         {
             IBookRepository bookRepository = new BookRepository(_db);
             IAuthorRepository authorRepository=new AuthorRepository(_db);
@@ -42,6 +42,7 @@ namespace BLL.ConcreteProviders
                     newBook.Price = book.Price;
                     newBook.PublishId = book.PublishId;
                     
+                    bookRepository.CreateBook(newBook); //створили нову книжку з коллекціями
 
                     if (book.AuthorsIdList.Count != 0)//привязали коллекцію авторів
                     {
@@ -73,13 +74,12 @@ namespace BLL.ConcreteProviders
 
                     newBook.Picture = picture;//додали картинку до новоъ книжки
 
+                    _db.SaveChanges();//так як багато операцій створюється в провайдері то він сам звертається до бази даних
 
-                    bookRepository.CreateBook(newBook); //створили нову книжку з коллекціями
-
-                    BookUIModelWithCollections bookUiModelWithCollections = new BookUIModelWithCollections(newBook);//створили модельку для повернення на юай книжки з коллекцыями
+                    BookUIModel bookUiModel = new BookUIModel(newBook);//створили модельку для повернення на юай книжки з коллекцыями
 
                     transaction.TransactionCommit();
-                    return bookUiModelWithCollections;
+                    return bookUiModel;
                 }
                 catch
                 {

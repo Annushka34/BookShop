@@ -29,10 +29,12 @@ namespace WPF_UI
         private MainWindow main;
         private string tableSelected;
         private string tableSelectedFromExisting;
+        private IGeneralProvider generalProvider;
         public Admin()
         {
             InitializeComponent();
             tableSelected = "";
+            generalProvider = new GeneralProvider();
         }
 
 
@@ -52,50 +54,80 @@ namespace WPF_UI
             switch (tableSelected)
             {
                 case "Admin":
-                    {
-                        ComboBoxExistingItems.Items.Clear();
+                {
+                        int count=StackPExistingItems.Children.Count;
+                        StackPExistingItems.Children.RemoveRange(0,count);
                         UserProvider userProvider = new UserProvider();
                         var users = userProvider.GetAllUsers();
                         foreach (var user in users)
                         {
                             CheckBox checkBox = new CheckBox();
                             checkBox.Content = user.UserLogin;
-                            ComboBoxExistingItems.Items.Add(checkBox);
+                            StackPExistingItems.Children.Add(checkBox);
                         }
                         break;
                     }
                 case "Author":
                     {
-
+                        int count = StackPExistingItems.Children.Count;
+                        StackPExistingItems.Children.RemoveRange(0, count);
+                        StackPExistingItems.Children.Clear();
+                        var authors = generalProvider.GetAllAuthorsNames();
+                        foreach (var category in authors)
+                        {
+                            CheckBox checkBox = new CheckBox();
+                            checkBox.Content = category.Name;
+                            StackPExistingItems.Children.Add(checkBox);
+                        }
                         break;
                     }
                 case "Category":
                     {
-                        ComboBoxExistingItems.Items.Clear();
-
-                        ICategoryProvider categoryProvider = new CategoryProvider();
-                        var categories = categoryProvider.GetAllCategoriesNames();
+                        int count = StackPExistingItems.Children.Count;
+                        StackPExistingItems.Children.RemoveRange(0, count);
+                        StackPExistingItems.Children.Clear();
+                        var categories = generalProvider.GetAllCategoriesNames();
                         foreach (var category in categories)
                         {
                             CheckBox checkBox = new CheckBox();
                             checkBox.Content = category.Name;
-                            ComboBoxExistingItems.Items.Add(checkBox);
+                            StackPExistingItems.Children.Add(checkBox);
                         }
                         break;
                     }
                 case "Book":
                     {
-
+                        int count = StackPExistingItems.Children.Count;
+                        StackPExistingItems.Children.RemoveRange(0, count);
+                        StackPExistingItems.Children.Clear();
                         break;
                     }
                 case "Publish":
                     {
-
+                        int count = StackPExistingItems.Children.Count;
+                        StackPExistingItems.Children.RemoveRange(0, count);
+                        StackPExistingItems.Children.Clear();
+                        var publishes = generalProvider.GetAllPublishNames();
+                        foreach (var publish in publishes)
+                        {
+                            CheckBox checkBox = new CheckBox();
+                            checkBox.Content = publish.PublishName;
+                            StackPExistingItems.Children.Add(checkBox);
+                        }
                         break;
                     }
                 case "Tag":
                     {
-
+                        int count = StackPExistingItems.Children.Count;
+                        StackPExistingItems.Children.RemoveRange(0, count);
+                        StackPExistingItems.Children.Clear();
+                        var tags = generalProvider.GetAllTagsNames();
+                        foreach (var tag in tags)
+                        {
+                            CheckBox checkBox = new CheckBox();
+                            checkBox.Content = tag.TagName;
+                            StackPExistingItems.Children.Add(checkBox);
+                        }
                         break;
                     }
             }
@@ -184,8 +216,8 @@ namespace WPF_UI
                         checkBox2.Content = "Author 2";
                         ComboBox3.Items.Add(checkBox2);
 
-                        ICategoryProvider categoryProvider = new CategoryProvider();
-                        var categories = categoryProvider.GetAllCategoriesNames();
+                       
+                        var categories = generalProvider.GetAllCategoriesNames();
                         foreach (var category in categories)
                         {
                             CheckBox checkBox = new CheckBox();
@@ -248,6 +280,7 @@ namespace WPF_UI
         }
         private void BtnAddToDataBase_OnClick(object sender, RoutedEventArgs e)
         {
+            
             switch (tableSelected)
             {
                 case "Admin":
@@ -263,15 +296,17 @@ namespace WPF_UI
                     }
                 case "Author":
                     {
-
+                        AuthorViewModel author = new AuthorViewModel();
+                        author.FirstName = TextBox1.Text;
+                        author.FirstName = TextBox2.Text;
+                        generalProvider.CreateNewAuthor(author);
                         break;
                     }
                 case "Category":
                     {
                         CategoryViewModel category = new CategoryViewModel();
                         category.CategoryName = TextBox1.Text;
-                        ICategoryProvider categoryProvider = new CategoryProvider();
-                        categoryProvider.CreateNewCategory(category);
+                        generalProvider.CreateNewCategory(category);
                         break;
                     }
                 case "Book":
@@ -281,12 +316,16 @@ namespace WPF_UI
                     }
                 case "Publish":
                     {
-
+                        PublishViewModel publish = new PublishViewModel();
+                        publish.PublishName = TextBox1.Text;
+                        generalProvider.CreateNewPublish(publish);
                         break;
                     }
                 case "Tag":
                     {
-
+                        TagViewModel tag = new TagViewModel();
+                        tag.TagName = TextBox1.Text;
+                        generalProvider.CreateNewTag(tag);
                         break;
                     }
 

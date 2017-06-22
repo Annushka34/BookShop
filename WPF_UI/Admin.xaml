@@ -53,7 +53,7 @@
                 <TextBlock>Book</TextBlock>
                 <TextBlock>Tag</TextBlock>
             </ComboBox>
-            <ComboBox Name="ComboBoxExistingItems" Margin="10" />
+            <StackPanel Name="StackPExistingItems" Margin="10,10,0,10" HorizontalAlignment="Left" Width="426" />
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                 <Button Name="BtnSelect" Click="BtnSelect_OnClick" Visibility="Visible" >Select</Button>
