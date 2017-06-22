@@ -14,9 +14,9 @@ namespace BLL.ConcreteProviders
     public class BookProvider : IBookProvider
     {
         MyContext _db;
-        public BookProvider(MyContext db)
+        public BookProvider()
         {
-            _db = db;
+            _db = new MyContext();
         }
         public BookUIModel CreateBook(BookCreateViewModel book)//створити книжку - від юай приходить книжка з колекціями айдішок. На юайку іде назва книжки з новою айдішкою
         {
@@ -87,6 +87,18 @@ namespace BLL.ConcreteProviders
                     return null;
                 }
             }
-        } 
+        }
+
+        public List<BookUIModel> GetAllBooks()
+        {
+            List<BookUIModel> books = new List<BookUIModel>();
+
+            foreach (var book in _db.Books)
+            {
+                BookUIModel newBook = new BookUIModel(book);
+                books.Add(newBook);
+            }
+            return books;
+        }
     }
 }
