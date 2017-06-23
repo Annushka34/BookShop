@@ -24,6 +24,11 @@ namespace WPF_UI
         public MainWindow()
         {
             InitializeComponent();
+            ratings1.Value = 3;
+            ratings1.NumberOfStars = 5;
+            ratings1.BackgroundColor = Brushes.White;
+            ratings1.StarForegroundColor = Brushes.Orange;
+            ratings1.StarOutlineColor = Brushes.DarkGray;
         }
 
         private void Admin_OnClick(object sender, RoutedEventArgs e)
