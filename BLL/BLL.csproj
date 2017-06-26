@@ -59,11 +59,14 @@
     <Compile Include="AbstractProviders\ICustomerProvider.cs" />
     <Compile Include="AbstractProviders\ITransaction.cs" />
     <Compile Include="AbstractProviders\IUserProvider.cs" />
+    <Compile Include="AbstractProviders\IOrderProvider.cs" />
     <Compile Include="ConcreteProviders\GeneralProvider.cs" />
+    <Compile Include="ConcreteProviders\OrderProvider.cs" />
     <Compile Include="ViewModels\AuthorUIModel.cs" />
     <Compile Include="ViewModels\BasketRecordUIModel.cs" />
     <Compile Include="ViewModels\BookUIModel.cs" />
     <Compile Include="ViewModels\GeneralUIModel.cs" />
+    <Compile Include="ViewModels\Order_OrderRecordUIModel.cs" />
     <Compile Include="ViewModels\UserUILoginModel.cs" />
     <Compile Include="ConcreteProviders\BookProvider.cs" />
     <Compile Include="ConcreteProviders\CustomerProvider.cs" />

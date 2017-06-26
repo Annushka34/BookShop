@@ -17,7 +17,7 @@ namespace BLL.ConcreteProviders
 
         public GeneralProvider()
         {
-                _db=new MyContext();
+                _db = new MyContext();
         }
         public CategoryUIModel CreateNewCategory(CategoryViewModel categoryModel)
         {
