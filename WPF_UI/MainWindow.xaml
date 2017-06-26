@@ -21,7 +21,7 @@
         <DockPanel Width="auto">
             <Button Name="BAdmin" Content="Admin Panel" 
                     Width="150" Margin="10,10" Click="Admin_OnClick" 
-                    FontWeight="Medium" FontSize="16" FontFamily="Trajan Pro" Background="#FF55B8E6" Visibility="Hidden"></Button>
+                    FontWeight="Medium" FontSize="16" FontFamily="Trajan Pro" Background="#FF55B8E6" Visibility="Visible"></Button>
             <Label Name="LLoggedUser" HorizontalAlignment="Right" 
                    Margin="0,15,20,15" Padding="0,10,0,0"
                    FontSize="20" FontFamily="Tekton Pro"

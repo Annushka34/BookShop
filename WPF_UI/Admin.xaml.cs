@@ -27,14 +27,27 @@ namespace WPF_UI
     {
         private Message messWindow;
         private MainWindow main;
+
+        string localPath = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Images")).LocalPath;
+
         private string tableSelected;
         private string tableSelectedFromExisting;
         private IGeneralProvider generalProvider;
+        private IBookProvider bookProvider;
+
+        List<AuthorUIModel> authorsInfo = new List<AuthorUIModel>();
+        List<CategoryUIModel> categoriesInfo = new List<CategoryUIModel>();
+        List<PublishUIModel> publishesInfo = new List<PublishUIModel>();
+        List<BookUIModel> bookInfo = new List<BookUIModel>();
+
+        public string NewBookImagePath { get; set; }
         public Admin()
         {
             InitializeComponent();
             tableSelected = "";
             generalProvider = new GeneralProvider();
+            bookProvider = new BookProvider();
+            NewBookImagePath = localPath+"1.jpg";           
         }
 
 
@@ -129,12 +142,8 @@ namespace WPF_UI
                         Label2.Content = "LastName";
                         Label3.Content = "SelectBooks";
 
-                        CheckBox checkBox = new CheckBox();
-                        checkBox.Content = "book 1";
-                        ComboBox3.Items.Add(checkBox);
-                        CheckBox checkBox1 = new CheckBox();
-                        checkBox1.Content = "book 2";
-                        ComboBox3.Items.Add(checkBox1);
+                        bookInfo = bookProvider.GetAllBooks();
+                        ComboBox3.ItemsSource = bookInfo;
 
                         SetVisible(TextBox1);
                         SetVisible(TextBox2);
@@ -150,12 +159,8 @@ namespace WPF_UI
                         Label1.Content = "Category name";
                         Label2.Content = "SelectBooks";
 
-                        CheckBox checkBox = new CheckBox();
-                        checkBox.Content = "book 1";
-                        ComboBox3.Items.Add(checkBox);
-                        CheckBox checkBox1 = new CheckBox();
-                        checkBox1.Content = "book 2";
-                        ComboBox3.Items.Add(checkBox1);
+                        bookInfo = bookProvider.GetAllBooks();
+                        ComboBox2.ItemsSource = bookInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
@@ -175,22 +180,14 @@ namespace WPF_UI
                         Label7.Content = "Select author";
                         Label9.Content = "Select picture";
 
-                        CheckBox checkBox1 = new CheckBox();
-                        checkBox1.Content = "Author 1";
-                        ComboBox2.Items.Add(checkBox1);
-                        CheckBox checkBox2 = new CheckBox();
-                        checkBox2.Content = "Author 2";
-                        ComboBox2.Items.Add(checkBox2);
+                        publishesInfo = generalProvider.GetAllPublishNames();
+                        ComboBox5.ItemsSource = publishesInfo;
 
-                       
-                        var categories = generalProvider.GetAllCategoriesNames();
-                        foreach (var category in categories)
-                        {
-                            CheckBox checkBox = new CheckBox();
-                            checkBox.Content = category.CategoryName;
-                            ComboBox2.Items.Add(checkBox);
-                        }
+                        categoriesInfo = generalProvider.GetAllCategoriesNames();
+                        ComboBox6.ItemsSource = categoriesInfo;
 
+                        authorsInfo = generalProvider.GetAllAuthorsNames();
+                        ComboBox7.ItemsSource = authorsInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
@@ -207,8 +204,8 @@ namespace WPF_UI
                         SetVisible(ComboBox5);
                         SetVisible(ComboBox6);
                         SetVisible(ComboBox7);
-                        IPicture.Visibility=Visibility.Visible;
-                        this.Height = 700;
+                        IPicture1.Visibility=Visibility.Visible;
+                        this.Height = 800;
                         break;
                     }
                 case "Publish":
@@ -217,12 +214,8 @@ namespace WPF_UI
                         Label1.Content = "Publish name";
                         Label2.Content = "Select books";
 
-                        CheckBox checkBox = new CheckBox();
-                        checkBox.Content = "book 1";
-                        ComboBox3.Items.Add(checkBox);
-                        CheckBox checkBox1 = new CheckBox();
-                        checkBox1.Content = "book 2";
-                        ComboBox3.Items.Add(checkBox1);
+                        bookInfo = bookProvider.GetAllBooks();
+                        ComboBox2.ItemsSource = bookInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
@@ -236,12 +229,8 @@ namespace WPF_UI
                         Label1.Content = "Tag";
                         Label2.Content = "Select books";
 
-                        CheckBox checkBox = new CheckBox();
-                        checkBox.Content = "book 1";
-                        ComboBox2.Items.Add(checkBox);
-                        CheckBox checkBox1 = new CheckBox();
-                        checkBox1.Content = "book 2";
-                        ComboBox2.Items.Add(checkBox1);
+                        bookInfo = bookProvider.GetAllBooks();
+                        ComboBox2.ItemsSource = bookInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
@@ -374,15 +363,8 @@ namespace WPF_UI
             Label7.Content = "";
             Label8.Content = "";
             Label9.Content = "";
-            ComboBox1.Items.Clear();
-            ComboBox2.Items.Clear();
-            ComboBox3.Items.Clear();
-            ComboBox4.Items.Clear();
-            ComboBox5.Items.Clear();
-            ComboBox6.Items.Clear();
-            ComboBox7.Items.Clear();
             PasswordBox8.Password = "";
-            IPicture.Visibility = Visibility.Collapsed;
+            IPicture1.Visibility = Visibility.Collapsed;
         }
 
         internal void Show(MainWindow mainWindow)
@@ -394,6 +376,24 @@ namespace WPF_UI
         {
             base.OnClosing(e);
             main.Show();
+        }
+
+        private void IPicture_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Document"; // Default file name
+            dlg.DefaultExt = ".jpg"; // Default file extension
+            dlg.Filter = "Photo (.jpg)|*.jpg"; // Filter files by extension
+
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+            // Process open file dialog box results
+            if (result == true)
+            {
+                NewBookImagePath = dlg.FileName;
+                ImageSourceConverter imgs = new ImageSourceConverter();
+                img.SetValue(Image.SourceProperty, imgs.ConvertFromString(NewBookImagePath));
+            }
         }
     }
 }

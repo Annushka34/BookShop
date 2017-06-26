@@ -76,35 +76,81 @@
             <Button x:Name="BtnUpdate" Click="BtnUpdate_OnClick" Visibility="Visible" Content="Update" Margin="10,10,25,10" Width="70" />
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Name="SPTable" Visibility="Collapsed">
+        <StackPanel Grid.Column="1" Name="SPTable" Visibility="Hidden">
             <Label Name="Label1"></Label>
             <TextBox Name="TextBox1" Margin="10,10"></TextBox>
-            <ComboBox Name="ComboBox1" Height="30" Visibility="Collapsed"/>
+            <ComboBox Name="ComboBox1" Height="30" Visibility="Collapsed"  ItemsSource="{Binding}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding CategoryName}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Label Name="Label2"></Label>
             <TextBox Name="TextBox2" ></TextBox>
-            <ComboBox Name="ComboBox2" Height="30" Visibility="Collapsed"/>
+            <ComboBox Name="ComboBox2" Height="30" Visibility="Collapsed"  ItemsSource="{Binding}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                        <CheckBox Content="{Binding Name}"></CheckBox>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            </ComboBox>
             <Label Name="Label3"></Label>
             <TextBox Name="TextBox3" ></TextBox>
-            <ComboBox Name="ComboBox3" Height="30" Visibility="Collapsed"/>
+            <ComboBox Name="ComboBox3" Height="30" Visibility="Collapsed"  ItemsSource="{Binding}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding Name}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Label Name="Label4"></Label>
             <TextBox Name="TextBox4" ></TextBox>
-            <ComboBox Name="ComboBox4" Height="30" Visibility="Collapsed"/>
+            <ComboBox Name="ComboBox4" Height="30" Visibility="Collapsed">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                        <CheckBox Content="{Binding AuthorName}"></CheckBox>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            </ComboBox>
             <Label Name="Label5"></Label>
-            <ComboBox Name="ComboBox5" Height="30" Visibility="Collapsed"/>
+            <ComboBox Name="ComboBox5" Height="30" Visibility="Collapsed">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding PublishName}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBox Name="TextBox5" ></TextBox>
 
             <Label Name="Label6"></Label>
-            <ComboBox Name="ComboBox6" Height="30" Visibility="Collapsed"/>
+            <ComboBox Name="ComboBox6" Height="30" Visibility="Collapsed">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding CategoryName}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBox Name="TextBox6" ></TextBox>
             <Label Name="Label7"></Label>
-            <ComboBox Name="ComboBox7" Height="30" Visibility="Collapsed"/>
+            <ComboBox Name="ComboBox7" Height="30" Visibility="Collapsed">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Content="{Binding AuthorName}"></CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBox Name="TextBox7" ></TextBox>
             <Label Name="Label8"></Label>
             <PasswordBox Name="PasswordBox8" Height="30" Visibility="Collapsed" Margin="10"></PasswordBox>
             <TextBox Name="TextBox8" ></TextBox>
 
             <Label Name="Label9"></Label>
-            <Image Name="IPicture" Visibility="Collapsed" Margin="10"></Image>
+            <Button  Name="IPicture1" Visibility="Collapsed" Click="IPicture_Click" Height="100">
+                <DockPanel>
+                    <Image Name="img" Source="{Binding NewBookImagePath}" ></Image>
+                </DockPanel>
+            </Button>
 
         </StackPanel>
         <Button Grid.Row="1" Grid.Column="1" Name="BtnAddToDataBase" Click="BtnAddToDataBase_OnClick" Visibility="Collapsed" Width="Auto" Margin="110,5,130,10">AddToDataBase</Button>
