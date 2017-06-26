@@ -5,26 +5,176 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="825">
+        Title="MainWindow" Height="650" Width="1005" Background="#FFCDE9FF"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
-            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Name="BAdmin" Click="Admin_OnClick" Margin="10,10,260,12">Admin</Button>
-        <Button Name="BLogIn" Grid.Row="0" Grid.Column="1" Margin="5,10" Click="BLogIn_Click">Log In</Button>
-        <Button Name="BRegistration" Grid.Row="0" Grid.Column="2" Margin="5,10" Click="BRegistration_Click">Registration</Button>
-        <Grid Grid.Row="1" Grid.ColumnSpan="3">
-
+        <DockPanel Width="auto">
+            <Button Name="BAdmin" Content="Admin Panel" 
+                    Width="150" Margin="10,10" Click="Admin_OnClick" 
+                    FontWeight="Medium" FontSize="16" FontFamily="Trajan Pro" Background="#FF55B8E6" Visibility="Hidden"></Button>
+            <Label Name="LLoggedUser" HorizontalAlignment="Right" 
+                   Margin="0,15,20,15" Padding="0,10,0,0"
+                   FontSize="20" FontFamily="Tekton Pro"
+                   ></Label>
+        </DockPanel>
+        <Grid Grid.Row="0" Grid.Column="1" Width="150" Height="60">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="BLogIn"
+                    Grid.ColumnSpan="2"
+                    Content="LogIn"
+                    Width="100"
+                    Margin="40,15,0,15" 
+                    Click="BLogIn_Click" 
+                    Background="#FFA8D8FF" 
+                    FontSize="16" 
+                    FontFamily="Tekton Pro"
+                    VerticalContentAlignment="Bottom">
+            </Button>
+            <Button Name="BLogOut" Grid.Column="0" Content="LogOut"
+                    Margin="5,10" Background="#FFFDDB01"  
+                    FontSize="20" FontWeight="Bold" FontStyle="Italic" FontFamily="Tekton Pro" 
+                    VerticalContentAlignment="Center" Visibility="Hidden"
+                    Click="BLogOut_Click">
+            </Button>
+            <Button Name="BInfo" Grid.Column="1" Content="Info"
+                    Margin="5,10" Background="#FFFDDB01"  
+                    FontSize="20" FontWeight="Bold" FontStyle="Italic" FontFamily="Tekton Pro" 
+                    VerticalContentAlignment="Center" Visibility="Hidden">
+            </Button>
         </Grid>
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
-
+        <Grid Grid.Row="0" Grid.Column="2" Width="100" Height="60">
+            <Button Name="BRegistration"  
+                    Margin="5,15" 
+                    Click="BRegistration_Click" 
+                    Background="#FFA8D8FF" 
+                    FontSize="16" 
+                    FontFamily="Tekton Pro"
+                    VerticalContentAlignment="Bottom">Registration</Button>
+            <Button Name="BBasket" Margin="5,10" Background="#FFFDDB01" Visibility="Hidden">
+                <DockPanel Height="30">
+                    <Image Source="{Binding BasketImagePath}" DockPanel.Dock="Right" Width="60"></Image>
+                    <Label Content="{Binding BasketConter}" DockPanel.Dock="Bottom" Margin="0,10,0,0" Name="LBasketConter" Width="25" FontSize="12" FontFamily="Tekton Pro"/>
+                </DockPanel>
+            </Button>
         </Grid>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+            <StackPanel>
+                <Label Content="Category" FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" HorizontalContentAlignment="Center"></Label>
+                <ComboBox Name="CBCategories" ItemsSource="{Binding}" 
+                          Width="150" Height="25" Margin="10,0,0,0" 
+                          FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" 
+                          VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CategoryName}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Author" FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" HorizontalContentAlignment="Center"></Label>
+                <ComboBox Name="CBAuthors" ItemsSource="{Binding}" 
+                          Width="150" Height="25" Margin="10,0,0,0" 
+                          FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" 
+                          VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding AuthorName}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Publish" FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" HorizontalContentAlignment="Center"></Label>
+                <ComboBox Name="CBPublishes" ItemsSource="{Binding}" 
+                          Width="150" Height="25" Margin="10,0,0,0" 
+                          FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" 
+                          VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding PublishName}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Tag" FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" HorizontalContentAlignment="Center"></Label>
+                <ComboBox Name="CBTags" ItemsSource="{Binding}" 
+                          Width="150" Height="25" Margin="10,0,0,0" 
+                          FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" 
+                          VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding TagName}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Category" FontSize="14" FontWeight="Medium" FontFamily="Trajan Pro" HorizontalContentAlignment="Center"></Label>
+                <TextBox Name="TBSearch" Width="200" Height="25" Margin="10,0,0,0"
+                         FontSize="13" FontFamily="Tekton Pro" FontWeight="Medium" 
+                         VerticalContentAlignment="Center"  Background="#FFFDFFD1"/>
+            </StackPanel>
+
+            <Button Name="BSearch" Content="Search" 
+                    Width="120" Height="25" Margin="15,25,0,0" 
+                    FontSize="14" FontFamily="Tekton Pro" FontWeight="Medium" 
+                    Background="#FFFDDB01" VerticalContentAlignment="Bottom"
+                    Click="BSearch_Click"/>
+        </StackPanel>
+        <DockPanel Width="700" Grid.Row="2" Grid.ColumnSpan="3" Margin="0,40,0,0">
+            <ListBox Name="LBBooks" ItemsSource="{Binding}" BorderThickness="0" Background="#FFCDE9FF" SelectionChanged="LBBooks_SelectionChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="2" BorderBrush="Black">
+                            <DockPanel Width="665" Background="#FFCDE9FF">
+                                <DockPanel DockPanel.Dock="Left">
+                                    <Image DockPanel.Dock="Top" Source="{Binding BookImagePath}" Width="150" Height="180" Margin="0,40"/>
+                                    <local:RatingsControl x:Name="Rating" Minimum="0" Maximum="5" Value="{Binding BookRank}"
+                                                          BackgroundColor="#FFCDE9FF" StarForegroundColor="Orange" StarOutlineColor="DarkGray"
+                                                          NumberOfStars="5"
+                                                          HorizontalAlignment="Center" DockPanel.Dock="Top"
+                                                          Height="25" Margin="0,-50,0,0">
+                                    </local:RatingsControl>
+                                </DockPanel>
+                                <DockPanel Width="240" Height="200" Margin="0,10,0,0">
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding BookName}" Height="35" FontWeight="Bold" FontSize="16" Foreground="#FF020208"/>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding BookAuthorName}" Height="40" FontSize="14" Foreground="Black" FontWeight="Medium"/>
+                                    <TextBlock DockPanel.Dock="Top" Text="{Binding BookDescription}" TextWrapping="Wrap" FontSize="12"/>
+                                </DockPanel>
+
+                                <DockPanel Width="140" Height="70" VerticalAlignment="Bottom"  HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                        <Label Foreground="Green" Content="Price:" 
+                                               Height="30" Width="45"
+                                               Margin="10,0,10,0"
+                                               VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                               FontFamily="Yu Gothic UI Semibold" FontSize="14"/>
+                                        <Label Width="60" Content="{Binding BookPrice}" Height="30" FontSize="14" FontWeight="Medium"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                        <Button Name="BAddToBasket" Background="#FF65CD1E" Content="BUY" Width="70" Height="25" Margin="40,0,0,0" FontSize="14" FontFamily="Tekton Pro" VerticalContentAlignment="Bottom" Click="BAddToBasket_Click"/>
+                                    </StackPanel>
+                                </DockPanel>
+                            </DockPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
     </Grid>
 </Window>

@@ -25,6 +25,7 @@ namespace DAL.Entity
         public string Name { get; set; }
         [StringLength(maximumLength: 600)]
         public string Description { get; set; }
+        public double Rank { get; set; }
 
         public virtual ICollection<Author> Authors { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }

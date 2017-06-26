@@ -26,15 +26,16 @@ namespace BLL.ConcreteProviders
             IBasketRecordRepository basketRecordRepository = new BasketRecordRepository(_db);
             //перевірка на вже існуючого користувача
 
-            Customer customer = customerRepository.GetCustomerById(basketRecordViewModel.customerId);
+            Customer customer = customerRepository.GetCustomerById(basketRecordViewModel.CustomerId);
             if (customer == null)
             {
                 return false;
             }
-            BasketRecord basketRecord = basketRepository.GetBasketRecordByBook(basketRecordViewModel.BookId, basketRecordViewModel.customerId);
+            BasketRecord basketRecord = basketRepository.GetBasketRecordByBook(basketRecordViewModel.BookId, basketRecordViewModel.CustomerId);
             BasketRecord basketRecordNew = new BasketRecord();
-            basketRecordNew.BasketId = basketRecordViewModel.customerId;
+            basketRecordNew.BasketId = basketRecordViewModel.CustomerId;
             basketRecordNew.BookId = basketRecordViewModel.BookId;
+            basketRecordNew.Count = basketRecordViewModel.BookCount;
             if (basketRecord != null)
             {
                 if (basketRecordViewModel.BasketRecordStatus == AddOrEditStatus.Add)
@@ -47,7 +48,7 @@ namespace BLL.ConcreteProviders
             else
             {               
                 basketRecordNew.Count = basketRecordViewModel.BookCount;
-                basketRecordRepository.CreateBasketRecord(basketRecord);
+                basketRecordRepository.CreateBasketRecord(basketRecordNew);
             }
             return true;
         }

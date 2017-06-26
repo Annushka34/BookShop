@@ -136,5 +136,11 @@ namespace BLL.ConcreteProviders
                 }
             }
         }
+
+        public int GetUserBasketRecordsCount(int userId)
+        {
+            IBasketRepository basketRepository = new BasketRepository(_db);
+            return basketRepository.GetBasketRecordsByBasket(userId).Count;
+        }
     }
 }

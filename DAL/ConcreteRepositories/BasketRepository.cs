@@ -60,7 +60,7 @@ namespace DAL.ConcreteRepositories
         }
         public List<BasketRecord> GetBasketRecordsByBasket(int basketId)
         {
-            List<BasketRecord> basketRecords = _db.BasketRecords.Where(x => x.Id == basketId).ToList();
+            List<BasketRecord> basketRecords = _db.BasketRecords.Where(x => x.BasketId == basketId).ToList();
             return basketRecords;
         }
 

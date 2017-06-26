@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201706201738477_Change Password maxLength.Designer.cs">
       <DependentUpon>201706201738477_Change Password maxLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706240922065_Add Rank To Book.cs" />
+    <Compile Include="Migrations\201706240922065_Add Rank To Book.Designer.cs">
+      <DependentUpon>201706240922065_Add Rank To Book.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConcreteRepositories\AdminRepository.cs" />
@@ -134,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706201738477_Change Password maxLength.resx">
       <DependentUpon>201706201738477_Change Password maxLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706240922065_Add Rank To Book.resx">
+      <DependentUpon>201706240922065_Add Rank To Book.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

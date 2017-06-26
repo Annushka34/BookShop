@@ -15,7 +15,14 @@ namespace BLL.ViewModels
 
     public class BasksetRecordViewModel
     {
-        public int customerId { get; set; }
+        public BasksetRecordViewModel(int customerId,int bookId, AddOrEditStatus status)
+        {
+            CustomerId = customerId;
+            BookId = bookId;
+            BasketRecordStatus = status;
+            BookCount = 1;
+        }
+        public int CustomerId { get; set; }
         public int BookCount { get; set; }
         public int BookId { get; set; }
         public AddOrEditStatus BasketRecordStatus { get; set; }
@@ -23,6 +30,7 @@ namespace BLL.ViewModels
 
     public enum AddOrEditStatus
     {
-        Add = 1, Edit = 2
+        Add = 1,
+        Edit = 2
     }
 }

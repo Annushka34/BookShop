@@ -8,11 +8,11 @@ namespace BLL.ViewModels
         public AuthorUIModel(Author author) //список авторів на юай
         {
             Id = author.Id;
-            Name = author.FirstName + " " + author.LastName;
+            AuthorName = author.FirstName + " " + author.LastName;
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string AuthorName { get; set; }
     }
 
     public class AuthorViewModel//приходить з юай при створенні нового автора

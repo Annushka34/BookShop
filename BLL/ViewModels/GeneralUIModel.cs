@@ -10,11 +10,11 @@ namespace BLL.ViewModels
         public CategoryUIModel(Category category)
         {
             Id = category.Id;
-            Name = category.Name;
+            CategoryName = category.Name;
         }
      
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string CategoryName { get; set; }
     }
     public class CategoryViewModel//приходить з юай при створенні нової категорї
     {
@@ -57,11 +57,9 @@ namespace BLL.ViewModels
         {
             Id = tag.Id;
             TagName = tag.Name;
-            Books = new List<BookUIModel>();
         }
         public int Id { get; set; }
         public string TagName { get; set; }
-        public List<BookUIModel> Books { get; set; }
     }
     public class TagViewModel//приходить з юай при створенні нового тега
     {
@@ -87,5 +85,31 @@ namespace BLL.ViewModels
     {
         public int Id { get; set; }
         public string PublishName { get; set; }
+    }
+
+    public class SearchViewModel
+    {
+        public SearchViewModel()
+        {
+            CategoryId = -1;
+            AuthorId = -1;
+            PublishId = -1;
+            TagId = -1;
+            BookName = "";
+        }
+        public SearchViewModel(int catId,int autId, int pubId,int tagId,string name)
+        {
+            CategoryId = catId;
+            AuthorId = autId;
+            PublishId = pubId;
+            TagId = tagId;
+            BookName = name;
+        }
+        public int CategoryId { get; set; }
+        public int AuthorId { get; set; }
+        public int PublishId { get; set; }
+        public int TagId { get; set; }
+        public string BookName { get; set; }
+
     }
 }

@@ -53,6 +53,7 @@ namespace DAL.ConcreteRepositories
             bookOld.Description = bookrNew.Description;
             bookOld.Price = bookrNew.Price;
             bookOld.Tags = bookrNew.Tags;
+            bookOld.Rank = bookrNew.Rank;
             _db.SaveChanges();
             return bookOld;
         }

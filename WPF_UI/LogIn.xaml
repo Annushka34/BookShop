@@ -1,0 +1,25 @@
+﻿<Window x:Class="WPF_UI.LogIn"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_UI"
+        mc:Ignorable="d"
+        Title="LogIn" Height="300" Width="300"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel>
+            <StackPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFDDDEC3" Offset="0"/>
+                    <GradientStop Color="#FFF8FF6B" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.Background>
+            <Label Content="Login" Margin="0,50,0,0" HorizontalContentAlignment="Center" FontSize="16" FontFamily="Trajan Pro"></Label>
+            <TextBox Name="TBLogin" Width="200" FontSize="16" Background="#FFB9F391" FontWeight="Medium"></TextBox>
+            <Label Content="Password" HorizontalContentAlignment="Center" FontSize="16" FontFamily="Trajan Pro"></Label>
+            <PasswordBox Name="PBPassword" Width="200" FontSize="16" Background="#FFB9F391" FontWeight="Medium"></PasswordBox>
+            <Button Width="100" Margin="0,10,0,0" Click="Button_Click" FontSize="16" Background="#FF3BE42A" FontFamily="Trajan Pro">Log In</Button>
+        </StackPanel>
+    </Grid>
+</Window>

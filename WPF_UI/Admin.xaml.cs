@@ -48,6 +48,8 @@ namespace WPF_UI
         //}
         private void CTableExisting_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            SPTable.Visibility=Visibility.Collapsed;
+            this.Height = 400;
             ComboBox comboBox = (ComboBox)sender;
             TextBlock selectedItem = (TextBlock)comboBox.SelectedItem;
             tableSelected = selectedItem.Text;
@@ -55,79 +57,40 @@ namespace WPF_UI
             {
                 case "Admin":
                 {
-                        int count=StackPExistingItems.Children.Count;
-                        StackPExistingItems.Children.RemoveRange(0,count);
                         UserProvider userProvider = new UserProvider();
-                        var users = userProvider.GetAllUsers();
-                        foreach (var user in users)
-                        {
-                            CheckBox checkBox = new CheckBox();
-                            checkBox.Content = user.UserLogin;
-                            StackPExistingItems.Children.Add(checkBox);
-                        }
+                        var table = userProvider.GetAllUsers();
+                        DataGridSelectedTable.ItemsSource = table;
                         break;
                     }
                 case "Author":
                     {
-                        int count = StackPExistingItems.Children.Count;
-                        StackPExistingItems.Children.RemoveRange(0, count);
-                        StackPExistingItems.Children.Clear();
-                        var authors = generalProvider.GetAllAuthorsNames();
-                        foreach (var category in authors)
-                        {
-                            CheckBox checkBox = new CheckBox();
-                            checkBox.Content = category.Name;
-                            StackPExistingItems.Children.Add(checkBox);
-                        }
+                        var table = generalProvider.GetAllAuthorsNames();
+                        DataGridSelectedTable.ItemsSource = table;
                         break;
                     }
                 case "Category":
                     {
-                        int count = StackPExistingItems.Children.Count;
-                        StackPExistingItems.Children.RemoveRange(0, count);
-                        StackPExistingItems.Children.Clear();
-                        var categories = generalProvider.GetAllCategoriesNames();
-                        foreach (var category in categories)
-                        {
-                            CheckBox checkBox = new CheckBox();
-                            checkBox.Content = category.Name;
-                            StackPExistingItems.Children.Add(checkBox);
-                        }
+                        var table = generalProvider.GetAllCategoriesNames();
+                        DataGridSelectedTable.ItemsSource = table;
                         break;
                     }
                 case "Book":
                     {
-                        int count = StackPExistingItems.Children.Count;
-                        StackPExistingItems.Children.RemoveRange(0, count);
-                        StackPExistingItems.Children.Clear();
+                        IBookProvider bookProvider=new BookProvider();
+                        var table = bookProvider.GetAllBooks();
+                        DataGridSelectedTable.ItemsSource = table;
                         break;
                     }
                 case "Publish":
                     {
-                        int count = StackPExistingItems.Children.Count;
-                        StackPExistingItems.Children.RemoveRange(0, count);
-                        StackPExistingItems.Children.Clear();
-                        var publishes = generalProvider.GetAllPublishNames();
-                        foreach (var publish in publishes)
-                        {
-                            CheckBox checkBox = new CheckBox();
-                            checkBox.Content = publish.PublishName;
-                            StackPExistingItems.Children.Add(checkBox);
-                        }
+                        var table = generalProvider.GetAllPublishNames();
+                        DataGridSelectedTable.ItemsSource = table;
                         break;
                     }
                 case "Tag":
                     {
-                        int count = StackPExistingItems.Children.Count;
-                        StackPExistingItems.Children.RemoveRange(0, count);
-                        StackPExistingItems.Children.Clear();
-                        var tags = generalProvider.GetAllTagsNames();
-                        foreach (var tag in tags)
-                        {
-                            CheckBox checkBox = new CheckBox();
-                            checkBox.Content = tag.TagName;
-                            StackPExistingItems.Children.Add(checkBox);
-                        }
+                        var table = generalProvider.GetAllTagsNames();
+                        DataGridSelectedTable.ItemsSource = table;
                         break;
                     }
             }
@@ -149,14 +112,14 @@ namespace WPF_UI
                         SetHiddenAll();
                         Label1.Content = "Email";
                         Label2.Content = "Login";
-                        Label3.Content = "Password";
+                        Label8.Content = "Password";
 
                         SetVisible(TextBox1);
                         SetVisible(TextBox2);
-                        SetVisible(PasswordBox3);
+                        SetVisible(PasswordBox8);
                         SetVisible(Label1);
                         SetVisible(Label2);
-                        SetVisible(Label3);
+                        SetVisible(Label8);
                         break;
                     }
                 case "Author":
@@ -185,7 +148,7 @@ namespace WPF_UI
                     {
                         SetHiddenAll();
                         Label1.Content = "Category name";
-                        Label3.Content = "SelectBooks";
+                        Label2.Content = "SelectBooks";
 
                         CheckBox checkBox = new CheckBox();
                         checkBox.Content = "book 1";
@@ -195,33 +158,36 @@ namespace WPF_UI
                         ComboBox3.Items.Add(checkBox1);
 
                         SetVisible(Label1);
-                        SetVisible(Label3);
+                        SetVisible(Label2);
                         SetVisible(TextBox1);
-                        SetVisible(ComboBox3);
+                        SetVisible(ComboBox2);
                         break;
                     }
                 case "Book":
                     {
                         SetHiddenAll();
                         Label1.Content = "Book name";
-                        Label2.Content = "Select category";
-                        Label3.Content = "Select author";
-                        Label4.Content = "Select publich";
-                        Label5.Content = "Select picture";
+                        Label2.Content = "ISBN";
+                        Label3.Content = "Description";
+                        Label4.Content = "Select price";
+                        Label5.Content = "Select publish";
+                        Label6.Content = "Select category";
+                        Label7.Content = "Select author";
+                        Label9.Content = "Select picture";
 
                         CheckBox checkBox1 = new CheckBox();
                         checkBox1.Content = "Author 1";
-                        ComboBox3.Items.Add(checkBox1);
+                        ComboBox2.Items.Add(checkBox1);
                         CheckBox checkBox2 = new CheckBox();
                         checkBox2.Content = "Author 2";
-                        ComboBox3.Items.Add(checkBox2);
+                        ComboBox2.Items.Add(checkBox2);
 
                        
                         var categories = generalProvider.GetAllCategoriesNames();
                         foreach (var category in categories)
                         {
                             CheckBox checkBox = new CheckBox();
-                            checkBox.Content = category.Name;
+                            checkBox.Content = category.CategoryName;
                             ComboBox2.Items.Add(checkBox);
                         }
 
@@ -230,18 +196,26 @@ namespace WPF_UI
                         SetVisible(Label2);
                         SetVisible(Label3);
                         SetVisible(Label4);
+                        SetVisible(Label5);
+                        SetVisible(Label6);
+                        SetVisible(Label7);
+                        SetVisible(Label9);
                         SetVisible(TextBox1);
-                        SetVisible(ComboBox4);
-                        SetVisible(ComboBox2);
-                        SetVisible(ComboBox3);
+                        SetVisible(TextBox2);
+                        SetVisible(TextBox3);
+                        SetVisible(TextBox4);
+                        SetVisible(ComboBox5);
+                        SetVisible(ComboBox6);
+                        SetVisible(ComboBox7);
                         IPicture.Visibility=Visibility.Visible;
+                        this.Height = 700;
                         break;
                     }
                 case "Publish":
                     {
                         SetHiddenAll();
                         Label1.Content = "Publish name";
-                        Label3.Content = "Select books";
+                        Label2.Content = "Select books";
 
                         CheckBox checkBox = new CheckBox();
                         checkBox.Content = "book 1";
@@ -251,28 +225,28 @@ namespace WPF_UI
                         ComboBox3.Items.Add(checkBox1);
 
                         SetVisible(Label1);
-                        SetVisible(Label3);
+                        SetVisible(Label2);
                         SetVisible(TextBox1);
-                        SetVisible(ComboBox3);
+                        SetVisible(ComboBox2);
                         break;
                     }
                 case "Tag":
                     {
                         SetHiddenAll();
                         Label1.Content = "Tag";
-                        Label3.Content = "Select books";
+                        Label2.Content = "Select books";
 
                         CheckBox checkBox = new CheckBox();
                         checkBox.Content = "book 1";
-                        ComboBox3.Items.Add(checkBox);
+                        ComboBox2.Items.Add(checkBox);
                         CheckBox checkBox1 = new CheckBox();
                         checkBox1.Content = "book 2";
-                        ComboBox3.Items.Add(checkBox1);
+                        ComboBox2.Items.Add(checkBox1);
 
                         SetVisible(Label1);
-                        SetVisible(Label3);
+                        SetVisible(Label2);
                         SetVisible(TextBox1);
-                        SetVisible(ComboBox3);
+                        SetVisible(ComboBox2);
                         break;
                     }
             }
@@ -288,7 +262,7 @@ namespace WPF_UI
                         UserViewModel user = new UserViewModel();
                         user.Email = TextBox1.Text;
                         user.Login = TextBox2.Text;
-                        user.Password = PasswordBox3.Password;
+                        user.Password = PasswordBox8.Password;
                         user.Role = UserRole.Admin;
                         IUserProvider userProvider = new UserProvider();
                         userProvider.UserRegistration(user);
@@ -311,7 +285,15 @@ namespace WPF_UI
                     }
                 case "Book":
                     {
-
+                        BookCreateViewModel book=new BookCreateViewModel();
+                        book.Name = TextBox1.Text;
+                        int num = 0;
+                        int.TryParse(TextBox2.Text, out num);
+                        book.Isbn = num;
+                        book.Description = TextBox3.Text;
+                        int.TryParse(TextBox4.Text, out num);
+                        book.Price = num;
+                        //book.PublishId;
                         break;
                     }
                 case "Publish":
@@ -356,29 +338,50 @@ namespace WPF_UI
             Label3.Visibility = Visibility.Collapsed;
             Label4.Visibility = Visibility.Collapsed;
             Label5.Visibility = Visibility.Collapsed;
+            Label6.Visibility = Visibility.Collapsed;
+            Label7.Visibility = Visibility.Collapsed;
+            Label8.Visibility = Visibility.Collapsed;
+            Label9.Visibility = Visibility.Collapsed;
             TextBox1.Visibility = Visibility.Collapsed;
             TextBox2.Visibility = Visibility.Collapsed;
             TextBox3.Visibility = Visibility.Collapsed;
             TextBox4.Visibility = Visibility.Collapsed;
+            TextBox5.Visibility = Visibility.Collapsed;
+            TextBox6.Visibility = Visibility.Collapsed;
+            TextBox7.Visibility = Visibility.Collapsed;
             ComboBox1.Visibility = Visibility.Collapsed;
             ComboBox2.Visibility = Visibility.Collapsed;
             ComboBox3.Visibility = Visibility.Collapsed;
             ComboBox4.Visibility = Visibility.Collapsed;
-            PasswordBox3.Visibility = Visibility.Collapsed;
+            ComboBox5.Visibility = Visibility.Collapsed;
+            ComboBox6.Visibility = Visibility.Collapsed;
+            ComboBox7.Visibility = Visibility.Collapsed;
+            PasswordBox8.Visibility = Visibility.Collapsed;
+            PasswordBox8.Password = "";
             TextBox1.Text = "";
             TextBox2.Text = "";
             TextBox3.Text = "";
             TextBox4.Text = "";
+            TextBox5.Text = "";
+            TextBox6.Text = "";
+            TextBox7.Text = "";
             Label1.Content="";
             Label2.Content = "";
             Label3.Content = "";
             Label4.Content = "";
             Label5.Content = "";
+            Label6.Content = "";
+            Label7.Content = "";
+            Label8.Content = "";
+            Label9.Content = "";
             ComboBox1.Items.Clear();
             ComboBox2.Items.Clear();
             ComboBox3.Items.Clear();
             ComboBox4.Items.Clear();
-            PasswordBox3.Password = "";
+            ComboBox5.Items.Clear();
+            ComboBox6.Items.Clear();
+            ComboBox7.Items.Clear();
+            PasswordBox8.Password = "";
             IPicture.Visibility = Visibility.Collapsed;
         }
 

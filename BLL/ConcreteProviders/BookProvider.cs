@@ -8,15 +8,17 @@ using BLL.ViewModels;
 using DAL.Entity;
 using DAL.AbstractRepository;
 using DAL.ConcreteRepositories;
+using System.Data.Entity;
+using System.Collections.ObjectModel;
 
 namespace BLL.ConcreteProviders
 {
     public class BookProvider : IBookProvider
     {
         MyContext _db;
-        public BookProvider(MyContext db)
+        public BookProvider()
         {
-            _db = db;
+            _db = new MyContext();
         }
         public BookUIModel CreateBook(BookCreateViewModel book)//створити книжку - від юай приходить книжка з колекціями айдішок. На юайку іде назва книжки з новою айдішкою
         {
@@ -40,6 +42,7 @@ namespace BLL.ConcreteProviders
                     newBook.Name = book.Name;
                     newBook.Description = book.Description;
                     newBook.Price = book.Price;
+                    newBook.Rank = 0;
                     newBook.PublishId = book.PublishId;
                     
                     bookRepository.CreateBook(newBook); //створили нову книжку з коллекціями
@@ -87,6 +90,63 @@ namespace BLL.ConcreteProviders
                     return null;
                 }
             }
-        } 
+        }
+
+        public List<BookUIModel> GetAllBooks()
+        {
+            List<BookUIModel> books = new List<BookUIModel>();
+
+            foreach (var book in _db.Books)
+            {
+                BookUIModel newBook = new BookUIModel(book);
+                books.Add(newBook);
+            }
+            return books;
+        }
+
+        //public List<BookUIShortModel> GetAllBooksShortInfo()
+        //{
+        //    List<BookUIShortModel> books = new List<BookUIShortModel>();
+        //    PictureRepository pictureRepository = new PictureRepository(_db);
+        //    foreach (var book in _db.Books.Include(x=>x.Authors).Include(x=> x.Picture))
+        //    {
+        //        BookUIShortModel newBook = new BookUIShortModel(book);
+        //        foreach(var author in book.Authors)
+        //        {
+        //            newBook.BookAuthorName += author.FirstName + " " + author.LastName + "\n";
+        //        }
+        //        //newBook.BookImagePath = pictureRepository.GetPictureByBookId(book.Id).PicturePath;
+        //        newBook.BookImagePath = book.Picture.PicturePath;
+        //        books.Add(newBook);
+                
+        //    }
+        //    return books;
+        //}
+
+        public ObservableCollection<BookUIShortModel> GetAllBooksShortInfo()
+        {
+            ObservableCollection<BookUIShortModel> books = new ObservableCollection<BookUIShortModel>();
+            PictureRepository pictureRepository = new PictureRepository(_db);
+            foreach (var book in _db.Books.Include(x => x.Authors).Include(x => x.Picture))
+            {
+                BookUIShortModel newBook = new BookUIShortModel(book);
+                foreach (var author in book.Authors)
+                {
+                    newBook.BookAuthorName += author.FirstName + " " + author.LastName + "\n";
+                }
+                //newBook.BookImagePath = pictureRepository.GetPictureByBookId(book.Id).PicturePath;
+                newBook.BookImagePath = book.Picture.PicturePath;
+                books.Add(newBook);
+
+            }
+            return books;
+        }
+
+        public ObservableCollection<BookUIShortModel> SearchBooks(SearchViewModel searchModel)
+        {
+            ObservableCollection<BookUIShortModel> books = new ObservableCollection<BookUIShortModel>();
+            return books;
+        }
+
     }
 }

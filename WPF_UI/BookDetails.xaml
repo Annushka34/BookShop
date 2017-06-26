@@ -1,0 +1,50 @@
+﻿<Window x:Class="WPF_UI.BookDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_UI"
+        mc:Ignorable="d"
+        Title="BookDetails" Height="650" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Height="400">
+            <StackPanel DockPanel.Dock="Left">
+                <Image Width="220" Height="300"   Margin="10,20,0,5"/>
+                <local:RatingsControl x:Name="Rating" Value="{Binding BookRank}"
+                                                          BackgroundColor="#FFCDE9FF" StarForegroundColor="Orange" StarOutlineColor="DarkGray"
+                                                          NumberOfStars="5" Minimum="0" Maximum="5"
+                                                          HorizontalAlignment="Center" 
+                                                          Width="150"  Height="25" Margin="10,0,0,0">
+                </local:RatingsControl>
+                <Button Height="35" Margin="10,10,10,0" FontSize="18" Background="#FF7FE2FF">Add Review</Button>
+            </StackPanel>
+            <StackPanel>
+                <Label Height="40" VerticalAlignment="Top" Margin="0,20,0,0" HorizontalContentAlignment="Center" FontSize="18">BookName</Label>
+                <TextBlock Height="40" FontSize="16" Margin="10,10,10,0" Padding="10">Authors</TextBlock>
+                <TextBlock Height="40" FontSize="16" Margin="10,10,10,0" Padding="10">ISBN:</TextBlock>
+                <TextBlock Height="40" FontSize="16" Margin="10,10,10,0" Padding="10">Publishing:</TextBlock>
+                <TextBlock Height="140" FontSize="16" Margin="10,10,10,0" Padding="10">Description:</TextBlock>
+                <Label Height="40" FontSize="16" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Padding="0,0,20,0">Price: 100</Label>
+            </StackPanel>
+        </DockPanel>
+        <ListBox Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="20,10,20,0">
+                        <Label Height="40" FontSize="16" Margin="10,0,0,0" VerticalContentAlignment="Center">UserLogin:</Label>
+                        <Border BorderThickness="1" BorderBrush="Black" Margin="10,0,10,0">
+                            <TextBlock Height="120" FontSize="14" Padding="10,5,10,0">
+
+                            </TextBlock>
+                        </Border>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
