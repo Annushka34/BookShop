@@ -13,7 +13,7 @@ namespace BLL.ViewModels
             Price = book.Price;
             Name = book.Name;
             Description = book.Description;
-            PicturePath = book.Picture.PicturePath;
+            //PicturePath = book.Picture.PicturePath;
             PublishId = book.PublishId;
             Rank = book.Rank;
         }

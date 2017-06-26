@@ -95,10 +95,11 @@ namespace BLL.ConcreteProviders
         public List<BookUIModel> GetAllBooks()
         {
             List<BookUIModel> books = new List<BookUIModel>();
-
-            foreach (var book in _db.Books)
+            IPictureRepository pictureRepository = new PictureRepository(_db);
+            foreach (var book in _db.Books.ToList())
             {
                 BookUIModel newBook = new BookUIModel(book);
+                newBook.PicturePath = pictureRepository.GetPictureByBookId(book.Id).PicturePath;
                 books.Add(newBook);
             }
             return books;
@@ -145,6 +146,39 @@ namespace BLL.ConcreteProviders
         public ObservableCollection<BookUIShortModel> SearchBooks(SearchViewModel searchModel)
         {
             ObservableCollection<BookUIShortModel> books = new ObservableCollection<BookUIShortModel>();
+            IQueryable <Book>filter = _db.Books;
+            if(searchModel.CategoryId != -1)
+            {
+                filter = filter.Where(x => x.Categories.Any(c => c.Id.Equals(searchModel.CategoryId)));
+            }
+            if (searchModel.AuthorId != -1)
+            {
+                filter = filter.Where(x => x.Authors.Any(c => c.Id.Equals(searchModel.AuthorId)));
+            }
+            if (searchModel.PublishId != -1)
+            {
+                filter = filter.Where(x => x.PublishId == searchModel.PublishId);
+            }
+            if (searchModel.TagId != -1)
+            {
+                filter = filter.Where(x => x.Tags.Any(c => c.Id.Equals(searchModel.TagId)));
+            }
+            if (searchModel.BookName != "")
+            {
+                filter = filter.Where(x => x.Name.Contains(searchModel.BookName));
+            }
+            List<Book> templist = filter.ToList();
+            foreach (var item in templist)
+            {
+                BookUIShortModel newBook = new BookUIShortModel(item);
+                foreach (var author in item.Authors)
+                {
+                    newBook.BookAuthorName += author.FirstName + " " + author.LastName + "\n";
+                }
+                //newBook.BookImagePath = pictureRepository.GetPictureByBookId(book.Id).PicturePath;
+                newBook.BookImagePath = item.Picture.PicturePath;
+                books.Add(newBook);
+            }
             return books;
         }
 

@@ -14,6 +14,7 @@ namespace DAL.ConcreteRepositories
         public PictureRepository(MyContext db)
         {
             _db = db;
+            
         }
         #region CRUD
         public Picture CreatePicture(Picture picture)

@@ -56,6 +56,7 @@ namespace WPF_UI
             
             booksInfo = bookProvider.GetAllBooksShortInfo();
             CopyImagePath(booksInfo);
+
             LBBooks.ItemsSource = booksInfo;
             
             DataContext = this;
