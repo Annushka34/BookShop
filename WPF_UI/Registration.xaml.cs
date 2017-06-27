@@ -22,11 +22,11 @@ namespace WPF_UI
     /// </summary>
     public partial class Registration : Window
     {
-        MainWindow _mainWindow;
+        MainWindow _main;
         public Registration(MainWindow mainWindow)
         {
             InitializeComponent();
-            _mainWindow = mainWindow;
+            _main = mainWindow;
         }
 
         private void BRegister_Click(object sender, RoutedEventArgs e)
@@ -43,7 +43,13 @@ namespace WPF_UI
                 MessageBox.Show("Registration complete");
                 Message mess = new Message("Registration complite");
                 mess.Show();
+                _main.Show();
+                Close();
+                return;
             }
+            MessageBox.Show("Registration not complite. Try again");
+            _main.Show();
+            Close();
         }
     }
 }

@@ -262,6 +262,15 @@ namespace WPF_UI
                         AuthorViewModel author = new AuthorViewModel();
                         author.FirstName = TextBox1.Text;
                         author.FirstName = TextBox2.Text;
+                        int i = 0;
+                        foreach(var items in ComboBox3.Items)
+                        {
+                            if(((CheckBox)items).IsChecked==true)
+                            {
+                                author.BooksId.Add(bookInfo[i].BookId);
+                            }
+                            i++;
+                        }
                         generalProvider.CreateNewAuthor(author);
                         break;
                     }

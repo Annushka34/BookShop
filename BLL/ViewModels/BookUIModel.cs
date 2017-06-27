@@ -9,6 +9,7 @@ namespace BLL.ViewModels
     {
         public BookUIModel(Book book)
         {
+            BookId = book.Id;
             Isbn = book.Isbn;
             Price = book.Price;
             Name = book.Name;
@@ -17,6 +18,7 @@ namespace BLL.ViewModels
             PublishId = book.PublishId;
             Rank = book.Rank;
         }
+        public int BookId { get; set; }
         public int Isbn { get; set; }
         public int PublishId { get; set; }
         public double Price { get; set; }

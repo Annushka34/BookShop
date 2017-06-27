@@ -114,8 +114,8 @@ namespace WPF_UI
         private void BRegistration_Click(object sender, RoutedEventArgs e)
         {
             Registration register = new Registration(this);
-            register.Show();
             Hide();
+            register.Show();
         }
         private void BAddToBasket_Click(object sender, RoutedEventArgs e)
         {
