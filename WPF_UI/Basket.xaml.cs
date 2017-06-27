@@ -22,30 +22,18 @@ namespace WPF_UI
     /// </summary>
     public partial class Basket : Window
     {
+        public string DelImagePath { get; set; }
+        public string PlusImagePath { get; set; }
+        public string MinusImagePath { get; set; }
+        string localPath = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Images")).LocalPath;
+
         public Basket()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource userProviderViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userProviderViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // userProviderViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource userViewModelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userViewModelViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // userViewModelViewSource.Source = [generic data source]
-            System.Windows.Data.CollectionViewSource userUILoginModelViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("userUILoginModelViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // userUILoginModelViewSource.Source = [generic data source]
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            IUserProvider userProvider = new UserProvider();
-            List<UserUILoginModel> users = userProvider.GetAllUsers();
-            userUILoginModelDataGrid.ItemsSource = users;
+            DelImagePath = localPath + "/delete-icon.png";
+            PlusImagePath = localPath + "/add.png";
+            MinusImagePath = localPath + "/minus.png";
+            DataContext = this;
         }
     }
 }
