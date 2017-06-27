@@ -33,4 +33,14 @@ namespace BLL.ViewModels
         Add = 1,
         Edit = 2
     }
+
+    public class BasketRecordInfoUIModel
+    {
+        public BasketRecordInfoUIModel()
+        {
+
+        }
+    }
+
+
 }

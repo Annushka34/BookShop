@@ -181,5 +181,12 @@ namespace WPF_UI
             booksInfo = bookProvider.SearchBooks(searchModel);
             LBBooks.ItemsSource = booksInfo;
         }
+
+        private void BBasket_Click(object sender, RoutedEventArgs e)
+        {
+            Basket basket = new Basket(this, user.UserId);
+            Hide();
+            basket.ShowDialog();
+        }
     }
 }

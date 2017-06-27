@@ -26,7 +26,8 @@ namespace WPF_UI
         public string PlusImagePath { get; set; }
         public string MinusImagePath { get; set; }
         string localPath = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Images")).LocalPath;
-
+        MainWindow _mainWindow;
+        
         public Basket()
         {
             InitializeComponent();
@@ -34,6 +35,28 @@ namespace WPF_UI
             PlusImagePath = localPath + "/add.png";
             MinusImagePath = localPath + "/minus.png";
             DataContext = this;
+        }
+
+        public Basket(MainWindow mainWindow,int customerId)
+        {
+            InitializeComponent();
+            DelImagePath = localPath + "/delete-icon.png";
+            PlusImagePath = localPath + "/add.png";
+            MinusImagePath = localPath + "/minus.png";
+            _mainWindow = mainWindow;
+
+            DataContext = this;
+        }
+
+        private void BConfirm_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BBack_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            _mainWindow.Show();
         }
     }
 }

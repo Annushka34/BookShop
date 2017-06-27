@@ -21,7 +21,7 @@
         <DockPanel Width="auto">
             <Button Name="BAdmin" Content="Admin Panel" 
                     Width="150" Margin="10,10" Click="Admin_OnClick" 
-                    FontWeight="Medium" FontSize="16" FontFamily="Trajan Pro" Background="#FF55B8E6" Visibility="Visible"></Button>
+                    FontWeight="Medium" FontSize="16" FontFamily="Trajan Pro" Background="#FF55B8E6" Visibility="Hidden"></Button>
             <Label Name="LLoggedUser" HorizontalAlignment="Right" 
                    Margin="0,15,20,15" Padding="0,10,0,0"
                    FontSize="20" FontFamily="Tekton Pro"
@@ -63,7 +63,7 @@
                     FontSize="16" 
                     FontFamily="Tekton Pro"
                     VerticalContentAlignment="Bottom">Registration</Button>
-            <Button Name="BBasket" Margin="5,10" Background="#FFFDDB01" Visibility="Hidden">
+            <Button Name="BBasket" Margin="5,10" Background="#FFFDDB01" Visibility="Hidden" Click="BBasket_Click">
                 <DockPanel Height="30">
                     <Image Source="{Binding BasketImagePath}" DockPanel.Dock="Right" Width="60"></Image>
                     <Label Content="{Binding BasketConter}" DockPanel.Dock="Bottom" Margin="0,5,0,0" Name="LBasketConter" Width="25" FontSize="12" FontFamily="Tekton Pro"/>

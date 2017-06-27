@@ -13,6 +13,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
         
@@ -33,45 +34,69 @@
                    FontSize="14" FontWeight="Medium"
                    HorizontalContentAlignment="Center">test</Label>
         </Grid>
-        <Grid Grid.Row="1">
-            <DockPanel Width="460" Height="200">
-                <DockPanel DockPanel.Dock="Left">
-                    <Image DockPanel.Dock="Top" Source="{Binding BookImagePath}" Width="100" Height="120" Margin="0,10"/>
-                        <local:RatingsControl x:Name="Rating" Minimum="0" Maximum="5" Value="{Binding BookRank}" NumberOfStars="5"
+        <ListBox Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Width="460" Height="200">
+                        <DockPanel DockPanel.Dock="Left">
+                            <Image DockPanel.Dock="Top" Source="{Binding BookImagePath}" Width="100" Height="120" Margin="0,10"/>
+                            <local:RatingsControl x:Name="Rating" Minimum="0" Maximum="5" Value="{Binding BookRank}" NumberOfStars="5"
                                                           BackgroundColor="#FFCDE9FF" StarForegroundColor="Orange" StarOutlineColor="DarkGray"
                                                           HorizontalAlignment="Center" DockPanel.Dock="Top"
                                                           Height="25" Width="80" Margin="0,-50,0,0">
-                    </local:RatingsControl>
-                </DockPanel>
-                <DockPanel Width="240" Height="180">
-                    <TextBlock DockPanel.Dock="Top" Text="{Binding BookName}" Height="35" FontWeight="Bold" FontSize="16" Foreground="#FF020208"/>
-                    <TextBlock DockPanel.Dock="Top" Text="{Binding BookAuthorName}" Height="40" FontSize="14" Foreground="Black" FontWeight="Medium"/>
-                    <TextBlock DockPanel.Dock="Top" Text="{Binding BookDescription}" TextWrapping="Wrap" FontSize="12"/>
-                </DockPanel>
+                            </local:RatingsControl>
+                        </DockPanel>
+                        <DockPanel Width="240" Height="180">
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding BookName}" Height="35" FontWeight="Bold" FontSize="16" Foreground="#FF020208"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding BookAuthorName}" Height="40" FontSize="14" Foreground="Black" FontWeight="Medium"/>
+                            <TextBlock DockPanel.Dock="Top" Text="{Binding BookDescription}" TextWrapping="Wrap" FontSize="12"/>
+                        </DockPanel>
 
-                <DockPanel Width="120" Height="120" HorizontalAlignment="Right">
-                        <Button DockPanel.Dock="Top" Width="30" Height="30" Margin="0,5,50,5"
+                        <DockPanel Width="120" Height="120" HorizontalAlignment="Right">
+                            <Button DockPanel.Dock="Top" Width="30" Height="30" Margin="0,5,50,5"
                                 FontSize="16" FontWeight="Medium" 
                                 BorderThickness="0" Background="{x:Null}">
-                        <Image Source="{Binding PlusImagePath}"></Image>
-                    </Button>
-                        <StackPanel Height="40" DockPanel.Dock="Top" Orientation="Horizontal">
-                            <Label Name="LCount" Width="60" Margin="5,0,10,0"
+                                <Image Source="{Binding PlusImagePath}"></Image>
+                            </Button>
+                            <StackPanel Height="40" DockPanel.Dock="Top" Orientation="Horizontal">
+                                <Label Name="LCount" Width="60" Margin="5,0,10,0"
                                    FontSize="16" FontWeight="Medium"
                                    VerticalContentAlignment="Center"
                                    HorizontalContentAlignment="Center">123</Label>
-                            <Button Width="30" Height="30" Margin="0,5,0,5" BorderThickness="0" Background="{x:Null}" >
-                                <Image Source="{Binding DelImagePath}"></Image>
-                            </Button>
-                        </StackPanel>
-                        <Button Width="30" Height="30" Margin="0,5,50,5"
+                                <Button Width="30" Height="30" Margin="0,5,0,5" BorderThickness="0" Background="{x:Null}" >
+                                    <Image Source="{Binding DelImagePath}"></Image>
+                                </Button>
+                            </StackPanel>
+                            <Button Width="30" Height="30" Margin="0,5,50,5"
                                 FontSize="16" FontWeight="Medium"
                                 BorderThickness="0" Background="{x:Null}">
-                        <Image Source="{Binding MinusImagePath}"></Image>
-                    </Button>
-                </DockPanel>
-            </DockPanel>
-        
+                                <Image Source="{Binding MinusImagePath}"></Image>
+                            </Button>
+                        </DockPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Label Width="110" Content="Total Price:" Margin="20,0,0,0"
+                   FontSize="18" FontWeight="Medium"
+                   VerticalAlignment="Center"></Label>
+            <Label Width="110" Margin="20,0,0,0"
+                   FontSize="18" FontWeight="Medium"
+                   VerticalAlignment="Center" HorizontalContentAlignment="Center">123</Label>
+        </StackPanel>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name="BConfirm" Grid.Column="0" Margin="20,25" Content="Confirm Order"
+                    FontSize="18" FontWeight="Medium"
+                    Click="BConfirm_Click"></Button>
+            <Button Name="BBack" Grid.Column="1" Margin="20,25" Content="Back To Shoping"
+                    FontSize="18" FontWeight="Medium"
+                    Click="BBack_Click"></Button>
         </Grid>
+        
     </Grid>
 </Window>

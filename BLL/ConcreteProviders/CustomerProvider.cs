@@ -108,5 +108,7 @@ namespace BLL.ConcreteProviders
             IBasketRecordRepository basketRecordRepository = new BasketRecordRepository(_db);
             return basketRecordRepository.DeleteBasketRecord(basketRecordId);            
         }
+
+
     }
 }
