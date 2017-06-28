@@ -51,6 +51,12 @@ namespace BLL.ViewModels
 
     public class BookCreateViewModel
     {
+        public BookCreateViewModel()
+        {
+            CategoriesIdList = new List<int>();
+            TagsIdList = new List<int>();
+            AuthorsIdList = new List<int>();
+        }
         public int Isbn { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

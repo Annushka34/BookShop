@@ -47,7 +47,8 @@ namespace WPF_UI
             tableSelected = "";
             generalProvider = new GeneralProvider();
             bookProvider = new BookProvider();
-            NewBookImagePath = localPath+"1.jpg";           
+            NewBookImagePath = localPath+"1.jpg";
+            DataContext = this;
         }
 
 
@@ -143,11 +144,11 @@ namespace WPF_UI
                         Label3.Content = "SelectBooks";
 
                         bookInfo = bookProvider.GetAllBooks();
-                        ComboBox3.ItemsSource = bookInfo;
+                        ListBox3.ItemsSource = bookInfo;
 
                         SetVisible(TextBox1);
                         SetVisible(TextBox2);
-                        SetVisible(ComboBox3);
+                        SetVisible(ListBox3);
                         SetVisible(Label1);
                         SetVisible(Label2);
                         SetVisible(Label3);
@@ -160,12 +161,12 @@ namespace WPF_UI
                         Label2.Content = "SelectBooks";
 
                         bookInfo = bookProvider.GetAllBooks();
-                        ComboBox2.ItemsSource = bookInfo;
+                        ListBox2.ItemsSource = bookInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
                         SetVisible(TextBox1);
-                        SetVisible(ComboBox2);
+                        SetVisible(ListBox2);
                         break;
                     }
                 case "Book":
@@ -181,13 +182,13 @@ namespace WPF_UI
                         Label9.Content = "Select picture";
 
                         publishesInfo = generalProvider.GetAllPublishNames();
-                        ComboBox5.ItemsSource = publishesInfo;
+                        ListBox5.ItemsSource = publishesInfo;
 
                         categoriesInfo = generalProvider.GetAllCategoriesNames();
-                        ComboBox6.ItemsSource = categoriesInfo;
+                        ListBox6.ItemsSource = categoriesInfo;
 
                         authorsInfo = generalProvider.GetAllAuthorsNames();
-                        ComboBox7.ItemsSource = authorsInfo;
+                        ListBox7.ItemsSource = authorsInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
@@ -201,9 +202,9 @@ namespace WPF_UI
                         SetVisible(TextBox2);
                         SetVisible(TextBox3);
                         SetVisible(TextBox4);
-                        SetVisible(ComboBox5);
-                        SetVisible(ComboBox6);
-                        SetVisible(ComboBox7);
+                        SetVisible(ListBox5);
+                        SetVisible(ListBox6);
+                        SetVisible(ListBox7);
                         IPicture1.Visibility=Visibility.Visible;
                         this.Height = 800;
                         break;
@@ -215,12 +216,12 @@ namespace WPF_UI
                         Label2.Content = "Select books";
 
                         bookInfo = bookProvider.GetAllBooks();
-                        ComboBox2.ItemsSource = bookInfo;
+                        ListBox2.ItemsSource = bookInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
                         SetVisible(TextBox1);
-                        SetVisible(ComboBox2);
+                        SetVisible(ListBox2);
                         break;
                     }
                 case "Tag":
@@ -230,12 +231,12 @@ namespace WPF_UI
                         Label2.Content = "Select books";
 
                         bookInfo = bookProvider.GetAllBooks();
-                        ComboBox2.ItemsSource = bookInfo;
+                        ListBox2.ItemsSource = bookInfo;
 
                         SetVisible(Label1);
                         SetVisible(Label2);
                         SetVisible(TextBox1);
-                        SetVisible(ComboBox2);
+                        SetVisible(ListBox2);
                         break;
                     }
             }
@@ -261,15 +262,10 @@ namespace WPF_UI
                     {
                         AuthorViewModel author = new AuthorViewModel();
                         author.FirstName = TextBox1.Text;
-                        author.FirstName = TextBox2.Text;
-                        int i = 0;
-                        foreach(var items in ComboBox3.Items)
-                        {
-                            if(((CheckBox)items).IsChecked==true)
-                            {
-                                author.BooksId.Add(bookInfo[i].BookId);
-                            }
-                            i++;
+                        author.LastName = TextBox2.Text;
+                        foreach(var items in ListBox3.SelectedItems)
+                        {                           
+                                author.BooksId.Add(((BookUIModel)items).BookId);
                         }
                         generalProvider.CreateNewAuthor(author);
                         break;
@@ -278,6 +274,10 @@ namespace WPF_UI
                     {
                         CategoryViewModel category = new CategoryViewModel();
                         category.CategoryName = TextBox1.Text;
+                        foreach (var items in ListBox2.SelectedItems)
+                        {
+                            category.BooksId.Add(((BookUIModel)items).BookId);
+                        }
                         generalProvider.CreateNewCategory(category);
                         break;
                     }
@@ -291,13 +291,29 @@ namespace WPF_UI
                         book.Description = TextBox3.Text;
                         int.TryParse(TextBox4.Text, out num);
                         book.Price = num;
-                        //book.PublishId;
+                        ListBox5.SelectionMode = SelectionMode.Single;                       
+                        book.PublishId=(((PublishUIModel)ListBox5.SelectedItem).Id);
+                        
+                        foreach (var items in ListBox6.SelectedItems)
+                        {
+                            book.CategoriesIdList.Add(((CategoryUIModel)items).Id);
+                        }
+                        foreach (var items in ListBox7.SelectedItems)
+                        {
+                            book.AuthorsIdList.Add(((AuthorUIModel)items).Id);
+                        }
+                        book.PicturePath = NewBookImagePath;
+                        bookProvider.CreateBook(book);
                         break;
                     }
                 case "Publish":
                     {
                         PublishViewModel publish = new PublishViewModel();
                         publish.PublishName = TextBox1.Text;
+                        foreach (var items in ListBox2.SelectedItems)
+                        {
+                            publish.BooksId.Add(((BookUIModel)items).BookId);
+                        }
                         generalProvider.CreateNewPublish(publish);
                         break;
                     }
@@ -305,6 +321,10 @@ namespace WPF_UI
                     {
                         TagViewModel tag = new TagViewModel();
                         tag.TagName = TextBox1.Text;
+                        foreach (var items in ListBox2.SelectedItems)
+                        {
+                            tag.BooksId.Add(((BookUIModel)items).BookId);
+                        }
                         generalProvider.CreateNewTag(tag);
                         break;
                     }
@@ -331,6 +351,7 @@ namespace WPF_UI
         }
         private void SetHiddenAll()
         {
+            ListBox5.SelectionMode = SelectionMode.Multiple;
             Label1.Visibility = Visibility.Collapsed;
             Label2.Visibility = Visibility.Collapsed;
             Label3.Visibility = Visibility.Collapsed;
@@ -347,13 +368,13 @@ namespace WPF_UI
             TextBox5.Visibility = Visibility.Collapsed;
             TextBox6.Visibility = Visibility.Collapsed;
             TextBox7.Visibility = Visibility.Collapsed;
-            ComboBox1.Visibility = Visibility.Collapsed;
-            ComboBox2.Visibility = Visibility.Collapsed;
-            ComboBox3.Visibility = Visibility.Collapsed;
-            ComboBox4.Visibility = Visibility.Collapsed;
-            ComboBox5.Visibility = Visibility.Collapsed;
-            ComboBox6.Visibility = Visibility.Collapsed;
-            ComboBox7.Visibility = Visibility.Collapsed;
+            ListBox1.Visibility = Visibility.Collapsed;
+            ListBox2.Visibility = Visibility.Collapsed;
+            ListBox3.Visibility = Visibility.Collapsed;
+            ListBox4.Visibility = Visibility.Collapsed;
+            ListBox5.Visibility = Visibility.Collapsed;
+            ListBox6.Visibility = Visibility.Collapsed;
+            ListBox7.Visibility = Visibility.Collapsed;
             PasswordBox8.Visibility = Visibility.Collapsed;
             PasswordBox8.Password = "";
             TextBox1.Text = "";

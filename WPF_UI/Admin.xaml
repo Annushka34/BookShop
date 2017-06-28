@@ -26,10 +26,11 @@
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Visibility" Value="Collapsed"></Setter>
         </Style>
-        <Style TargetType="ComboBox">
+        <Style TargetType="ListBox">
             <Setter Property="FontSize" Value="16"></Setter>
             <Setter Property="Margin" Value="10" />
-            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Height" Value="60"></Setter>
+            <Setter Property="SelectionMode" Value="Multiple"></Setter>
         </Style>
         <Style TargetType="StackPanel">
             <Setter Property="Margin" Value="10,10,0,10" />
@@ -56,7 +57,7 @@
 
     <StackPanel Grid.Column="0" Name="SPSelect" VerticalAlignment="Top" Height="280" Margin="10,10,0,0">
             <Label Visibility="Visible">Select table to show existing</Label>
-            <ComboBox Name="CTableExisting" SelectionChanged="CTableExisting_OnSelectionChanged">
+            <ComboBox Name="CTableExisting" SelectionChanged="CTableExisting_OnSelectionChanged" Height="40">
                 <TextBlock>Admin</TextBlock>
                 <TextBlock>Author</TextBlock>
                 <TextBlock>Category</TextBlock>
@@ -79,67 +80,67 @@
         <StackPanel Grid.Column="1" Name="SPTable" Visibility="Hidden">
             <Label Name="Label1"></Label>
             <TextBox Name="TextBox1" Margin="10,10"></TextBox>
-            <ComboBox Name="ComboBox1" Height="30" Visibility="Collapsed"  ItemsSource="{Binding}">
-                <ComboBox.ItemTemplate>
+            <ListBox Name="ListBox1" Visibility="Collapsed"  ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding CategoryName}"></CheckBox>
+                        <TextBlock Text="{Binding CategoryName}"></TextBlock>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Label Name="Label2"></Label>
             <TextBox Name="TextBox2" ></TextBox>
-            <ComboBox Name="ComboBox2" Height="30" Visibility="Collapsed"  ItemsSource="{Binding}">
-            <ComboBox.ItemTemplate>
+            <ListBox Name="ListBox2" Visibility="Collapsed"  ItemsSource="{Binding}" SelectionMode="Multiple">
+                <ListBox.ItemTemplate>
                 <DataTemplate>
-                        <CheckBox Content="{Binding Name}"></CheckBox>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
                 </DataTemplate>
-            </ComboBox.ItemTemplate>
-            </ComboBox>
+            </ListBox.ItemTemplate>
+            </ListBox>
             <Label Name="Label3"></Label>
             <TextBox Name="TextBox3" ></TextBox>
-            <ComboBox Name="ComboBox3" Height="30" Visibility="Collapsed"  ItemsSource="{Binding}">
-                <ComboBox.ItemTemplate>
+            <ListBox Name="ListBox3" Visibility="Collapsed"  ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding Name}"></CheckBox>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <Label Name="Label4"></Label>
             <TextBox Name="TextBox4" ></TextBox>
-            <ComboBox Name="ComboBox4" Height="30" Visibility="Collapsed">
-            <ComboBox.ItemTemplate>
+            <ListBox Name="ListBox4" Visibility="Collapsed" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
                 <DataTemplate>
-                        <CheckBox Content="{Binding AuthorName}"></CheckBox>
+                        <TextBlock Text="{Binding AuthorName}"></TextBlock>
                 </DataTemplate>
-            </ComboBox.ItemTemplate>
-            </ComboBox>
+            </ListBox.ItemTemplate>
+            </ListBox>
             <Label Name="Label5"></Label>
-            <ComboBox Name="ComboBox5" Height="30" Visibility="Collapsed">
-                <ComboBox.ItemTemplate>
+            <ListBox Name="ListBox5"  Visibility="Collapsed" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding PublishName}"></CheckBox>
+                        <TextBlock Text="{Binding PublishName}"></TextBlock>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <TextBox Name="TextBox5" ></TextBox>
 
             <Label Name="Label6"></Label>
-            <ComboBox Name="ComboBox6" Height="30" Visibility="Collapsed">
-                <ComboBox.ItemTemplate>
+            <ListBox Name="ListBox6" Visibility="Collapsed" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding CategoryName}"></CheckBox>
+                        <TextBlock Text="{Binding CategoryName}"></TextBlock>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <TextBox Name="TextBox6" ></TextBox>
             <Label Name="Label7"></Label>
-            <ComboBox Name="ComboBox7" Height="30" Visibility="Collapsed">
-                <ComboBox.ItemTemplate>
+            <ListBox Name="ListBox7" Visibility="Collapsed" ItemsSource="{Binding}">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox Content="{Binding AuthorName}"></CheckBox>
+                        <TextBlock Text="{Binding AuthorName}"></TextBlock>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+                </ListBox.ItemTemplate>
+            </ListBox>
             <TextBox Name="TextBox7" ></TextBox>
             <Label Name="Label8"></Label>
             <PasswordBox Name="PasswordBox8" Height="30" Visibility="Collapsed" Margin="10"></PasswordBox>

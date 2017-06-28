@@ -1,0 +1,1 @@
+Server[@Name='groupserver']Database[@Name='BookShop']DatabaseDiagram[@Name='Diagram_BookShop' and @OwnerID='1']

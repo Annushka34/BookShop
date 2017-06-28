@@ -85,6 +85,7 @@ namespace BLL.ViewModels
     {
         public int Id { get; set; }
         public string PublishName { get; set; }
+        public List<int> BooksId { get; set; }
     }
 
     public class SearchViewModel
