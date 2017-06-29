@@ -181,6 +181,11 @@ namespace BLL.ConcreteProviders
             }
             return books;
         }
+        public string GetBookNameByBookId(int bookId)
+        {
+            IBookRepository bookRepository = new BookRepository(_db);
+            return bookRepository.GetBookById(bookId).Name;
+        }
 
     }
 }

@@ -8,6 +8,7 @@ using BLL.ViewModels;
 using DAL.AbstractRepository;
 using DAL.ConcreteRepositories;
 using DAL.Entity;
+using System.Collections.ObjectModel;
 
 namespace BLL.ConcreteProviders
 {
@@ -175,6 +176,31 @@ namespace BLL.ConcreteProviders
                 publishes.Add(publishUi);
             }
             return publishes;
+        }
+
+        public ObservableCollection<OrderRecordUIModel> GetAllOrderRecordsByCustomer(int customerId)
+        {
+            IOrderRecordsRepository orderRecordRepository = new OrderRecordRepository(_db);
+            IOrderRepository orderRepository = new OrderRepository(_db);
+            IBookRepository bookRepository = new BookRepository(_db);
+
+            ObservableCollection<OrderRecordUIModel> orderRecordList = new ObservableCollection<OrderRecordUIModel>();
+            var orderRecords = orderRecordRepository.GetOrderRecordsByCustomer(customerId);
+            var orders = orderRepository.GetAllOrdersByCustomer(customerId);
+
+            foreach (OrderRecord orderRecord in orderRecords)
+            {
+                OrderRecordUIModel newOrder = new OrderRecordUIModel();
+                newOrder.BookName = bookRepository.GetBookById(orderRecord.BookId).Name;
+                newOrder.Count = orderRecord.Count.ToString();
+                newOrder.OrderId = orderRecord.OrderId.ToString();
+                foreach (Order order in orders)
+                {
+                    newOrder.CloseDate = order.CloseDate.ToShortDateString();
+                }
+                orderRecordList.Add(newOrder);
+            }
+            return orderRecordList;
         }
     }
 }
