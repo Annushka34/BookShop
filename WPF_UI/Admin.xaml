@@ -71,7 +71,7 @@
             </StackPanel>
     </StackPanel>
         <StackPanel  Orientation="Horizontal" VerticalAlignment="Bottom" Height="55" Margin="10,0,0,10" Grid.Row="1">
-            <Button Name="BtnSelect" Click="BtnSelect_OnClick" Visibility="Visible" Margin="15,10,25,10" Width="70">Select</Button>
+            <Button Name="BtnSelect" Click="BtnView_OnClick" Visibility="Visible" Margin="15,10,25,10" Width="70">View</Button>
             <Button Name="BtnAdd" Click="BtnAdd_OnClick" Visibility="Visible" Margin="10,10,25,10" Width="70">AddNew</Button>
             <Button Name="BtnDelete" Click="BtnDelete_OnClick" Visibility="Visible" Margin="10,10,25,10" Width="70">Delete</Button>
             <Button x:Name="BtnUpdate" Click="BtnUpdate_OnClick" Visibility="Visible" Content="Update" Margin="10,10,25,10" Width="70" />

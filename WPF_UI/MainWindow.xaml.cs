@@ -28,7 +28,7 @@ namespace WPF_UI
         Admin _adminWindow;
         string localPath = new Uri(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "Images")).LocalPath;
         List<CategoryUIModel> categoriesInfo = new List<CategoryUIModel>();
-        List<AuthorUIModel> authorsInfo = new List<AuthorUIModel>();
+        List<AuthorUIModelWithBooks> authorsInfo = new List<AuthorUIModelWithBooks>();
         List<PublishUIModel> publishesInfo = new List<PublishUIModel>();
         List<TagUIModel> tagsInfo = new List<TagUIModel>();
         //List<BookUIShortModel> booksInfo = new List<BookUIShortModel>();

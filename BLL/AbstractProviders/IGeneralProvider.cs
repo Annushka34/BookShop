@@ -13,7 +13,7 @@ namespace BLL.AbstractProviders
         CategoryUIModel CreateNewCategory(CategoryViewModel categoryModel);
         List<CategoryUIModel> GetAllCategoriesNames();
         AuthorUIModel CreateNewAuthor(AuthorViewModel authorModel);
-        List<AuthorUIModel> GetAllAuthorsNames();
+        List<AuthorUIModelWithBooks> GetAllAuthorsNames();
         TagUIModel CreateNewTag(TagViewModel tagModel);
         List<TagUIModel> GetAllTagsNames();
         ReviewUIModel CreateNewReview(ReviewViewModel reviewModel);

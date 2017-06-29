@@ -73,18 +73,27 @@ namespace BLL.ConcreteProviders
             }
             return new AuthorUIModel(author);
         }
-        public List<AuthorUIModel> GetAllAuthorsNames()
+        public List<AuthorUIModelWithBooks> GetAllAuthorsNames()
         {
             IAuthorRepository authorRepository = new AuthorRepository(_db);
-            List<AuthorUIModel> authors = new List<AuthorUIModel>();
+            IBookRepository bookRepository = new BookRepository(_db);
+            List<AuthorUIModelWithBooks> authors = new List<AuthorUIModelWithBooks>();
 
             foreach (var author in _db.Authors)
             {
-                AuthorUIModel newAuthor = new AuthorUIModel(author);
-                authors.Add(newAuthor);
+                AuthorUIModelWithBooks newAuthor = new AuthorUIModelWithBooks(author);
+                if (author.Books.Count != 0)
+                {
+                    foreach (var book in author.Books)
+                    {
+                        BookUIModel bookModel = new BookUIModel(book);
+                        newAuthor.Books.Add(bookModel);
+                    }
+                }
             }
             return authors;
         }
+
 
         public TagUIModel CreateNewTag(TagViewModel tagModel)
         {

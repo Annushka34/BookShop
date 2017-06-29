@@ -35,7 +35,7 @@ namespace WPF_UI
         private IGeneralProvider generalProvider;
         private IBookProvider bookProvider;
 
-        List<AuthorUIModel> authorsInfo = new List<AuthorUIModel>();
+        List<AuthorUIModelWithBooks> authorsInfo = new List<AuthorUIModelWithBooks>();
         List<CategoryUIModel> categoriesInfo = new List<CategoryUIModel>();
         List<PublishUIModel> publishesInfo = new List<PublishUIModel>();
         List<BookUIModel> bookInfo = new List<BookUIModel>();
@@ -111,10 +111,44 @@ namespace WPF_UI
         }
 
 
-
-        private void BtnSelect_OnClick(object sender, RoutedEventArgs e)
+        private void BtnView_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (tableSelected == "") return;
+            SPTable.Visibility = Visibility.Visible;
+            switch (tableSelected)
+            {
+                case "Admin":
+                    {
+                        ShowAdminPanel(((UserUILoginModel)DataGridSelectedTable.SelectedItem));
+                        break;
+                    }
+                case "Author":
+                    {
+
+                        ShowAuthorPanel(((AuthorUIModelWithBooks)DataGridSelectedTable.SelectedItem));
+                        break;
+                    }
+                case "Category":
+                    {
+
+                        break;
+                    }
+                case "Book":
+                    {
+
+                        break;
+                    }
+                case "Publish":
+                    {
+
+                        break;
+                    }
+                case "Tag":
+                    {
+
+                        break;
+                    }
+            }
         }
         private void BtnAdd_OnClick(object sender, RoutedEventArgs e)
         {
@@ -123,35 +157,12 @@ namespace WPF_UI
             {
                 case "Admin":
                     {
-                        SetHiddenAll();
-                        Label1.Content = "Email";
-                        Label2.Content = "Login";
-                        Label8.Content = "Password";
-
-                        SetVisible(TextBox1);
-                        SetVisible(TextBox2);
-                        SetVisible(PasswordBox8);
-                        SetVisible(Label1);
-                        SetVisible(Label2);
-                        SetVisible(Label8);
+                        ShowAdminPanel(null);
                         break;
                     }
                 case "Author":
                     {
-                        SetHiddenAll();
-                        Label1.Content = "First name";
-                        Label2.Content = "LastName";
-                        Label3.Content = "SelectBooks";
-
-                        bookInfo = bookProvider.GetAllBooks();
-                        ListBox3.ItemsSource = bookInfo;
-
-                        SetVisible(TextBox1);
-                        SetVisible(TextBox2);
-                        SetVisible(ListBox3);
-                        SetVisible(Label1);
-                        SetVisible(Label2);
-                        SetVisible(Label3);
+                        ShowAuthorPanel(null);
                         break;
                     }
                 case "Category":
@@ -423,6 +434,49 @@ namespace WPF_UI
                 NewBookImagePath = dlg.FileName;
                 ImageSourceConverter imgs = new ImageSourceConverter();
                 img.SetValue(Image.SourceProperty, imgs.ConvertFromString(NewBookImagePath));
+            }
+        }
+
+
+        private void ShowAdminPanel(UserUILoginModel user)
+        {
+            SetHiddenAll();
+            Label1.Content = "Email";
+            Label2.Content = "Login";
+            Label8.Content = "Password";
+
+            SetVisible(TextBox1);
+            SetVisible(TextBox2);
+            SetVisible(PasswordBox8);
+            SetVisible(Label1);
+            SetVisible(Label2);
+            SetVisible(Label8);
+            if(user!=null)
+            {
+
+            }
+        }
+        private void ShowAuthorPanel(AuthorUIModelWithBooks author)
+        {
+            SetHiddenAll();
+            Label1.Content = "First name";
+            Label2.Content = "LastName";
+            Label3.Content = "SelectBooks";
+
+            bookInfo = bookProvider.GetAllBooks();
+            ListBox3.ItemsSource = bookInfo;
+
+            SetVisible(TextBox1);
+            SetVisible(TextBox2);
+            SetVisible(ListBox3);
+            SetVisible(Label1);
+            SetVisible(Label2);
+            SetVisible(Label3);
+            if(author!=null)
+            {
+                TextBox1.Text = author.FirstName;
+                TextBox2.Text = author.LastName;
+                ListBox3.ItemsSource = author.Books;
             }
         }
     }
